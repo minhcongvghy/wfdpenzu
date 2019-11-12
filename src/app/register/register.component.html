@@ -1,0 +1,66 @@
+  <article class="card-body mx-auto" style="max-width: 400px;">
+    <h4 class="card-title mt-3 text-center text-info">Create Account</h4>
+    <p class="text-center text-info">Get started with your free account</p>
+    <p>
+      <a href="" class="btn btn-block btn-gmail"> Login with Gmail</a>
+      <a href="" class="btn btn-block btn-facebook">    Login with facebook</a>
+    </p>
+    <p class="divider-text">
+      <span class="bg-light">OR</span>
+    </p>
+    <form name="form" (ngSubmit)="f.form.valid && signUp()" #f="ngForm" novalidate>
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+        </div>
+        <input name="name" [(ngModel)]="form.name" #name="ngModel" required minlength="3" class="form-control" placeholder="Full name" type="text">
+        <div *ngIf="f.submitted && name.invalid">
+          <div *ngIf="name.errors.required">Name is required</div>
+          <div *ngIf="name.errors.minlength">Name must be at least 3 characters</div>
+        </div>
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+        </div>
+        <input name="username" [(ngModel)]="form.username" #username="ngModel"
+               required minlength="3" class="form-control" placeholder="Username" type="email">
+        <div *ngIf="f.submitted && username.invalid">
+          <div *ngIf="username.errors.required">Username is required</div>
+          <div *ngIf="username.errors.minlength">Username must be at least 3 characters</div>
+        </div>
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+        </div>
+        <input  name="email" [(ngModel)]="form.email" #email="ngModel" required email
+                class="form-control" placeholder="Email address" type="email">
+        <div *ngIf="f.submitted && email.invalid">
+          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+        </div>
+        <input class="form-control" placeholder="Create password" type="password"
+               name="password" [(ngModel)]="form.password" #password="ngModel"
+               required minlength="6">
+        <div *ngIf="f.submitted && password.invalid">
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+      </div> <!-- form-group// -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+          Signup failed!<br/>{{errorMessage}}
+        </div>
+      </div> <!-- form-group// -->
+      <p class="text-center">Have an account? <a [routerLink]="'/login'">Log In</a> </p>
+    </form>
+  </article>
+
+<app-footer></app-footer>

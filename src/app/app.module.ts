@@ -11,6 +11,12 @@ import { FeaturedComponent } from './featured/featured.component';
 import { BlogMainComponent } from './blog-main/blog-main.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileUserComponent } from './profile-user/profile-user.component';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +27,12 @@ import { FooterComponent } from './footer/footer.component';
     BlogMainComponent,
     SideBarComponent,
     FooterComponent,
+    LoginComponent,
+    HomeComponent,
+    NavbarComponent,
+    RegisterComponent,
+    ProfileUserComponent,
+
   ],
   imports: [
     BrowserModule,
