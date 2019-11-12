@@ -18,12 +18,12 @@ export class ProfileUserComponent implements OnInit {
   });
   returnUrl: string;
   name: any;
-  isError = false;
+  isError = true;
   error = '';
   passForm = new FormGroup({
     currentPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]),
     newPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]),
-    confirmPassoword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)])
+    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)])
   });
   constructor(private token: TokenStorageService, private authService: AuthService,
               private route: ActivatedRoute,
@@ -43,8 +43,8 @@ export class ProfileUserComponent implements OnInit {
   }
 
   updatePassword(closeButton: HTMLInputElement) {
-    const {currentPassword, newPassword, confirmPassoword} = this.passForm.value;
-    if (newPassword !== confirmPassoword) {
+    const {currentPassword, newPassword, confirmPassword} = this.passForm.value;
+    if (newPassword !== confirmPassword) {
       this.isError = true;
       return this.error = 'Password confirm not match ';
     }
@@ -74,14 +74,14 @@ export class ProfileUserComponent implements OnInit {
         closeButton.click();
         console.log(result);
         this.logout();
+        alert('Update successful. Please ReLogin !');
+        this.router.navigateByUrl(this.returnUrl);
       }, error => {
         this.isError = true;
-        this.error = 'Update user fail.! Maybe your current password not match';
-        return console.log('error');
+        this.error = 'Nothing change?';
+        return console.log(this.error, this.isError);
       }
     );
-    alert('Update successful. Please ReLogin !');
-    this.router.navigateByUrl(this.returnUrl);
   }
 
 

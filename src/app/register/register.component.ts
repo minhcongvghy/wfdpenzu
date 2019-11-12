@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {SignUpInfo} from '../auth/sign-up-info';
 import {AuthService} from '../auth/auth.service';
-import {TokenStorageService} from "../auth/token-storage.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {TokenStorageService} from '../auth/token-storage.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,12 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   returnUrl: string;
+  registerForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(3),  Validators.maxLength(50)]),
+    email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)])
+  });
   constructor(private authService: AuthService, private route: ActivatedRoute,
               private router: Router) { }
 
@@ -23,8 +30,8 @@ export class RegisterComponent implements OnInit {
   }
 
   signUp() {
-    console.log(this.form);
-    const signUpInfoForm = new SignUpInfo(this.form.name, this.form.username, this.form.email, this.form.password);
+    const {name , username , email , password} = this.registerForm.value;
+    const signUpInfoForm = new SignUpInfo(name, username, email, password);
 
     this.authService.signUp(signUpInfoForm).subscribe(
       data => {

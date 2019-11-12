@@ -126,8 +126,8 @@
             <label  class="col-form-label">New Name </label>
             <input type="text" placeholder="{{info.name}}" formControlName="name" class="form-control" >
           </div>
-          <div class="alert alert-danger" role="alert" *ngIf="inputName.get('name').invalid &&inputName.get('name').touched">
-            Invalid(must than 3 character)
+          <div class="alert alert-warning" role="alert" *ngIf="inputName.get('name').invalid &&inputName.get('name').touched">
+            Invalid(must longer 3 character)
           </div>
         </form>
       </div>
@@ -156,27 +156,24 @@
             <label  class="col-form-label">Current Password </label>
             <input id="currentPassword" type="password"  class="form-control" formControlName="currentPassword" >
           </div>
-          <div class="alert alert-danger" role="alert" *ngIf="passForm.get('currentPassword').invalid &&passForm.get('currentPassword').touched">
-            Invalid(must than 6 character)
+          <div class="alert alert-warning" role="alert" *ngIf="passForm.get('currentPassword').invalid &&passForm.get('currentPassword').touched">
+            Password invalid(must longer 6 and smaller 100 character)
           </div>
           <div class="form-group">
             <label  class="col-form-label">New Password</label>
             <input type="password"  class="form-control" formControlName="newPassword">
           </div>
-          <div class="alert alert-danger" role="alert" *ngIf="passForm.get('newPassword').invalid &&passForm.get('newPassword').touched">
-            Invalid(must than 6 character)
+          <div class="alert alert-warning" role="alert" *ngIf="passForm.get('newPassword').invalid &&passForm.get('newPassword').touched">
+            Password invalid(must longer 6 and smaller 100 character)
           </div>
           <div class="form-group">
             <label  class="col-form-label">Confirm Password</label>
-            <input type="password"  class="form-control" formControlName="confirmPassoword">
+            <input type="password"  class="form-control" formControlName="confirmPassword">
           </div>
-          <div class="alert alert-danger" role="alert" *ngIf="passForm.get('confirmPassoword').invalid &&passForm.get('confirmPassoword').touched">
-            Invalid(must than 6 character)
+          <div class="alert alert-warning" role="alert" *ngIf="passForm.get('confirmPassword').invalid &&passForm.get('confirmPassword').touched">
+            Password invalid(must longer 6 and smaller 100 character)gi
           </div>
         </form>
-        <div *ngIf="isError" class="text text-danger">
-          {{error}}
-        </div>
       </div>
       <div class="modal-footer">
         <button #closeModalRef1 type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
