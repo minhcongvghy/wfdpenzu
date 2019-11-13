@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    console.log(this.loginForm);
     const {username , password} = this.loginForm.value;
 
     const authLoginInfo = new AuthLoginInfo(username, password);

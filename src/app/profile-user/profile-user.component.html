@@ -129,6 +129,9 @@
           <div class="alert alert-warning" role="alert" *ngIf="inputName.get('name').invalid &&inputName.get('name').touched">
             Invalid(must longer 3 character)
           </div>
+          <div class="alert alert-warning" role="alert" *ngIf="isErrorUser">
+            {{errorUser}}
+          </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -172,6 +175,9 @@
           </div>
           <div class="alert alert-warning" role="alert" *ngIf="passForm.get('confirmPassword').invalid &&passForm.get('confirmPassword').touched">
             Password invalid(must longer 6 and smaller 100 character)gi
+          </div>
+          <div class="alert alert-warning" role="alert" *ngIf="isError">
+            {{error}}
           </div>
         </form>
       </div>

@@ -18,8 +18,10 @@ export class ProfileUserComponent implements OnInit {
   });
   returnUrl: string;
   name: any;
-  isError = true;
+  isError = false;
   error = '';
+  isErrorUser = false;
+  errorUser = '';
   passForm = new FormGroup({
     currentPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]),
     newPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]),
@@ -37,8 +39,6 @@ export class ProfileUserComponent implements OnInit {
       authorities: this.token.getAuthorities(),
       userId: this.token.getUserId()
     };
-
-    console.log(this.info);
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
   }
 
@@ -58,15 +58,21 @@ export class ProfileUserComponent implements OnInit {
         alert('Change password successful. Please ReLogin !');
       }, error1 => {
         this.isError = true;
-        this.error = 'Update password fail';
+        this.error = 'Update password fail!';
         return console.log('error');
       }
     );
   }
 
   updateUser(closeButton: HTMLInputElement) {
-    console.log(this.inputName.value);
     const {name} = this.inputName.value;
+
+    console.log(name);
+
+    if (name === '') {
+      this.isErrorUser = true;
+      return this.errorUser = 'Fail! Nothing Change.';
+    }
     const userForm = new UserForm(this.info.userId, name);
 
     this.authService.updateUser(userForm).subscribe(
@@ -77,9 +83,9 @@ export class ProfileUserComponent implements OnInit {
         alert('Update successful. Please ReLogin !');
         this.router.navigateByUrl(this.returnUrl);
       }, error => {
-        this.isError = true;
-        this.error = 'Nothing change?';
-        return console.log(this.error, this.isError);
+        console.log(this.isErrorUser, this.errorUser);
+        this.isErrorUser = true;
+        return this.errorUser = 'Fail!.';
       }
     );
   }
@@ -88,6 +94,7 @@ export class ProfileUserComponent implements OnInit {
 
   logout() {
     this.token.signOut();
+    this.router.navigateByUrl(this.returnUrl);
   }
 
 }

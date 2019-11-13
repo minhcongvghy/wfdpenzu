@@ -4,6 +4,7 @@ import {AuthLoginInfo} from '../auth/auth-login-info';
 import {AuthService} from '../auth/auth.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SignUpInfo} from '../auth/sign-up-info';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,10 @@ export class HeaderComponent implements OnInit {
 
   info: any;
   private loginInfo: AuthLoginInfo;
-
-  constructor(private authService: AuthService, private token: TokenStorageService) { }
+  private returnUrl: string;
+  constructor(private authService: AuthService, private token: TokenStorageService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.info = {
@@ -25,13 +28,12 @@ export class HeaderComponent implements OnInit {
       authorities: this.token.getAuthorities(),
       userId: this.token.getUserId()
     };
-
-    console.log(this.info);
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
   }
 
   logout() {
     this.token.signOut();
-    window.location.reload();
+    this.router.navigateByUrl(this.returnUrl);
   }
 
 }
