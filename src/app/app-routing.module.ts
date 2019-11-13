@@ -4,6 +4,8 @@ import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './register/register.component';
 import {ProfileUserComponent} from './profile-user/profile-user.component';
+import {CanActivateTeam} from './deactivate/can-activate-team';
+
 
 
 
@@ -18,8 +20,14 @@ const routes: Routes = [
     // ]
   },
   { path: 'login', component: LoginComponent},
-  { path: 'register' , component: RegisterComponent},
-  { path: 'profile' , component: ProfileUserComponent}
+  { path: 'register' ,
+    component: RegisterComponent
+  },
+  { path: 'profile' ,
+    component: ProfileUserComponent,
+    canActivate: [CanActivateTeam],
+  },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

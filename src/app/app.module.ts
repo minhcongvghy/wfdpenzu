@@ -16,6 +16,9 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
+import {CanActivateTeam} from './deactivate/can-activate-team';
+import {Permissions} from './deactivate/permissions';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -39,9 +42,16 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      {
+        path: 'profile',
+        component: ProfileUserComponent,
+        canDeactivate: [CanActivateTeam]
+      }
+    ])
   ],
-  providers: [],
+  providers: [CanActivateTeam, Permissions],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

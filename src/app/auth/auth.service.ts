@@ -4,8 +4,8 @@ import {AuthLoginInfo} from './auth-login-info';
 import {Observable} from 'rxjs';
 import {JwtResponse} from './jwt-response';
 import {SignUpInfo} from './sign-up-info';
-import {UserForm} from "../profile-user/user-form";
-import {PassForm} from "../profile-user/pass-form";
+import {UserForm} from '../profile-user/user-form';
+import {PassForm} from '../profile-user/pass-form';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
