@@ -5,6 +5,7 @@ import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './register/register.component';
 import {ProfileUserComponent} from './profile-user/profile-user.component';
 import {CanActivateTeam} from './deactivate/can-activate-team';
+import {NotActivateTeam} from './deactivate/not-activate-team';
 
 
 
@@ -19,9 +20,13 @@ const routes: Routes = [
     //   { path: 'profile', component: ProfileComponent }
     // ]
   },
-  { path: 'login', component: LoginComponent},
+  { path: 'login',
+    component: LoginComponent,
+    canActivate: [NotActivateTeam],
+  },
   { path: 'register' ,
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [NotActivateTeam],
   },
   { path: 'profile' ,
     component: ProfileUserComponent,
