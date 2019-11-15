@@ -36,8 +36,9 @@ export class ProfileUserComponent implements OnInit {
       name: this.token.getName(),
       token: this.token.getToken(),
       username: this.token.getUsername(),
-      authorities: this.token.getAuthorities(),
-      userId: this.token.getUserId()
+      role: this.token.getAuthorities(),
+      userId: this.token.getUserId(),
+      email: this.token.getEmail()
     };
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
   }

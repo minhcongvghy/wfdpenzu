@@ -19,6 +19,10 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
 import {CanActivateTeam} from './deactivate/can-activate-team';
 import {Permissions} from './deactivate/permissions';
 import {NotActivateTeam} from './deactivate/not-activate-team';
+import { CreateDiaryComponent } from './create-diary/create-diary.component';
+import {CKEditorModule} from 'ngx-ckeditor';
+import { DiaryComponent } from './diary/diary.component';
+import { UserDiaryListComponent } from './user-diary-list/user-diary-list.component';
 
 
 @NgModule({
@@ -35,6 +39,9 @@ import {NotActivateTeam} from './deactivate/not-activate-team';
     NavbarComponent,
     RegisterComponent,
     ProfileUserComponent,
+    CreateDiaryComponent,
+    DiaryComponent,
+    UserDiaryListComponent,
 
   ],
   imports: [
@@ -43,6 +50,7 @@ import {NotActivateTeam} from './deactivate/not-activate-team';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CKEditorModule,
   ],
   providers: [Permissions, CanActivateTeam, NotActivateTeam],
   bootstrap: [AppComponent]

@@ -1,0 +1,40 @@
+
+<form [formGroup]="formDiary">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3">Title</span>
+    </div>
+    <input formControlName="title" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+  </div>
+  <div class="input-group mb-3">
+    <input type="file" class="form-control" aria-label="Amount (to the nearest dollar)" (change)="handleFileChooser($event.target.files)">
+    <div class="input-group-prepend">
+      <span class="input-group-text" >Image</span>
+    </div>
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Description</span>
+    </div>
+    <textarea formControlName="description"  class="form-control" aria-label="With textarea"></textarea>
+  </div>
+  <br/>
+  <div class="input-group mb-3">
+    <select formControlName="tagId" class="custom-select " id="inputGroupSelect02">
+      <option value="" selected disabled hidden>Please select Tag</option>
+      <option *ngFor="let tag of tagList" value="{{tag.id}}">{{tag.name}}</option>
+    </select>
+    <div >
+      <label class="input-group-text lg" >Tag</label>
+    </div>
+  </div>
+  <h3 class="alert alert-dark">
+    <label for="basic-url">Content</label>
+  </h3>
+  <ck-editor  name="editor1" formControlName="content"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+  <br/>
+  <br/>
+  <label for="basic-url">
+    <button type="button" class="btn btn-success btn-lg" (click)="createDiary()">Save Now</button>
+  </label>
+</form>

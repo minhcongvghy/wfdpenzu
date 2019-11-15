@@ -6,6 +6,8 @@ import {RegisterComponent} from './register/register.component';
 import {ProfileUserComponent} from './profile-user/profile-user.component';
 import {CanActivateTeam} from './deactivate/can-activate-team';
 import {NotActivateTeam} from './deactivate/not-activate-team';
+import {CreateDiaryComponent} from './create-diary/create-diary.component';
+import {DiaryComponent} from './diary/diary.component';
 
 
 
@@ -24,13 +26,20 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [NotActivateTeam],
   },
+  {
+    path: 'diary',
+    component: DiaryComponent,
+    children: [
+      { path: '', component: CreateDiaryComponent},
+      { path: 'profile' ,
+        component: ProfileUserComponent,
+        canActivate: [CanActivateTeam],
+      },
+    ]
+  },
   { path: 'register' ,
     component: RegisterComponent,
     canActivate: [NotActivateTeam],
-  },
-  { path: 'profile' ,
-    component: ProfileUserComponent,
-    canActivate: [CanActivateTeam],
   },
   { path: '**', redirectTo: '' }
 ];

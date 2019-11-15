@@ -5,4 +5,5 @@ export interface JwtResponse {
   username: string;
   name: string;
   roles: string[];
+  email: string;
 }
