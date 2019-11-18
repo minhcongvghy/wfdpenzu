@@ -7,7 +7,10 @@
 
         <div class="blog-post">
           <h1 class="blog-post-title"><p>{{diary.title}}</p></h1>
-          <p class="blog-post-meta">Date: {{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}} By <a class="text-info">{{diary.user.name}}</a></p>
+          <p class="blog-post-meta">Date: {{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}} By
+            <a class="text-info">{{diary.user.name}}</a>
+          </p>
+          <p>Tag: <a href="/#">{{diary.tag.name}}</a></p>
           <hr>
           <h3>Description</h3>
           <p>{{diary.description}}</p>

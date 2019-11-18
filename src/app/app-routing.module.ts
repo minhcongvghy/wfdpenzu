@@ -11,6 +11,7 @@ import {DiaryComponent} from './diary/diary.component';
 import {UserDiaryListComponent} from './user-diary-list/user-diary-list.component';
 import {BlogMainComponent} from './blog-main/blog-main.component';
 import {DetailDiaryComponent} from './detail-diary/detail-diary.component';
+import {UpdateDiaryComponent} from './update-diary/update-diary.component';
 
 
 
@@ -47,6 +48,10 @@ const routes: Routes = [
         component: UserDiaryListComponent,
         canActivate: [CanActivateTeam],
       },
+      {
+        path: 'updateDiary/:id' ,
+        component: UpdateDiaryComponent
+      }
     ]
   },
   { path: 'register' ,

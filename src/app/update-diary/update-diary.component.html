@@ -1,0 +1,37 @@
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center alert alert-dark">
+  <h4 class="display-4 darken-grey-text">Update Diary</h4>
+</div>
+<form>
+  <div class="input-group mb-3">
+    <input  type="text"
+           placeholder="Please Insert Title!" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3">Title</span>
+    </div>
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Description</span>
+    </div>
+    <textarea  placeholder="Please Write Something short About Diary !" class="form-control" aria-label="With textarea"></textarea>
+  </div>
+  <br/>
+  <div class="input-group mb-3">
+    <select  class="custom-select " id="inputGroupSelect02">
+      <option value="" selected disabled hidden>Please select Tag</option>
+      <option></option>
+    </select>
+    <div >
+      <label class="input-group-text lg" >Tag</label>
+    </div>
+  </div>
+  <h3 class="alert alert-dark">
+    <label for="basic-url">Content</label>
+  </h3>
+  <ck-editor name="editor1" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+  <br/>
+  <br/>
+  <label for="basic-url">
+    <button type="button" class="btn btn-success btn-lg" >Update Now</button>
+  </label>
+</form>

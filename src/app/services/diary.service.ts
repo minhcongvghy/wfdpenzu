@@ -34,4 +34,8 @@ export class DiaryService {
     return this.http.get<Diary>(this.diaryUrl + id);
   }
 
+  deleteDiaryById(id: string): Observable<void> {
+    return this.http.delete<void>(this.diaryUrl + id);
+  }
+
 }
