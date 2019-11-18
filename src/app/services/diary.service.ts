@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class DiaryService {
 
-  private diaryUrl = 'http://localhost:8080/api/auth/diary';
+  private diaryUrl = 'http://localhost:8080/api/auth/diary/';
   private uploadFileUrl = 'http://localhost:8080/api/auth/file/';
 
   constructor(private http: HttpClient) { }
@@ -28,6 +28,10 @@ export class DiaryService {
     headers.append('Accept', 'application/json');
 
     return this.http.post<FileForm>(this.uploadFileUrl + diaryId, file, {headers});
+  }
+
+  findDiaryById(id: string): Observable<Diary> {
+    return this.http.get<Diary>(this.diaryUrl + id);
   }
 
 }

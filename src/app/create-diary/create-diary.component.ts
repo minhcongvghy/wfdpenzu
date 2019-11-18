@@ -58,6 +58,7 @@ export class CreateDiaryComponent implements OnInit {
   //   this.fileUpload = files.item(0);
   // }
 
+
   createDiary() {
     const {title, description, content, tagId} = this.formDiary.value;
 

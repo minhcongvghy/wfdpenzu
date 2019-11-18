@@ -22,9 +22,13 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: '', component: BlogMainComponent },
-      { path: 'blog/:id', component: DetailDiaryComponent }
     ]
   },
+  {
+    path: 'blog/:id' ,
+    component: DetailDiaryComponent
+  }
+  ,
   { path: 'login',
     component: LoginComponent,
     canActivate: [NotActivateTeam],

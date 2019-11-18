@@ -29,7 +29,7 @@
       <tbody>
       <tr *ngFor="let diary of listDiary, index as i">
         <th scope="row">{{i}}</th>
-        <td [routerLink]="'/'">{{diary.title}}</td>
+        <td><a [routerLink]="'/blog/' + diary.id">{{diary.title}}</a></td>
         <td>{{diary.description}}</td>
         <td>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
