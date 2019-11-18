@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenStorageService} from '../auth/token-storage.service';
+import {UserService} from '../services/user.service';
+import {Diary} from '../services/diary';
 
 @Component({
   selector: 'app-user-diary-list',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDiaryListComponent implements OnInit {
 
-  constructor() { }
+  listDiary: Diary[] = [];
+  constructor(private token: TokenStorageService,
+              private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.getDiaryByUser(this.token.getUserId()).subscribe(
+      result => {
+        this.listDiary = result;
+        console.log(this.listDiary);
+      }, error => {
+        alert('error get diary');
+      }
+    );
   }
 
 }

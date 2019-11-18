@@ -8,6 +8,9 @@ import {CanActivateTeam} from './deactivate/can-activate-team';
 import {NotActivateTeam} from './deactivate/not-activate-team';
 import {CreateDiaryComponent} from './create-diary/create-diary.component';
 import {DiaryComponent} from './diary/diary.component';
+import {UserDiaryListComponent} from './user-diary-list/user-diary-list.component';
+import {BlogMainComponent} from './blog-main/blog-main.component';
+import {DetailDiaryComponent} from './detail-diary/detail-diary.component';
 
 
 
@@ -17,10 +20,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    // children: [
-    //   { path: 'dashboard', component: DashboardComponent },
-    //   { path: 'profile', component: ProfileComponent }
-    // ]
+    children: [
+      { path: '', component: BlogMainComponent },
+      { path: 'blog/:id', component: DetailDiaryComponent }
+    ]
   },
   { path: 'login',
     component: LoginComponent,
@@ -29,10 +32,15 @@ const routes: Routes = [
   {
     path: 'diary',
     component: DiaryComponent,
+    canActivate: [CanActivateTeam],
     children: [
       { path: '', component: CreateDiaryComponent},
       { path: 'profile' ,
         component: ProfileUserComponent,
+        canActivate: [CanActivateTeam],
+      },
+      { path: 'listUserDiary' ,
+        component: UserDiaryListComponent,
         canActivate: [CanActivateTeam],
       },
     ]

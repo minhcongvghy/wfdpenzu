@@ -1,29 +1,30 @@
-
-<app-header></app-header>
 <div class="container-fluid">
+<app-header></app-header>
+  <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2 col-sm-4 sidebar1">
-      <div class="logo">
-        <img src="http://lorempixel.com/output/people-q-g-64-64-1.jpg" class="img-responsive center-block" alt="Logo">
-      </div>
+    <div class="col-md-2 col-sm-4 sidebar1 " >
+
       <br>
       <div class="left-navigation">
         <ul class="list">
-          <h5><strong>WHEREABOUTS</strong></h5>
+          <h5><strong></strong></h5>
           <li [routerLink]="'/diary'">New Entry</li>
           <li [routerLink]="'/diary/profile/'">My Profile</li>
-          <li>View All My Entry</li>
+          <li [routerLink]="'/diary/listUserDiary/'">View All Entry</li>
           <li>Comming Soon</li>
           <li>Comming Soon</li>
         </ul>
       </div>
     </div>
 
-    <div class="col-md-10 col-sm-8 main-content" style="background: #999999">
+    <div class="col-md-8 col-sm-6 main-content" style="background: white">
       <router-outlet></router-outlet>
     </div>
+    <div class="col-md-2 col-sm-2 main-content" style="background: white">
+    </div>
   </div>
-</div>
-<app-footer></app-footer>
+  </div>
 
+<app-footer></app-footer>
+</div>
 

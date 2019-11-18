@@ -1,19 +1,16 @@
+<div class="container-fluid">
   <app-header></app-header>
-
-  <app-tag-header></app-tag-header>
-
   <app-featured></app-featured>
-
-
-<main role="main" class="container"> <!-- /.container -->
+<main role="main" class="container-fluid"> <!-- /.container -->
   <div class="row">
+    <div class="col-md-1 blog-main">
+    </div>
     <div class="col-md-8 blog-main"><!-- /.blog-main -->
 
-      <app-blog-main></app-blog-main>
-
+      <router-outlet></router-outlet>
     </div><!-- /.blog-main -->
 
-    <aside class="col-md-4 blog-sidebar"><!-- /.blog-sidebar -->
+    <aside class="col-md-3 blog-sidebar"><!-- /.blog-sidebar -->
       <app-side-bar></app-side-bar>
     </aside><!-- /.blog-sidebar -->
 
@@ -22,3 +19,4 @@
 </main><!-- /.container -->
 
 <app-footer></app-footer>
+</div>

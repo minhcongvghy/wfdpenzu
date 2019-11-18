@@ -5,6 +5,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Tag} from '../services/tag';
 import {TagService} from '../services/tag.service';
 import {Diary} from '../services/diary';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-diary',
@@ -22,10 +23,13 @@ export class CreateDiaryComponent implements OnInit {
     content: new FormControl(''),
     tagId: new FormControl(''),
   });
+  private returnUrl: string;
 
   constructor(private token: TokenStorageService,
               private diaryService: DiaryService,
-              private tagService: TagService) { }
+              private tagService: TagService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -47,11 +51,12 @@ export class CreateDiaryComponent implements OnInit {
       email: this.token.getEmail()
     };
     console.log(this.info);
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/diary/listUserDiary';
   }
 
-  handleFileChooser(files: FileList) {
-    this.fileUpload = files.item(0);
-  }
+  // handleFileChooser(files: FileList) {
+  //   this.fileUpload = files.item(0);
+  // }
 
   createDiary() {
     const {title, description, content, tagId} = this.formDiary.value;
@@ -71,16 +76,8 @@ export class CreateDiaryComponent implements OnInit {
     console.log(diary);
     this.diaryService.createDiary(diary).subscribe(
       result => {
-        const form = new FormData();
-        form.append('file', this.fileUpload);
-        console.log(form);
-        this.diaryService.uploadFile(form, result.id).subscribe(
-          next => {
             console.log('create diary ok');
-          }, error => {
-            return console.log('upload file fail');
-          }
-        );
+            this.router.navigateByUrl(this.returnUrl);
       }, error => {
         return console.log('fail create diary');
       }

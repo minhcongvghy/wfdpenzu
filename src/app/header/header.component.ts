@@ -4,7 +4,7 @@ import {AuthLoginInfo} from '../auth/auth-login-info';
 import {AuthService} from '../auth/auth.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SignUpInfo} from '../auth/sign-up-info';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',

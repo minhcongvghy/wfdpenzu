@@ -3,13 +3,13 @@
     <div class="col-4 pt-1">
     </div>
     <div class="col-4 text-center">
-      <a class="blog-header-logo text-dark" href="#">500 Blog</a>
+      <a class="blog-header-logo success-text" href="#">500 Blog</a>
     </div>
     <div class="col-4 d-flex justify-content-end align-items-center">
       <div *ngIf="info.token; else logIn">
         <div class="btn-group">
-          <button type="button" class="btn btn-outline-secondary border-0" [routerLink]="'/profile/'">{{info.name}}</button>
-          <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split border-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-outline-secondary text-dark border-1" [routerLink]="'/profile/'">{{info.name}}</button>
+          <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split border-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle</span>
           </button>
           <div class="dropdown-menu" style="background: darkgrey">
@@ -32,5 +32,6 @@
     </div>
   </div>
 </header>
+
 
 

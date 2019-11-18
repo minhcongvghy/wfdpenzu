@@ -23,6 +23,7 @@ import { CreateDiaryComponent } from './create-diary/create-diary.component';
 import {CKEditorModule} from 'ngx-ckeditor';
 import { DiaryComponent } from './diary/diary.component';
 import { UserDiaryListComponent } from './user-diary-list/user-diary-list.component';
+import { DetailDiaryComponent } from './detail-diary/detail-diary.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { UserDiaryListComponent } from './user-diary-list/user-diary-list.compon
     CreateDiaryComponent,
     DiaryComponent,
     UserDiaryListComponent,
+    DetailDiaryComponent,
 
   ],
   imports: [

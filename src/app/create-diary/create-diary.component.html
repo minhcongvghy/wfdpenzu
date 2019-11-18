@@ -1,22 +1,26 @@
 
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center alert alert-dark">
+  <h4 class="display-4 darken-grey-text">New Diary</h4>
+</div>
 <form [formGroup]="formDiary">
   <div class="input-group mb-3">
+    <input formControlName="title" type="text"
+           placeholder="Please Insert Title!" class="form-control" id="basic-url" aria-describedby="basic-addon3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon3">Title</span>
     </div>
-    <input formControlName="title" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
   </div>
-  <div class="input-group mb-3">
-    <input type="file" class="form-control" aria-label="Amount (to the nearest dollar)" (change)="handleFileChooser($event.target.files)">
-    <div class="input-group-prepend">
-      <span class="input-group-text" >Image</span>
-    </div>
-  </div>
+<!--  <div class="input-group mb-3">-->
+<!--    <input type="file" class="form-control" aria-label="Amount (to the nearest dollar)" (change)="handleFileChooser($event.target.files)">-->
+<!--    <div class="input-group-prepend">-->
+<!--      <span class="input-group-text" >Image</span>-->
+<!--    </div>-->
+<!--  </div>-->
   <div class="input-group">
     <div class="input-group-prepend">
       <span class="input-group-text">Description</span>
     </div>
-    <textarea formControlName="description"  class="form-control" aria-label="With textarea"></textarea>
+    <textarea formControlName="description" placeholder="Please Write Something short About Diary !" class="form-control" aria-label="With textarea"></textarea>
   </div>
   <br/>
   <div class="input-group mb-3">
@@ -31,7 +35,7 @@
   <h3 class="alert alert-dark">
     <label for="basic-url">Content</label>
   </h3>
-  <ck-editor  name="editor1" formControlName="content"  skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+  <ck-editor  name="editor1" formControlName="content"  skin="moono-lisa" language="en" [fullPage]="false"></ck-editor>
   <br/>
   <br/>
   <label for="basic-url">
