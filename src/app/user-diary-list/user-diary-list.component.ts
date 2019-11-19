@@ -12,16 +12,16 @@ import {DiaryService} from '../services/diary.service';
 export class UserDiaryListComponent implements OnInit {
 
   diaryId: string;
-  listDiary: Diary[] = [];
+  listDiary: Diary[];
   constructor(private token: TokenStorageService,
               private userService: UserService,
               private diaryService: DiaryService) { }
 
   ngOnInit() {
-    this.getDiryList();
+    this.getDiaryList();
   }
 
-  getDiryList() {
+  getDiaryList() {
     this.userService.getDiaryByUser(this.token.getUserId()).subscribe(
       result => {
         this.listDiary = result;
@@ -40,7 +40,7 @@ export class UserDiaryListComponent implements OnInit {
     this.diaryService.deleteDiaryById(this.diaryId).subscribe(
       result => {
         closeButton.click();
-        this.getDiryList();
+        this.getDiaryList();
       }, error => {
         console.log(error);
       }

@@ -38,4 +38,8 @@ export class DiaryService {
     return this.http.delete<void>(this.diaryUrl + id);
   }
 
+  updateDiary(diary: Diary): Observable<Diary> {
+    return this.http.put<Diary>(this.diaryUrl + diary.id , diary);
+  }
+
 }

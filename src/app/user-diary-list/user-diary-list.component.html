@@ -4,7 +4,12 @@
     <div class="row">
       <!-- Grid column -->
       <div class="col-md-12">
-        <h2 class="pt-3 pb-4 text-center font-bold font-up text-info">You Have Total {{listDiary.length}} Diary!</h2>
+        <div *ngIf="listDiary == null else show">
+        <h2 class="pt-3 pb-4 text-center font-bold font-up text-info">This Journal Does Not Have Any Entries!</h2>
+        </div>
+        <ng-template #show>
+          <h2 class="pt-3 pb-4 text-center font-bold font-up text-info">You Have Total {{listDiary.length}} Diary!</h2>
+        </ng-template>
         <div class="input-group md-form form-sm form-2 pl-0">
           <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search by title..." aria-label="Search">
           <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1">
