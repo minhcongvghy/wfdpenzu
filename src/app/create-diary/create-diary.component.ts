@@ -6,6 +6,7 @@ import {Tag} from '../services/tag';
 import {TagService} from '../services/tag.service';
 import {Diary} from '../services/diary';
 import {ActivatedRoute, Router} from '@angular/router';
+import {error} from 'util';
 
 @Component({
   selector: 'app-create-diary',
@@ -16,6 +17,7 @@ export class CreateDiaryComponent implements OnInit {
 
   info: any;
   fileUpload: File;
+  previewId: string;
   public tagList: Tag[] = [];
   formDiary = new FormGroup({
     title: new FormControl(''),
@@ -59,8 +61,12 @@ export class CreateDiaryComponent implements OnInit {
   // }
 
 
-  createDiary() {
+  createDiary(closeButton: HTMLInputElement) {
     const {title, description, content, tagId} = this.formDiary.value;
+
+    if (title === '' || description === '' || content === '' || tagId === '') {
+      return alert('Fill Data Fields !');
+    }
 
     const diary: Diary = {
       title,
@@ -78,10 +84,17 @@ export class CreateDiaryComponent implements OnInit {
     this.diaryService.createDiary(diary).subscribe(
       result => {
             console.log('create diary ok');
-            this.router.navigateByUrl(this.returnUrl);
+            closeButton.click();
+            this.previewId = result.id;
+            this.formDiary.reset();
       }, error => {
         return console.log('fail create diary');
       }
     );
+  }
+
+  preview(previewId: string, closeButton: HTMLInputElement) {
+    closeButton.click();
+    return this.router.navigateByUrl('/blog/' + previewId);
   }
 }

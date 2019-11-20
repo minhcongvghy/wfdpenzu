@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Diary} from './diary';
 import {Observable} from 'rxjs';
 import {FileForm} from './file-form';
+import {SearchByTitle} from './search-by-title';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -16,10 +17,11 @@ export class DiaryService {
   private diaryUrl = 'http://localhost:8080/api/auth/diary/';
   private uploadFileUrl = 'http://localhost:8080/api/auth/file/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   createDiary(diary: Diary): Observable<Diary> {
-    return this.http.post<Diary>(this.diaryUrl , diary);
+    return this.http.post<Diary>(this.diaryUrl, diary);
   }
 
   uploadFile(file: FormData, diaryId: string): Observable<FileForm> {
@@ -39,7 +41,10 @@ export class DiaryService {
   }
 
   updateDiary(diary: Diary): Observable<Diary> {
-    return this.http.put<Diary>(this.diaryUrl + diary.id , diary);
+    return this.http.put<Diary>(this.diaryUrl + diary.id, diary);
   }
 
+  searchDiaryByTitleAndUserID(title: SearchByTitle): Observable<Diary[]> {
+    return this.http.post<Diary[]>(this.diaryUrl + 'search', title);
+  }
 }

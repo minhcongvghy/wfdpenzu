@@ -3,6 +3,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
 import {UserService} from '../services/user.service';
 import {Diary} from '../services/diary';
 import {DiaryService} from '../services/diary.service';
+import {SearchByTitle} from '../services/search-by-title';
 
 @Component({
   selector: 'app-user-diary-list',
@@ -11,6 +12,7 @@ import {DiaryService} from '../services/diary.service';
 })
 export class UserDiaryListComponent implements OnInit {
 
+  title: '';
   diaryId: string;
   listDiary: Diary[];
   constructor(private token: TokenStorageService,
@@ -34,6 +36,21 @@ export class UserDiaryListComponent implements OnInit {
 
   getDiaryId(id: string) {
     this.diaryId = id;
+  }
+
+  searchByTitle() {
+    const searchForm: SearchByTitle = {
+      title: this.title,
+      id: this.token.getUserId()
+    };
+    this.diaryService.searchDiaryByTitleAndUserID(searchForm).subscribe(
+      result => {
+        this.listDiary = result;
+        console.log(result);
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   deleteDiaryById(closeButton: HTMLInputElement) {

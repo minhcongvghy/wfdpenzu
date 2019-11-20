@@ -7,9 +7,16 @@
 
         <div class="blog-post">
           <h1 class="blog-post-title"><p>{{diary.title}}</p></h1>
+          <div *ngIf="diary.update === true; else other">
           <p class="blog-post-meta">Date: {{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}} By
             <a class="text-info">{{diary.user.name}}</a>
           </p>
+          </div>
+          <ng-template #other>
+            <p class="blog-post-meta">Date: {{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}} By
+              <a class="text-info">{{diary.user.name}}</a> (edited)
+            </p>
+          </ng-template>
           <p>Tag: <a href="/#">{{diary.tag.name}}</a></p>
           <hr>
           <h3>Description</h3>

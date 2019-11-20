@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {DiaryService} from '../services/diary.service';
@@ -18,18 +18,16 @@ export class UpdateDiaryComponent implements OnInit {
   diary: Diary;
   private tagList: Tag[];
   private info: any;
-  formDiary = new FormGroup({
-    title: new FormControl(''),
-    description: new FormControl(''),
-    content: new FormControl(''),
-    tagId: new FormControl(''),
-  });
+  private previewId: string;
+  tagId = '';
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,
               private token: TokenStorageService,
               private diaryService: DiaryService,
-              private tagService: TagService) {
+              private tagService: TagService,
+              private route: ActivatedRoute,
+              private router: Router) {
     this.activatedRoute.params.subscribe(params => {
       this.idParam = params.id;
     });
@@ -63,29 +61,42 @@ export class UpdateDiaryComponent implements OnInit {
     };
   }
 
-  updateDiary() {
-    const {title, description, content, tagId} = this.formDiary.value;
-    console.log(this.formDiary);
+  updateDiary(closeButton: HTMLInputElement) {
+
+    if (this.diary.title === '' || this.diary.description === '' || this.diary.content === '') {
+      return alert('Fill Data Fields !');
+    }
+
+    if (this.tagId === '') {
+      this.tagId = this.diary.tag.id;
+    }
 
     const diary: Diary = {
-      id: this.idParam,
-      title,
-      description,
-      content,
+      id: this.diary.id,
+      title: this.diary.title,
+      description: this.diary.description,
+      content: this.diary.content,
       user: {
         id: this.info.userId
       },
       tag: {
-        id: tagId
+        id: this.tagId
       }
     };
 
     this.diaryService.updateDiary(diary).subscribe(
       result => {
         console.log('ok');
+        this.previewId = result.id;
+        closeButton.click();
       }, error => {
         console.log(error);
       }
     );
+  }
+
+  preview(previewId: any, closeModalRef1: HTMLButtonElement) {
+    closeModalRef1.click();
+    return this.router.navigateByUrl('/blog/' + previewId);
   }
 }

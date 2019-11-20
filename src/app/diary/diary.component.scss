@@ -9,9 +9,6 @@
   list-style: none;
   padding-left: 0px;
 }
-.list::first-line {
-  color: blue;
-}
 .list> li, h3 {
   padding: 5px 0px 10px 30px;
   color: darkslategray;
@@ -28,6 +25,14 @@
  }
 
 
+div#demo {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 20px;
+  color: #FFFFFF;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 darkslategrey, 6px 6px 0 #CCCCCC, 5px 5px 0 #CCCCCC, 4px 4px 0 #CCCCCC, 3px 3px 0 #CCCCCC;
+}
 
 
 
