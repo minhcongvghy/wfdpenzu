@@ -26,6 +26,7 @@ import { UserDiaryListComponent } from './user-diary-list/user-diary-list.compon
 import { DetailDiaryComponent } from './detail-diary/detail-diary.component';
 import { UpdateDiaryComponent } from './update-diary/update-diary.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {SafeHtmlPipe} from './detail-diary/SafeHtmlPipe';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     UserDiaryListComponent,
     DetailDiaryComponent,
     UpdateDiaryComponent,
+    SafeHtmlPipe
 
   ],
   imports: [

@@ -20,6 +20,8 @@ export class UpdateDiaryComponent implements OnInit {
   private info: any;
   private previewId: string;
   tagId = '';
+  private fileUpload: File;
+  filePath: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,
@@ -61,6 +63,15 @@ export class UpdateDiaryComponent implements OnInit {
     };
   }
 
+  handleFileChooser(files: FileList) {
+    this.fileUpload = files.item(0);
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = ( event ) => {
+      this.filePath = reader.result;
+    };
+  }
+
   updateDiary(closeButton: HTMLInputElement) {
 
     if (this.diary.title === '' || this.diary.description === '' || this.diary.content === '') {
@@ -86,11 +97,25 @@ export class UpdateDiaryComponent implements OnInit {
 
     this.diaryService.updateDiary(diary).subscribe(
       result => {
-        console.log('ok');
-        this.previewId = result.id;
-        closeButton.click();
-      }, error => {
-        console.log(error);
+        if (this.fileUpload === null || this.fileUpload === undefined ) {
+          console.log('create diary ok');
+          closeButton.click();
+          this.previewId = result.id;
+        } else {
+          const form = new FormData();
+          form.append('file', this.fileUpload);
+          this.diaryService.uploadFile(form, result.id).subscribe(
+            next => {
+              console.log('upload file ok');
+              closeButton.click();
+              this.previewId = result.id;
+            }, error1 => {
+              console.log('loi upload file');
+            }
+          );
+        }
+      }, error5 => {
+        return console.log('fail create diary');
       }
     );
   }

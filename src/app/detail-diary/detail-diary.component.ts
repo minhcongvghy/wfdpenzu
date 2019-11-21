@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Pipe} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Diary} from '../services/diary';
@@ -11,14 +11,16 @@ import {DiaryService} from '../services/diary.service';
   templateUrl: './detail-diary.component.html',
   styleUrls: ['./detail-diary.component.scss']
 })
-export class DetailDiaryComponent implements OnInit {
+
+export class DetailDiaryComponent implements OnInit  {
   private id: string;
   diary: Diary;
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,
               private token: TokenStorageService,
-              private diaryService: DiaryService) {
+              private diaryService: DiaryService,
+              private sanitizer: DomSanitizer) {
     this.activatedRoute.params.subscribe(params => {
       this.id = params.id;
     });
@@ -37,10 +39,5 @@ export class DetailDiaryComponent implements OnInit {
       }
     );
   }
-
-  htmlToPlaintext(text) {
-    return text ? String(text).replace(/<[^>]+>/gm, '') : '';
-  }
-
 
 }

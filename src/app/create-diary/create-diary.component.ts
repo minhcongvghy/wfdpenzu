@@ -26,6 +26,7 @@ export class CreateDiaryComponent implements OnInit {
     tagId: new FormControl(''),
   });
   private returnUrl: string;
+  private filePath: any;
 
   constructor(private token: TokenStorageService,
               private diaryService: DiaryService,
@@ -39,7 +40,7 @@ export class CreateDiaryComponent implements OnInit {
       result => {
         this.tagList = result;
         console.log(this.tagList);
-      }, error => {
+      }, error0 => {
         alert('error get tag');
       }
     );
@@ -56,9 +57,14 @@ export class CreateDiaryComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/diary/listUserDiary';
   }
 
-  // handleFileChooser(files: FileList) {
-  //   this.fileUpload = files.item(0);
-  // }
+  handleFileChooser(files: FileList) {
+    this.fileUpload = files.item(0);
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = ( event ) => {
+      this.filePath = reader.result;
+    };
+  }
 
 
   createDiary(closeButton: HTMLInputElement) {
@@ -83,11 +89,27 @@ export class CreateDiaryComponent implements OnInit {
     console.log(diary);
     this.diaryService.createDiary(diary).subscribe(
       result => {
-            console.log('create diary ok');
-            closeButton.click();
-            this.previewId = result.id;
-            this.formDiary.reset();
-      }, error => {
+        if (this.fileUpload === null || this.fileUpload === undefined ) {
+          console.log('create diary ok');
+          closeButton.click();
+          this.previewId = result.id;
+          this.formDiary.reset();
+        } else {
+          const form = new FormData();
+          form.append('file', this.fileUpload);
+          this.diaryService.uploadFile(form, result.id).subscribe(
+            next => {
+              console.log('upload file ok');
+              closeButton.click();
+              this.previewId = result.id;
+              this.formDiary.reset();
+              this.filePath = undefined;
+            }, error1 => {
+              console.log('loi upload file');
+            }
+          );
+        }
+      }, error5 => {
         return console.log('fail create diary');
       }
     );
