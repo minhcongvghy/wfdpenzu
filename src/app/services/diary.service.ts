@@ -4,6 +4,7 @@ import {Diary} from './diary';
 import {Observable} from 'rxjs';
 import {FileForm} from './file-form';
 import {SearchByTitle} from './search-by-title';
+import {Tag} from './tag';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -20,6 +21,9 @@ export class DiaryService {
   constructor(private http: HttpClient) {
   }
 
+  getDiaryList(): Observable<Diary[]> {
+    return this.http.get<Diary[]>(this.diaryUrl);
+  }
   createDiary(diary: Diary): Observable<Diary> {
     return this.http.post<Diary>(this.diaryUrl, diary);
   }

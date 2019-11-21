@@ -27,6 +27,7 @@ import { DetailDiaryComponent } from './detail-diary/detail-diary.component';
 import { UpdateDiaryComponent } from './update-diary/update-diary.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SafeHtmlPipe} from './detail-diary/SafeHtmlPipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import {SafeHtmlPipe} from './detail-diary/SafeHtmlPipe';
     HttpClientModule,
     ReactiveFormsModule,
     CKEditorModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
   ],
   providers: [Permissions, CanActivateTeam, NotActivateTeam],
   bootstrap: [AppComponent]
