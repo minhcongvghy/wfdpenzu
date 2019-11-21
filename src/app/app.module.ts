@@ -25,6 +25,7 @@ import { DiaryComponent } from './diary/diary.component';
 import { UserDiaryListComponent } from './user-diary-list/user-diary-list.component';
 import { DetailDiaryComponent } from './detail-diary/detail-diary.component';
 import { UpdateDiaryComponent } from './update-diary/update-diary.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { UpdateDiaryComponent } from './update-diary/update-diary.component';
     HttpClientModule,
     ReactiveFormsModule,
     CKEditorModule,
+    NgbModule
   ],
   providers: [Permissions, CanActivateTeam, NotActivateTeam],
   bootstrap: [AppComponent]
