@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {FileForm} from './file-form';
 import {SearchByTitle} from './search-by-title';
 import {Tag} from './tag';
+import {Pagination} from './pagination';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -21,7 +22,11 @@ export class DiaryService {
   constructor(private http: HttpClient) {
   }
 
-  getDiaryList(): Observable<Diary[]> {
+  Pagination(page: number): Observable<Pagination> {
+    return this.http.get<Pagination>(this.diaryUrl + 'pagination?page=' + page);
+  }
+
+  getListDiary(): Observable<Diary[]> {
     return this.http.get<Diary[]>(this.diaryUrl);
   }
   createDiary(diary: Diary): Observable<Diary> {

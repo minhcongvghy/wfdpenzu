@@ -19,7 +19,7 @@ export class FeaturedComponent implements OnInit {
   }
 
   getDiaryList() {
-    this.diaryService.getDiaryList().subscribe(
+    this.diaryService.getListDiary().subscribe(
       result => {
         this.diaryList = result;
         console.log(result);

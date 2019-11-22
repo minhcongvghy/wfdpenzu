@@ -1,5 +1,5 @@
 <div class="text-white ">
-  <ngb-carousel  #carousel interval="3000">
+  <ngb-carousel interval="3000">
     <ng-template ngbSlide *ngFor="let diary of diaryList">
       <div class="picsum-img-wrapper">
         <a [routerLink]="'/blog/' + diary.id">
@@ -30,7 +30,36 @@
 <!--    </ng-template>-->
   </ngb-carousel>
 </div>
-
+<hr>
 <div class="row mb-2">
-
+  <div class="col-md-6">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static">
+        <strong class="d-inline-block mb-2 text-primary">{{diaryList[0].tag.name}}</strong>
+        <h3 class="mb-0">{{diaryList[0].title}}</h3>
+        <div class="mb-1 text-muted">{{diaryList[0].date[2]}}/{{diaryList[0].date[1]}}/{{diaryList[0].date[0]}}</div>
+        <p class="card-text mb-auto">{{diaryList[0].description}}</p>
+        <a href="#" class="stretched-link">Continue reading</a>
+      </div>
+      <div class="col-auto d-none d-lg-block">
+        <img src="http://localhost:8080/uploads/{{diaryList[0].file}}" width="200" height="250">
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static">
+        <strong class="d-inline-block mb-2 text-success">{{diaryList[1].tag.name}}</strong>
+        <h3 class="mb-0">{{diaryList[1].title}}</h3>
+        <div class="mb-1 text-muted">{{diaryList[1].date[2]}}/{{diaryList[1].date[1]}}/{{diaryList[1].date[0]}}</div>
+        <p class="mb-auto">{{diaryList[1].description}}</p>
+        <a href="#" class="stretched-link">Continue reading</a>
+      </div>
+      <div class="col-auto d-none d-lg-block">
+        <img src="http://localhost:8080/uploads/{{diaryList[1].file}}" width="200" height="250">
+      </div>
+    </div>
+  </div>
 </div>
+
+

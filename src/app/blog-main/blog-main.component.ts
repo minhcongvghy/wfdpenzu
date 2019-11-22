@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Diary} from '../services/diary';
 import {DiaryService} from '../services/diary.service';
+import {Pagination} from '../services/pagination';
 
 @Component({
   selector: 'app-blog-main',
@@ -9,16 +10,42 @@ import {DiaryService} from '../services/diary.service';
 })
 export class BlogMainComponent implements OnInit {
   diaryList: Diary[] = [];
-
+  page = 0;
+  loadText = 'Load More';
   constructor(private diaryService: DiaryService) {
-    diaryService.getDiaryList().subscribe(
+  }
+
+  ngOnInit() {
+    this.Pagination(this.page);
+  }
+
+  Pagination(page: number) {
+    this.diaryService.Pagination(page).subscribe(
       result => {
-        this.diaryList = result;
+        this.diaryList = result.content;
+        this.page++ ;
+        console.log(this.diaryList);
       }
     );
   }
 
-  ngOnInit() {
+  loadMore() {
+    console.log(this.page);
+    this.diaryService.Pagination(this.page).subscribe(
+      result => {
+        console.log(result);
+        if (result == null) {
+          return this.loadText = 'Out of Blog';
+        } else {
+          this.diaryList = this.diaryList.concat(result.content);
+          console.log(this.diaryList);
+          this.page++ ;
+          console.log(result.content);
+        }
+      }, error => {
+        console.log('loi');
+      }
+    );
   }
 
 }

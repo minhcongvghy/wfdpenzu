@@ -4,20 +4,39 @@
 <aside class=" blog-sidebar">
 <div class="p-4 mb-3 bg-light rounded">
   <h4 class="font-italic">About</h4>
-  <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+  <p class="mb-0">Life is inherently risky. There is only one big risk you should avoid at all costs, and that is the risk of doing nothing.</p>
 </div>
 </aside>
 <div class="blog-post">
-  <div class="text-center">
-    <h1>ngx-pagination live demo</h1>
-    <h4><small><a href="https://github.com/michaelbromley/ngx-pagination">GitHub Repo</a></small></h4>
-    <p>A bare-bones demo for your experimenting / bug-reproducing pleasure.</p>
-  </div>
-  <div class="list">
-    <ul>
-      <li *ngFor="let item of diaryList | paginate: { itemsPerPage: 1, currentPage: p }">{{ item }}</li>
-    </ul>
-  </div>
-  <pagination-controls  [class.text-right]="true"   (pageChange)="p = $event"></pagination-controls>
-</div><!-- /.blog-post -->
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-12 blog-main">
+        <h3 class="pb-4 mb-4 font-italic border-bottom">
+          From the Codegym-2019
+        </h3>
 
+        <div class="blog-post" *ngFor="let diary of diaryList">
+          <h2 class="blog-post-title">{{diary.title}}</h2>
+          <p class="blog-post-meta">{{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}} <a href="#">{{diary.user.name}}</a></p>
+
+          <p>{{diary.description}}</p>
+          <hr>
+          <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
+          <br/>
+          <blockquote>
+            <p [innerHTML]="diary.content.slice(0,50)"></p>
+          </blockquote>
+          <a href="#">Continue reading</a>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <hr>
+        </div><!-- /.blog-post -->
+      </div><!-- /.blog-main -->
+    </div>
+  </main>
+</div>
+<nav class="blog-pagination text-center">
+  <a class="btn btn-outline-success  " (click)="loadMore()">{{loadText}}</a>
+</nav>
