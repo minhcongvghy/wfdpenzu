@@ -28,6 +28,7 @@ import { UpdateDiaryComponent } from './update-diary/update-diary.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SafeHtmlPipe} from './detail-diary/SafeHtmlPipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TagComponent } from './tag/tag.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UserDiaryListComponent,
     DetailDiaryComponent,
     UpdateDiaryComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    TagComponent
 
   ],
   imports: [

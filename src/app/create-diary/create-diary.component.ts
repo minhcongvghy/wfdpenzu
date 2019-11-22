@@ -24,6 +24,7 @@ export class CreateDiaryComponent implements OnInit {
     description: new FormControl(''),
     content: new FormControl(''),
     tagId: new FormControl(''),
+    file: new FormControl(''),
   });
   private returnUrl: string;
   private filePath: any;
@@ -70,7 +71,7 @@ export class CreateDiaryComponent implements OnInit {
   createDiary(closeButton: HTMLInputElement) {
     const {title, description, content, tagId} = this.formDiary.value;
 
-    if (title === '' || description === '' || content === '' || tagId === '') {
+    if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null) {
       return alert('Fill Data Fields !');
     }
 
@@ -89,12 +90,6 @@ export class CreateDiaryComponent implements OnInit {
     console.log(diary);
     this.diaryService.createDiary(diary).subscribe(
       result => {
-        if (this.fileUpload === null || this.fileUpload === undefined ) {
-          console.log('create diary ok');
-          closeButton.click();
-          this.previewId = result.id;
-          this.formDiary.reset();
-        } else {
           const form = new FormData();
           form.append('file', this.fileUpload);
           this.diaryService.uploadFile(form, result.id).subscribe(
@@ -108,7 +103,6 @@ export class CreateDiaryComponent implements OnInit {
               console.log('loi upload file');
             }
           );
-        }
       }, error5 => {
         return console.log('fail create diary');
       }

@@ -19,9 +19,8 @@
           <h2 class="blog-post-title">{{diary.title}}</h2>
           <p class="blog-post-meta">{{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}} <a href="#">{{diary.user.name}}</a></p>
 
-          <p>{{diary.description}}</p>
+          <h3><strong>{{diary.description}}</strong></h3>
           <hr>
-          <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
           <br/>
           <blockquote>
             <p [innerHTML]="diary.content.slice(0,50)"></p>
@@ -29,14 +28,13 @@
           <a href="#">Continue reading</a>
           <br/>
           <br/>
-          <br/>
-          <br/>
           <hr>
         </div><!-- /.blog-post -->
       </div><!-- /.blog-main -->
     </div>
   </main>
+  <nav class="blog-pagination text-center">
+    <a class="btn btn-outline-success  " (click)="loadMore()">{{loadText}}</a>
+  </nav>
 </div>
-<nav class="blog-pagination text-center">
-  <a class="btn btn-outline-success  " (click)="loadMore()">{{loadText}}</a>
-</nav>
+
