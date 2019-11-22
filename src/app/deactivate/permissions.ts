@@ -14,4 +14,12 @@ export class Permissions {
       return false;
     }
   }
+
+  isAdmin(): boolean {
+    if (this.token.getAuthorities()[0] === 'ADMIN') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

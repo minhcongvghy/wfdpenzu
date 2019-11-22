@@ -10,7 +10,7 @@
           <li  [routerLink]="'/diary'"><h2>New Entry</h2></li>
           <li  [routerLink]="'/diary/profile/'"><h2>My Profile</h2></li>
           <li [routerLink]="'/diary/listUserDiary/'"><h2>View All Entry</h2></li>
-          <li [routerLink]="'/diary/manageTag/'"><h2>Manage Tag</h2></li>
+          <li *ngIf="info.authorities == 'ADMIN'" [routerLink]="'/diary/manageTag/'"><h2>Manage Tag</h2></li>
         </ul>
       </div>
     </div>

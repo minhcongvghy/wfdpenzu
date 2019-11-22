@@ -29,6 +29,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SafeHtmlPipe} from './detail-diary/SafeHtmlPipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TagComponent } from './tag/tag.component';
+import {IsAdmin} from './deactivate/is-admin';
 
 
 @NgModule({
@@ -64,7 +65,7 @@ import { TagComponent } from './tag/tag.component';
     NgbModule,
     NgxPaginationModule
   ],
-  providers: [Permissions, CanActivateTeam, NotActivateTeam],
+  providers: [Permissions, CanActivateTeam, NotActivateTeam , IsAdmin],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

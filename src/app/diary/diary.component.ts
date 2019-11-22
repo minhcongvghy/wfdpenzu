@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Token} from '@angular/compiler';
+import {TokenStorageService} from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-diary',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./diary.component.scss']
 })
 export class DiaryComponent implements OnInit {
+  private info: any;
 
-  constructor() { }
+   constructor(private token: TokenStorageService) {}
+
 
   ngOnInit() {
+    this.info = {
+      name: this.token.getName(),
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities(),
+      userId: this.token.getUserId()
+    };
+    console.log(this.info);
   }
 
 }

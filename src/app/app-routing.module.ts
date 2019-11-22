@@ -13,6 +13,7 @@ import {BlogMainComponent} from './blog-main/blog-main.component';
 import {DetailDiaryComponent} from './detail-diary/detail-diary.component';
 import {UpdateDiaryComponent} from './update-diary/update-diary.component';
 import {TagComponent} from './tag/tag.component';
+import {IsAdmin} from './deactivate/is-admin';
 
 
 
@@ -55,7 +56,8 @@ const routes: Routes = [
       },
       {
         path: 'manageTag' ,
-        component: TagComponent
+        component: TagComponent ,
+        canActivate: [IsAdmin]
       }
     ]
   },
