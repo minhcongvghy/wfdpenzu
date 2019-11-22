@@ -7,10 +7,10 @@
 
         <div class="blog-post">
           <div *ngIf="diary.file">
-            <img src="http://localhost:8080/uploads/{{diary.file}}" style="width: 100%; height: 500px">
+            <img src="{{ImgURL + diary.file}}" style="width: 100%; height: 500px">
           </div>
           <h1 class="blog-post-title"><p>{{diary.title}}</p></h1>
-          <div *ngIf="diary.update === true; else other">
+          <div *ngIf="diary.update == 'false'; else other">
           <p class="blog-post-meta">Date: {{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}} By
             <a class="text-info">{{diary.user.name}}</a>
           </p>
@@ -27,7 +27,14 @@
           <hr>
           <div [innerHTML]="diary.content | safeHtml"></div>
         </div><!-- /.blog-post -->
-
+        <div class="text-right">
+        <ngb-rating [(rate)]="currentRate">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+        <pre>Rate: <b>{{currentRate}}</b></pre>
+        </div>
       </div><!-- /.blog-main -->
 
       <aside class="col-md-3 blog-sidebar"><!-- /.blog-sidebar -->

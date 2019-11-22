@@ -6,6 +6,7 @@ import {FileForm} from './file-form';
 import {SearchByTitle} from './search-by-title';
 import {Tag} from './tag';
 import {Pagination} from './pagination';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -16,8 +17,8 @@ const httpOptions = {
 })
 export class DiaryService {
 
-  private diaryUrl = 'http://localhost:8080/api/auth/diary/';
-  private uploadFileUrl = 'http://localhost:8080/api/auth/file/';
+  private diaryUrl = environment.diaryUrl;
+  private uploadFileUrl = environment.uploadFileUrl;
 
   constructor(private http: HttpClient) {
   }

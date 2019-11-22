@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DiaryService} from '../services/diary.service';
 import {Diary} from '../services/diary';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-featured',
@@ -9,6 +10,7 @@ import {Diary} from '../services/diary';
 })
 export class FeaturedComponent implements OnInit {
 
+  ImgURL = environment.imgUrl;
   diaryList: Diary[];
   images: string[];
   constructor(private diaryService: DiaryService) {

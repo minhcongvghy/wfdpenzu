@@ -5,6 +5,7 @@ import {Diary} from '../services/diary';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {UserService} from '../services/user.service';
 import {DiaryService} from '../services/diary.service';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-detail-diary',
@@ -15,6 +16,8 @@ import {DiaryService} from '../services/diary.service';
 export class DetailDiaryComponent implements OnInit  {
   private id: string;
   diary: Diary;
+  currentRate = 6;
+  ImgURL = environment.imgUrl;
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Tag} from './tag';
 import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -11,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class TagService {
-  private tagUrl = 'http://localhost:8080/api/auth/tag/';
+  private tagUrl = environment.tagUrl;
   constructor(private http: HttpClient) { }
 
   getTagList(): Observable<Tag[]> {
