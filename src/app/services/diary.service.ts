@@ -55,6 +55,6 @@ export class DiaryService {
   }
 
   searchDiaryByTitleAndUserID(title: SearchByTitle): Observable<Diary[]> {
-    return this.http.post<Diary[]>(this.diaryUrl + 'search', title);
+    return this.http.post<Diary[]>(this.diaryUrl + 'searchBy-Title-And-UserId', title);
   }
 }

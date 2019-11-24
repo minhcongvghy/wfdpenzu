@@ -11,4 +11,5 @@ export interface Diary {
   tag?: Tag;
   user?: User;
   update?: string;
+  typeFile?: string;
 }
