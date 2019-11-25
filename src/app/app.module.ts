@@ -30,6 +30,8 @@ import {SafeHtmlPipe} from './detail-diary/SafeHtmlPipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TagComponent } from './tag/tag.component';
 import {IsAdmin} from './deactivate/is-admin';
+import { ManageDiaryComponent } from './manage-diary/manage-diary.component';
+import { ManageUserComponent } from './manage-user/manage-user.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import {IsAdmin} from './deactivate/is-admin';
     DetailDiaryComponent,
     UpdateDiaryComponent,
     SafeHtmlPipe,
-    TagComponent
+    TagComponent,
+    ManageDiaryComponent,
+    ManageUserComponent
 
   ],
   imports: [

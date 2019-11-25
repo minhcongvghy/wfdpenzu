@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Diary} from './diary';
 import {Observable} from 'rxjs';
+// import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment.prod';
+import {User} from './user';
+import {UserForm} from '../profile-user/user-form';
+import {UserNameForm} from './user-name-form';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -10,10 +15,28 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private userUrl = 'http://localhost:8080/api/auth/user/';
+  // local
+  // private userUrl = environment.userUrl;
+
+  // server
+  private svUserUrl = environment.SvUserUrl;
+
+
   constructor(private http: HttpClient) { }
 
   getDiaryByUser(userId: string): Observable<Diary[]> {
-    return this.http.get<Diary[]>(this.userUrl + userId + '/diary' );
+    return this.http.get<Diary[]>(this.svUserUrl + userId + '/diary' );
+  }
+
+  getListUser(): Observable<User[]> {
+    return this.http.get<User[]>(this.svUserUrl);
+  }
+
+  deleteUserById(id: string): Observable<void> {
+    return this.http.delete<void>(this.svUserUrl + id);
+  }
+
+  searchUserByName(user: UserNameForm): Observable<User[]> {
+    return this.http.post<User[]>(this.svUserUrl + 'search-by-name' , user);
   }
 }

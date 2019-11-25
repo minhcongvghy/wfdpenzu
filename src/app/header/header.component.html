@@ -60,12 +60,12 @@
     </form>
     <div *ngIf="info.token; else logIn">
       <div class="btn-group">
-        <button type="button" class="btn btn-outline-dark border-1" [routerLink]="'/diary/profile/'">{{info.name}}</button>
+        <button type="button" class="btn btn-outline-dark border-1" [routerLink]="'/library/profile/'">{{info.name}}</button>
         <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split border-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="sr-only">Toggle</span>
         </button>
         <div class="dropdown-menu" style="background: darkgrey">
-          <a class="dropdown-item" [routerLink]="'/diary/'">New Entry</a>
+          <a class="dropdown-item" [routerLink]="'/library/'">New Entry</a>
           <a class="dropdown-item" href="#">Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item " (click)="logout()" >Logout</a>

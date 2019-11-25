@@ -7,10 +7,12 @@
       <br>
       <div id="demo" class="left-navigation">
         <ul class="list position-fixed">
-          <li  [routerLink]="'/diary'"><h2>New Entry</h2></li>
-          <li  [routerLink]="'/diary/profile/'"><h2>My Profile</h2></li>
-          <li [routerLink]="'/diary/listUserDiary/'"><h2>View All Entry</h2></li>
-          <li *ngIf="info.authorities == 'ADMIN'" [routerLink]="'/diary/manageTag/'"><h2>Manage Tag</h2></li>
+          <li  [routerLink]="'/library'"><h2>New Entry</h2></li>
+          <li  [routerLink]="'/library/profile/'"><h2>My Profile</h2></li>
+          <li [routerLink]="'/library/listUserDiary/'"><h2>My Entry</h2></li>
+          <li *ngIf="info.authorities == 'ADMIN'" [routerLink]="'/library/manageTag/'"><h2>Manage Tag</h2></li>
+          <li *ngIf="info.authorities == 'ADMIN'" [routerLink]="'/library/manageDiary/'"><h2>Manage Diary</h2></li>
+          <li *ngIf="info.authorities == 'ADMIN'" [routerLink]="'/library/manageUser/'"><h2>Manage User</h2></li>
         </ul>
       </div>
     </div>

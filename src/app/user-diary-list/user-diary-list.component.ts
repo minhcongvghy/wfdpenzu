@@ -3,7 +3,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
 import {UserService} from '../services/user.service';
 import {Diary} from '../services/diary';
 import {DiaryService} from '../services/diary.service';
-import {SearchByTitle} from '../services/search-by-title';
+import {SearchByTitleAndUserId} from '../services/search-by-title-and-user-id';
 
 @Component({
   selector: 'app-user-diary-list',
@@ -39,7 +39,7 @@ export class UserDiaryListComponent implements OnInit {
   }
 
   searchByTitle() {
-    const searchForm: SearchByTitle = {
+    const searchForm: SearchByTitleAndUserId = {
       title: this.title,
       id: this.token.getUserId()
     };

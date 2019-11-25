@@ -14,6 +14,8 @@ import {DetailDiaryComponent} from './detail-diary/detail-diary.component';
 import {UpdateDiaryComponent} from './update-diary/update-diary.component';
 import {TagComponent} from './tag/tag.component';
 import {IsAdmin} from './deactivate/is-admin';
+import {ManageDiaryComponent} from './manage-diary/manage-diary.component';
+import {ManageUserComponent} from './manage-user/manage-user.component';
 
 
 
@@ -28,7 +30,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'blog/:id' ,
+    path: 'diary/:id' ,
     component: DetailDiaryComponent
   }
   ,
@@ -37,7 +39,7 @@ const routes: Routes = [
     canActivate: [NotActivateTeam],
   },
   {
-    path: 'diary',
+    path: 'library',
     component: DiaryComponent,
     canActivate: [CanActivateTeam],
     children: [
@@ -57,6 +59,16 @@ const routes: Routes = [
       {
         path: 'manageTag' ,
         component: TagComponent ,
+        canActivate: [IsAdmin]
+      },
+      {
+        path: 'manageDiary' ,
+        component: ManageDiaryComponent ,
+        canActivate: [IsAdmin]
+      },
+      {
+        path: 'manageUser' ,
+        component: ManageUserComponent ,
         canActivate: [IsAdmin]
       }
     ]
