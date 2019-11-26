@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../services/user';
 import {UserService} from '../services/user.service';
-import {UserNameForm} from '../services/user-name-form';
+import {SearchUserByName} from '../services/search-user-by-name';
 
 @Component({
   selector: 'app-manage-user',
@@ -44,7 +44,7 @@ export class ManageUserComponent implements OnInit {
   }
 
   searchByName() {
-    const user: UserNameForm = {
+    const user: SearchUserByName = {
       name: this.name
     };
     this.userService.searchUserByName(user).subscribe(

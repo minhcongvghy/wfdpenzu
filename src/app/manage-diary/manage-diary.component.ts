@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Diary} from '../services/diary';
 import {DiaryService} from '../services/diary.service';
-import {TitleForm} from '../services/title-form';
+import {SearchDiaryByTitle} from '../services/search-diary-by-title';
 
 @Component({
   selector: 'app-manage-diary',
@@ -44,10 +44,10 @@ export class ManageDiaryComponent implements OnInit {
   }
 
   searchByTitle() {
-    const title: TitleForm = {
+    const title: SearchDiaryByTitle = {
       title: this.titleInput
     };
-    this.diaryService.getListDiaryByTitle(title).subscribe(
+    this.diaryService.searchDiaryByTitle(title).subscribe(
       result => {
         this.listDiary = result;
         console.log(result);

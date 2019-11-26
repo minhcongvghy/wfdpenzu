@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService, private token: TokenStorageService,
               private route: ActivatedRoute,
               private router: Router,
-              private tagService: TagService) { }
+              ) { }
 
   ngOnInit() {
     this.info = {
@@ -33,21 +33,10 @@ export class HeaderComponent implements OnInit {
       userId: this.token.getUserId()
     };
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
-
-    this.getListTag();
   }
 
   logout() {
     this.token.signOut();
     this.router.navigateByUrl(this.returnUrl);
-  }
-  getListTag() {
-    this.tagService.getTagList().subscribe(
-      result => {
-        this.tagList = result;
-      }, error => {
-        console.log(error);
-      }
-    );
   }
 }

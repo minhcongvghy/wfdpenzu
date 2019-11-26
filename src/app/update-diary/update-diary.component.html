@@ -19,7 +19,7 @@
       <img src="{{filePath}}" style="width: 100%; height: 400px">
     </div>
    <ng-template #url>
-     <img  src="http://localhost:8080/uploads/{{diary.file}}" style="width: 100%; height: 400px">
+     <img  src="{{diary.typeFile}},{{diary.file}}" style="width: 100%; height: 400px">
    </ng-template>
   <div class="input-group">
     <div class="input-group-prepend">

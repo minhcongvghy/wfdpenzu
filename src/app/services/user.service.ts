@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment.prod';
 import {User} from './user';
 import {UserForm} from '../profile-user/user-form';
-import {UserNameForm} from './user-name-form';
+import {SearchUserByName} from './search-user-by-name';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -36,7 +36,7 @@ export class UserService {
     return this.http.delete<void>(this.svUserUrl + id);
   }
 
-  searchUserByName(user: UserNameForm): Observable<User[]> {
+  searchUserByName(user: SearchUserByName): Observable<User[]> {
     return this.http.post<User[]>(this.svUserUrl + 'search-by-name' , user);
   }
 }

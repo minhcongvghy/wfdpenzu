@@ -14,7 +14,7 @@
           <h2 class="pt-3 pb-4 text-center font-bold font-up text-info">Total {{tagList.length}} Tag Is Present!</h2>
         </ng-template>
         <div class="input-group md-form form-sm form-2 pl-0">
-          <input [(ngModel)]="title" (keydown)="searchByTitle()" class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search by name..." aria-label="Search">
+          <input [(ngModel)]="tagName" (keydown)="searchByTagName()" class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search by name..." aria-label="Search">
           <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1">
             <a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
         </div>

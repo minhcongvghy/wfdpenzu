@@ -16,6 +16,7 @@ export class TagComponent implements OnInit {
    id: new FormControl(''),
    name: new FormControl('')
  });
+  tagName: '';
 
   constructor(private tagService: TagService) { }
 
@@ -50,6 +51,7 @@ export class TagComponent implements OnInit {
         console.log(result);
         closeButon.click();
         this.getListTag();
+        this.tagForm.reset();
       }
     );
   }
@@ -80,6 +82,19 @@ export class TagComponent implements OnInit {
       result => {
         this.getListTag();
         closeModalRef2.click();
+      }
+    );
+  }
+
+  searchByTagName() {
+    const tag: Tag = {
+      name: this.tagName
+    };
+    this.tagService.searchTagByName(tag).subscribe(
+      next => {
+        this.tagList = next;
+      }, error => {
+        console.log(error);
       }
     );
   }

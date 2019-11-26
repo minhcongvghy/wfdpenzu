@@ -32,6 +32,7 @@ import { TagComponent } from './tag/tag.component';
 import {IsAdmin} from './deactivate/is-admin';
 import { ManageDiaryComponent } from './manage-diary/manage-diary.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
+import { ShowDiaryByTagComponent } from './show-diary-by-tag/show-diary-by-tag.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ManageUserComponent } from './manage-user/manage-user.component';
     SafeHtmlPipe,
     TagComponent,
     ManageDiaryComponent,
-    ManageUserComponent
+    ManageUserComponent,
+    ShowDiaryByTagComponent
 
   ],
   imports: [

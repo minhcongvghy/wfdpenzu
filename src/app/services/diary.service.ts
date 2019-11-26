@@ -3,11 +3,12 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Diary} from './diary';
 import {Observable} from 'rxjs';
 import {FileForm} from './file-form';
-import {SearchByTitleAndUserId} from './search-by-title-and-user-id';
+import {SearchDiaryByTitleAndUserId} from './search-diary-by-title-and-user-id';
 import {Tag} from './tag';
 import {Pagination} from './pagination';
 import {environment} from '../../environments/environment.prod';
-import {TitleForm} from './title-form';
+import {SearchDiaryByTitle} from './search-diary-by-title';
+import {SearchDiaryByTagAndTitle} from './search-diary-by-tag-and-title';
 // import {environment} from '../../environments/environment';
 
 const httpOptions = {
@@ -62,12 +63,20 @@ export class DiaryService {
     return this.http.put<Diary>(this.svDiaryUrl + diary.id, diary);
   }
 
-  searchDiaryByTitleAndUserID(title: SearchByTitleAndUserId): Observable<Diary[]> {
+  searchDiaryByTitleAndUserID(title: SearchDiaryByTitleAndUserId): Observable<Diary[]> {
     return this.http.post<Diary[]>(this.svDiaryUrl + 'searchBy-Title-And-UserId', title);
   }
 
-  getListDiaryByTitle(title: TitleForm): Observable<Diary[]> {
+  searchDiaryByTitle(title: SearchDiaryByTitle): Observable<Diary[]> {
     return this.http.post<Diary[]>(this.svDiaryUrl + 'search-by-title', title);
+  }
+
+  searchDiaryByTagAndTitle(searchForm: SearchDiaryByTagAndTitle): Observable<Diary[]> {
+    return this.http.post<Diary[]>(this.svDiaryUrl + 'search-by-tag-and-title' , searchForm);
+  }
+
+  searchDiaryByTagId(id: string): Observable<Diary[]> {
+    return this.http.get<Diary[]>(this.svDiaryUrl + 'searchBy-TagId/' + id );
   }
 
 }

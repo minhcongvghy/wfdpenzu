@@ -37,4 +37,8 @@ export class TagService {
     return this.http.delete<void>(this.svTagUrl + id);
   }
 
+  searchTagByName(tag: Tag): Observable<Tag[]> {
+    return this.http.post<Tag[]>(this.svTagUrl + 'search-by-name', tag);
+  }
+
 }

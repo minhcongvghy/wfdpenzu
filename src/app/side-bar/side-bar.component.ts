@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TagService} from '../services/tag.service';
+import {Tag} from '../services/tag';
 
 @Component({
   selector: 'app-side-bar',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {
-
-  constructor() { }
+  tagList: Tag[] = [];
+  constructor(private tagService: TagService) { }
 
   ngOnInit() {
+    this.getListTag();
   }
-
+  getListTag() {
+    this.tagService.getTagList().subscribe(
+      result => {
+        this.tagList = result;
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
 }
