@@ -1,50 +1,170 @@
   <app-header></app-header>
-  <main role="main" class="container-fluid"> <!-- /.container -->
+<!--  <main role="main" class="container-fluid"> &lt;!&ndash; /.container &ndash;&gt;-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-12 blog-main">-->
+<!--      <div *ngIf="diary.file">-->
+<!--        <img src="{{diary.typeFile}},{{diary.file}}" style="width: 100%; height: 500px">-->
+<!--      </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-1 blog-main">-->
+<!--      </div>-->
+<!--      <div class="col-md-8 blog-main">&lt;!&ndash; /.blog-main &ndash;&gt;-->
+
+<!--        <div class="blog-post">-->
+<!--          <h1 class="blog-post-title"><p>{{diary.title}}</p></h1>-->
+<!--          <div *ngIf="diary.update == 'false'; else other">-->
+<!--          <p class="blog-post-meta">Date: {{diary.date}} By-->
+<!--            <a class="text-info">{{diary.user.name}}</a>-->
+<!--          </p>-->
+<!--          </div>-->
+<!--          <ng-template #other>-->
+<!--            <p class="blog-post-meta">Date: {{diary.date}} By-->
+<!--              <a class="text-info">{{diary.user.name}}</a> (edited)-->
+<!--            </p>-->
+<!--          </ng-template>-->
+<!--          <p>Tag: <a [routerLink]="'/tag/' + diary.tag.id">{{diary.tag.name}}</a></p>-->
+<!--          <hr>-->
+<!--          <h3>Description</h3>-->
+<!--          <p>{{diary.description}}</p>-->
+<!--          <hr>-->
+<!--          <div [innerHTML]="diary.content | safeHtml"></div>-->
+<!--        </div>&lt;!&ndash; /.blog-post &ndash;&gt;-->
+<!--        <div class="text-right">-->
+<!--        <ngb-rating [(rate)]="currentRate">-->
+<!--          <ng-template let-fill="fill" let-index="index">-->
+<!--            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>-->
+<!--          </ng-template>-->
+<!--        </ngb-rating>-->
+<!--        <pre>Rate: <b>{{currentRate}}</b></pre>-->
+<!--        </div>-->
+<!--        <br/>-->
+<!--        <hr>-->
+<!--        <div class="row bootstrap snippets">-->
+<!--          <div>-->
+<!--            <div class="comment-wrapper">-->
+<!--              <div class="panel panel-info">-->
+<!--                <div class="panel-heading">-->
+<!--                  Comment-->
+<!--                </div>-->
+
+<!--                <div class="">-->
+<!--                  <form [formGroup]="formComment">-->
+<!--                  <textarea class="form-control" formControlName="contentInput" placeholder="write a comment..." rows="3"></textarea>-->
+<!--                  <br>-->
+<!--                  <div class="text-right">-->
+<!--                  <button type="button" (click)="createComment()" class="btn btn-info ">Post</button>-->
+<!--                  </div>-->
+<!--                </form>-->
+<!--                  <div class="clearfix"></div>-->
+<!--                  <hr>-->
+<!--                  <ul class="media-list">-->
+<!--                    <li class="media" *ngFor="let comment of listComment">-->
+<!--                      <a href="#" class="pull-left">-->
+<!--                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">-->
+<!--                      </a> &nbsp;&nbsp;&nbsp;-->
+<!--                      <div class="media-body">-->
+<!--                                <span class="text-muted pull-right">-->
+<!--                                    <small class="text-muted">{{comment.date}}</small>-->
+<!--                                </span>-->
+<!--                        <strong class="text-success">@{{comment.user.name}}</strong>-->
+<!--                        <p>-->
+<!--                         {{comment.content}}-->
+<!--                        </p>-->
+<!--                      </div>-->
+<!--                    </li>-->
+<!--                  </ul>-->
+<!--                </div>-->
+<!--              </div>-->
+
+<!--            </div>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>&lt;!&ndash; /.blog-main &ndash;&gt;-->
+
+<!--      <aside class="col-md-3 blog-sidebar">&lt;!&ndash; /.blog-sidebar &ndash;&gt;-->
+<!--        <app-side-bar></app-side-bar>-->
+<!--      </aside>&lt;!&ndash; /.blog-sidebar &ndash;&gt;-->
+
+<!--    </div>&lt;!&ndash; /.row &ndash;&gt;-->
+
+<!--  </main>&lt;!&ndash; /.container &ndash;&gt;-->
+  <div class="container-fluid">
+
     <div class="row">
-      <div class="col-md-1 blog-main">
+      <div class="col-lg-1">
       </div>
-      <div class="col-md-8 blog-main"><!-- /.blog-main -->
 
-        <div class="blog-post">
-          <div *ngIf="diary.file">
-            <img src="{{diary.typeFile}},{{diary.file}}" style="width: 100%; height: 500px">
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{diary.title}}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          <a href="#">{{diary.user.name}}</a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>{{diary.date}}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+                <img src="{{diary.typeFile}},{{diary.file}}" style="width: 100%; height: 500px">
+
+        <hr>
+
+        <!-- Post Content -->
+        <strong>{{diary.description}}</strong>
+        <div [innerHTML]="diary.content | safeHtml"></div>
+        <hr>
+
+        <!-- Comments Form -->
+        <div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form [formGroup]="formComment">
+              <div class="form-group">
+                <textarea class="form-control" formControlName="contentInput" rows="3"></textarea>
+              </div>
+              <button type="submit" (click)="createComment()" class="btn btn-primary">Submit</button>
+            </form>
           </div>
-          <h1 class="blog-post-title"><p>{{diary.title}}</p></h1>
-          <div *ngIf="diary.update == 'false'; else other">
-          <p class="blog-post-meta">Date: {{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}} By
-            <a class="text-info">{{diary.user.name}}</a>
-          </p>
-          </div>
-          <ng-template #other>
-            <p class="blog-post-meta">Date: {{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}} By
-              <a class="text-info">{{diary.user.name}}</a> (edited)
-            </p>
-          </ng-template>
-          <p>Tag: <a href="/#">{{diary.tag.name}}</a></p>
-          <hr>
-          <h3>Description</h3>
-          <p>{{diary.description}}</p>
-          <hr>
-          <div [innerHTML]="diary.content | safeHtml"></div>
-        </div><!-- /.blog-post -->
-        <div class="text-right">
-        <ngb-rating [(rate)]="currentRate">
-          <ng-template let-fill="fill" let-index="index">
-            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-          </ng-template>
-        </ngb-rating>
-        <pre>Rate: <b>{{currentRate}}</b></pre>
         </div>
-      </div><!-- /.blog-main -->
 
-      <aside class="col-md-3 blog-sidebar"><!-- /.blog-sidebar -->
+        <!-- Single Comment -->
+        <div class="media mb-4" *ngFor="let comment of listComment">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <label class="text-success">@{{comment.user.name}}<h6>{{comment.date}}</h6></label>
+
+            <p>
+              {{comment.content}}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-2" style="padding-top: 157px ; padding-left: 5px">
+
         <app-side-bar></app-side-bar>
-      </aside><!-- /.blog-sidebar -->
 
-    </div><!-- /.row -->
+      </div>
 
-  </main><!-- /.container -->
+    </div>
+    <!-- /.row -->
 
+  </div>
+  <!-- /.container -->
+  <button class="top" *ngIf="isShow" (click)="gotoTop()">👆Top</button>
   <app-footer></app-footer>
 
 

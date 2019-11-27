@@ -17,7 +17,7 @@
 
         <div class="blog-post" *ngFor="let diary of diaryList">
           <h2 class="blog-post-title">{{diary.title}}</h2>
-          <p class="blog-post-meta">{{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}} <a href="#">{{diary.user.name}}</a></p>
+          <p class="blog-post-meta">{{diary.date}} <a href="#">{{diary.user.name}}</a></p>
 
           <h3><strong>{{diary.description}}</strong></h3>
           <hr>

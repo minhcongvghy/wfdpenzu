@@ -35,8 +35,8 @@
       <tbody>
       <tr *ngFor="let diary of listDiary, index as i">
         <th scope="row">{{i + 1}}</th>
-        <td><a [routerLink]="'/blog/' + diary.id">{{diary.title}}</a></td>
-        <td>{{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}}</td>
+        <td><a [routerLink]="'/diary/' + diary.id">{{diary.title}}</a></td>
+        <td>{{diary.date}}</td>
         <td>
           <button type="button" class="btn btn-primary" [routerLink]="'/library/updateDiary/' + diary.id">
             Update

@@ -11,3 +11,31 @@
 .filled.bad {
   color: #ff1e1e;
 }
+
+body {
+  padding-top: 56px;
+}
+
+
+
+img {
+  width:64px;
+  height:64px;
+  border:2px solid #e5e7e8;
+}
+
+.media-list .media {
+  border-bottom:1px dashed #efefef;
+  margin-bottom:25px;
+  width: 100%;
+}
+
+.top {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
+  outline: none;
+}

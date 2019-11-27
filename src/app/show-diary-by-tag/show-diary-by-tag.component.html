@@ -75,11 +75,11 @@
 
 
             <tr *ngFor="let diary of ListDiary">
-              <td><a href="#">{{diary.tag.name}}</a></td>
-              <td><a href="#">{{diary.title}}</a></td>
+              <td class="text-info"><a>{{diary.tag.name}}</a></td>
+              <td class="text-info"><a [routerLink]="'/diary/' + diary.id" >{{diary.title}}</a></td>
               <td class="text-info">{{diary.description.slice(0,50)}}</td>
-              <td class="text-info">{{diary.date[2]}}/{{diary.date[1]}}/{{diary.date[0]}}</td>
-              <td><a href="#">{{diary.user.name}}</a></td>
+              <td class="text-info">{{diary.date}}</td>
+              <td class="text-info"><a >{{diary.user.name}}</a></td>
             </tr>
           </table>
 
