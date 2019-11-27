@@ -55,7 +55,12 @@
     <div class="col-md-12" style="background: whitesmoke ; width: 700px">
       <div class="container-fluid">
         <div class="search-list">
-          <h3>{{ListDiary.length}} Records Found</h3>
+          <div *ngIf="ListDiary; else other">
+            <h3>{{ListDiary.length}} Records Found</h3>
+          </div>
+          <ng-template #other>
+            <h3>0 Records Found</h3>
+          </ng-template>
           <table class="table" >
             <thead>
             <tr>
@@ -69,7 +74,7 @@
 
 
 
-            <tr *ngFor="let diary of ListDiary | paginate: { itemsPerPage: 5, currentPage: p }">
+            <tr *ngFor="let diary of ListDiary">
               <td><a href="#">{{diary.tag.name}}</a></td>
               <td><a href="#">{{diary.title}}</a></td>
               <td class="text-info">{{diary.description.slice(0,50)}}</td>
@@ -81,9 +86,9 @@
         </div>
       </div>
       <br/>
-      <pagination-controls [class.text-center]="true" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>
 <br/>
+<button class="top" *ngIf="isShow" (click)="gotoTop()">👆Top</button>
 <app-footer></app-footer>

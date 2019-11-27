@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {TagService} from '../services/tag.service';
 import {Tag} from '../services/tag';
 import {Diary} from '../services/diary';
@@ -18,6 +18,8 @@ export class ShowDiaryByTagComponent implements OnInit {
   tagId = null;
   title = null;
   private id: string;
+  isShow: boolean;
+  topPosToStartShowing = 200;
   constructor(private tagService: TagService,
               private diaryService: DiaryService,
               private activatedRoute: ActivatedRoute,
@@ -67,6 +69,33 @@ export class ShowDiaryByTagComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  @HostListener('window:scroll')
+  checkScroll() {
+
+    // window의 scroll top
+    // Both window.pageYOffset and document.documentElement.scrollTop
+    // returns the same result in all the cases. window.pageYOffset is not supported below IE 9.
+
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    console.log('[scroll]', scrollPosition);
+
+    if (scrollPosition >= this.topPosToStartShowing) {
+      this.isShow = true;
+    } else {
+      this.isShow = false;
+    }
+  }
+
+  // TODO: Cross browsing
+  gotoTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
 }
