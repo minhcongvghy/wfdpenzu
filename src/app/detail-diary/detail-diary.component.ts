@@ -18,15 +18,19 @@ import {CommentService} from '../services/comment.service';
 
 export class DetailDiaryComponent implements OnInit  {
   private diaryId: string;
+  userId: string;
   diary: Diary;
   currentRate = 6;
   ImgURL = environment.imgUrl;
   isShow: boolean;
   topPosToStartShowing = 200;
-  formComment = new FormGroup( {
+  formCommentCreate = new FormGroup( {
     contentInput: new FormControl('')
   });
-  listComment: Comment[] = [];
+  contentUpdate = new FormControl();
+  private listComment: Comment[] = [];
+  private idComment: string;
+  private tokenJWT: string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,
@@ -37,6 +41,9 @@ export class DetailDiaryComponent implements OnInit  {
     this.activatedRoute.params.subscribe(params => {
       this.diaryId = params.id;
     });
+
+    this.userId = this.token.getUserId();
+    this.tokenJWT = this.token.getToken();
   }
 
   ngOnInit() {
@@ -95,7 +102,7 @@ export class DetailDiaryComponent implements OnInit  {
   }
 
   createComment() {
-    const {contentInput} = this.formComment.value;
+    const {contentInput} = this.formCommentCreate.value;
     if (contentInput === '') {
       return;
     }
@@ -109,11 +116,50 @@ export class DetailDiaryComponent implements OnInit  {
     this.commentService.createComment(comment).subscribe(
       result => {
         console.log(result , 'ok');
-        this.formComment.reset();
+        this.formCommentCreate.reset();
         this.getAllCommentThisDiary();
       }, error => {
         console.log(error);
       }
     );
+  }
+
+  closeForm(closeModalRef: HTMLAnchorElement) {
+    closeModalRef.click();
+    this.getAllCommentThisDiary();
+    this.contentUpdate.reset();
+  }
+
+  updateComment(commentId: string, closeModalRef: HTMLAnchorElement) {
+    if (this.contentUpdate.value == null) {
+      return this.closeForm(closeModalRef);
+    }
+    const comment: Comment = {
+      id: commentId ,
+      content: this.contentUpdate.value
+    };
+    this.commentService.editComment(comment).subscribe(
+        result => {
+          this.closeForm(closeModalRef);
+        }, error => {
+          console.log(error);
+      }
+      );
+    console.log(comment);
+  }
+
+  getIdComment(id: string) {
+    this.idComment = id;
+  }
+
+  deleteComment(closeModalRef2: HTMLButtonElement) {
+      this.commentService.deleteComment(this.idComment).subscribe(
+        result => {
+          this.getAllCommentThisDiary();
+          closeModalRef2.click();
+        }, error => {
+          console.log(error);
+        }
+      );
   }
 }

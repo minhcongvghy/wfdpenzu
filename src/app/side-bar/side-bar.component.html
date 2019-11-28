@@ -24,6 +24,7 @@
           <ul class="list-unstyled mb-0">
             <li *ngFor="let tag of tagList.slice(0,3)">
               <a [routerLink]="'/tag/' + tag.id">{{tag.name}}</a>
+              <hr>
             </li>
           </ul>
         </div>
@@ -31,6 +32,7 @@
           <ul class="list-unstyled mb-0">
             <li *ngFor="let tag of tagList.slice(4,7)">
               <a [routerLink]="'/tag/' + tag.id">{{tag.name}}</a>
+              <hr>
             </li>
           </ul>
         </div>
