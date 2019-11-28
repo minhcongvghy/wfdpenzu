@@ -27,7 +27,6 @@ export class UserDiaryListComponent implements OnInit {
     this.userService.getDiaryByUser(this.token.getUserId()).subscribe(
       result => {
         this.listDiary = result;
-        console.log(this.listDiary);
       }, error => {
         alert('error get diary');
       }

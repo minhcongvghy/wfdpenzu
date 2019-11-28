@@ -24,12 +24,17 @@ export class ShowDiaryByTagComponent implements OnInit {
               private diaryService: DiaryService,
               private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute) {
+    this.id = this.route.snapshot.paramMap.get('id');
+  }
 
   ngOnInit() {
     this.getListTag();
-    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id === '0') {
+      this.searchDiary();
+    } else {
     this.getListDiaryByTagId(this.id);
+    }
   }
 
   getListDiaryByTagId(id: string) {
@@ -80,7 +85,7 @@ export class ShowDiaryByTagComponent implements OnInit {
 
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-    console.log('[scroll]', scrollPosition);
+
 
     if (scrollPosition >= this.topPosToStartShowing) {
       this.isShow = true;

@@ -24,7 +24,6 @@ export class FeaturedComponent implements OnInit {
     this.diaryService.getListDiary().subscribe(
       result => {
         this.diaryList = result;
-        console.log(result);
       }
     );
   }

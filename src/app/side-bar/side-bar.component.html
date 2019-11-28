@@ -16,7 +16,7 @@
   </div>
 
   <!-- Categories Widget -->
-  <div class="card my-4">
+  <div class="card my-4" *ngIf="tagList">
     <h5 class="card-header">Categories</h5>
     <div class="card-body">
       <div class="row">
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="text-right">
-        <h5><a  href="#">More...</a></h5>
+        <h5><a  [routerLink]="'/tag/' + '0'">More...</a></h5>
       </div>
     </div>
   </div>

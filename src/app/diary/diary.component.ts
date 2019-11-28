@@ -21,7 +21,6 @@ export class DiaryComponent implements OnInit {
       authorities: this.token.getAuthorities(),
       userId: this.token.getUserId()
     };
-    console.log(this.info);
   }
 
 }

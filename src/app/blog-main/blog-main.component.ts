@@ -22,9 +22,12 @@ export class BlogMainComponent implements OnInit {
   Pagination(page: number) {
     this.diaryService.Pagination(page).subscribe(
       result => {
+        if (result === null) {
+          return;
+        } else {
         this.diaryList = result.content;
         this.page++ ;
-        console.log(this.diaryList);
+        }
       }
     );
   }

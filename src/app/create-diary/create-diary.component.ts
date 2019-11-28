@@ -40,7 +40,6 @@ export class CreateDiaryComponent implements OnInit {
     this.tagService.getTagList().subscribe(
       result => {
         this.tagList = result;
-        console.log(this.tagList);
       }, error0 => {
         alert('error get tag');
       }
@@ -54,7 +53,6 @@ export class CreateDiaryComponent implements OnInit {
       userId: this.token.getUserId(),
       email: this.token.getEmail()
     };
-    console.log(this.info);
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/diary/listUserDiary';
   }
 

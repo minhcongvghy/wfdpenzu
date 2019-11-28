@@ -104,15 +104,16 @@
         <h1 class="mt-4">{{diary.title}}</h1>
 
         <!-- Author -->
-        <p class="lead">
+        <p class="lead ">
           by
-          <a href="#">{{diary.user.name}}</a>
+          <label class="text-warning">{{diary.user.name}}</label>
         </p>
 
         <hr>
-
+        <h5>Tag: <a [routerLink]="'/tag/' + diary.tag.id">{{diary.tag.name}}</a></h5>
         <!-- Date/Time -->
-        <p>{{diary.date}}</p>
+        <h6><p class="text-dark">{{diary.date}}</p></h6>
+<!--          tag-->
 
         <hr>
 
@@ -122,7 +123,8 @@
         <hr>
 
         <!-- Post Content -->
-        <strong>{{diary.description}}</strong>
+        <h4><strong>{{diary.description}}</strong></h4>
+        <br/>
         <div [innerHTML]="diary.content | safeHtml"></div>
         <hr>
 
