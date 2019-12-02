@@ -6,10 +6,10 @@ import {FileForm} from './file-form';
 import {SearchDiaryByTitleAndUserId} from './search-diary-by-title-and-user-id';
 import {Tag} from './tag';
 import {Pagination} from './pagination';
-// import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment.prod';
 import {SearchDiaryByTitle} from './search-diary-by-title';
 import {SearchDiaryByTagAndTitle} from './search-diary-by-tag-and-title';
-import {environment} from '../../environments/environment';
+// import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -23,24 +23,24 @@ export class DiaryService {
   constructor(private http: HttpClient) {
   }
 
-  // // local
-  private diaryUrl = environment.diaryUrl;
-  private uploadFileUrl = environment.uploadFileUrl;
+  // local
+  // private svDiaryUrl = environment.diaryUrl;
+  // private svUploadFile = environment.uploadFileUrl;
 
   // server
-  // private svDiaryUrl = environment.SvDiaryUrl;
-  // private svUploadFile = environment.SvUploadFileUrl;
+  private svDiaryUrl = environment.SvDiaryUrl;
+  private svUploadFile = environment.SvUploadFileUrl;
 
   Pagination(page: number): Observable<Pagination> {
-    return this.http.get<Pagination>(this.diaryUrl + 'pagination?page=' + page);
+    return this.http.get<Pagination>(this.svDiaryUrl + 'pagination?page=' + page);
   }
 
   getListDiary(): Observable<Diary[]> {
-    return this.http.get<Diary[]>(this.diaryUrl);
+    return this.http.get<Diary[]>(this.svDiaryUrl);
   }
 
   createDiary(diary: Diary): Observable<Diary> {
-    return this.http.post<Diary>(this.diaryUrl, diary);
+    return this.http.post<Diary>(this.svDiaryUrl, diary);
   }
 
   uploadFile(file: FormData, diaryId: string): Observable<FileForm> {
@@ -48,35 +48,35 @@ export class DiaryService {
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
 
-    return this.http.post<FileForm>(this.uploadFileUrl + diaryId, file, {headers});
+    return this.http.post<FileForm>(this.svUploadFile + diaryId, file, {headers});
   }
 
   findDiaryById(id: string): Observable<Diary> {
-    return this.http.get<Diary>(this.diaryUrl + id);
+    return this.http.get<Diary>(this.svDiaryUrl + id);
   }
 
   deleteDiaryById(id: string): Observable<void> {
-    return this.http.delete<void>(this.diaryUrl + id);
+    return this.http.delete<void>(this.svDiaryUrl + id);
   }
 
   updateDiary(diary: Diary): Observable<Diary> {
-    return this.http.put<Diary>(this.diaryUrl + diary.id, diary);
+    return this.http.put<Diary>(this.svDiaryUrl + diary.id, diary);
   }
 
   searchDiaryByTitleAndUserID(title: SearchDiaryByTitleAndUserId): Observable<Diary[]> {
-    return this.http.post<Diary[]>(this.diaryUrl + 'searchBy-Title-And-UserId', title);
+    return this.http.post<Diary[]>(this.svDiaryUrl + 'searchBy-Title-And-UserId', title);
   }
 
   searchDiaryByTitle(title: SearchDiaryByTitle): Observable<Diary[]> {
-    return this.http.post<Diary[]>(this.diaryUrl + 'search-by-title', title);
+    return this.http.post<Diary[]>(this.svDiaryUrl + 'search-by-title', title);
   }
 
   searchDiaryByTagAndTitle(searchForm: SearchDiaryByTagAndTitle): Observable<Diary[]> {
-    return this.http.post<Diary[]>(this.diaryUrl + 'search-by-tag-and-title' , searchForm);
+    return this.http.post<Diary[]>(this.svDiaryUrl + 'search-by-tag-and-title' , searchForm);
   }
 
   searchDiaryByTagId(id: string): Observable<Diary[]> {
-    return this.http.get<Diary[]>(this.diaryUrl + 'searchBy-TagId/' + id );
+    return this.http.get<Diary[]>(this.svDiaryUrl + 'searchBy-TagId/' + id );
   }
 
 }

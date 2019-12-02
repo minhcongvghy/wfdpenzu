@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './auth/login/login.component';
 import {HomeComponent} from './home/home.component';
-import {RegisterComponent} from './register/register.component';
-import {ProfileUserComponent} from './profile-user/profile-user.component';
-import {CanActivateTeam} from './deactivate/can-activate-team';
-import {NotActivateTeam} from './deactivate/not-activate-team';
-import {CreateDiaryComponent} from './create-diary/create-diary.component';
+import {RegisterComponent} from './auth/register/register.component';
+import {ProfileUserComponent} from './auth/profile/profile-user.component';
+import {CanActivateTeam} from './protect-router/can-activate-team';
+import {NotActivateTeam} from './protect-router/not-activate-team';
+import {CreateDiaryComponent} from './diary/diary-create/create-diary.component';
 import {DiaryComponent} from './diary/diary.component';
-import {UserDiaryListComponent} from './user-diary-list/user-diary-list.component';
-import {BlogMainComponent} from './blog-main/blog-main.component';
-import {DetailDiaryComponent} from './detail-diary/detail-diary.component';
-import {UpdateDiaryComponent} from './update-diary/update-diary.component';
-import {TagComponent} from './tag/tag.component';
-import {IsAdmin} from './deactivate/is-admin';
-import {ManageDiaryComponent} from './manage-diary/manage-diary.component';
-import {ManageUserComponent} from './manage-user/manage-user.component';
-import {ShowDiaryByTagComponent} from './show-diary-by-tag/show-diary-by-tag.component';
+import {UserDiaryListComponent} from './diary/diary-list-of-user/user-diary-list.component';
+import {BlogMainComponent} from './home/main/blog-main.component';
+import {DetailDiaryComponent} from './diary/diary-detail/detail-diary.component';
+import {UpdateDiaryComponent} from './diary/diary-update/update-diary.component';
+import {TagComponent} from './admin/manage-tag/tag.component';
+import {IsAdmin} from './protect-router/is-admin';
+import {ManageDiaryComponent} from './admin/manage-diary/manage-diary.component';
+import {ManageUserComponent} from './admin/manage-user/manage-user.component';
+import {ShowDiaryByTagComponent} from './diary/diary-search-by-title-and-tag/show-diary-by-tag.component';
 
 
 
@@ -40,7 +40,7 @@ const routes: Routes = [
     canActivate: [NotActivateTeam],
   },
   {
-    path: 'tag/:id' ,
+    path: 'manage-tag/:id' ,
     component: ShowDiaryByTagComponent,
   },
   {

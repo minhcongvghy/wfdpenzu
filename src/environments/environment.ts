@@ -9,6 +9,7 @@ export const environment = {
   uploadFileUrl: 'http://localhost:8080/api/auth/file/',
   tagUrl: 'http://localhost:8080/api/auth/tag/',
   userUrl: 'http://localhost:8080/api/auth/user/',
+  commentUrl: 'http://localhost:8080/api/auth/comment/',
 
   loginUrl: 'http://localhost:8080/api/auth/signin',
   signupUrl: 'http://localhost:8080/api/auth/signup',
