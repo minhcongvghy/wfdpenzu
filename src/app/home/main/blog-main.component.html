@@ -16,11 +16,11 @@
         </h3>
         <div  *ngIf="diaryList">
           <div class="blog-post" *ngFor="let diary of diaryList">
-            <h2 class="blog-post-title">{{diary.title}}</h2>
+            <h2 class="blog-post-title" [innerText]="diary.title"></h2>
             By <strong class="text-warning">{{diary.user.name}}</strong>
             <p class="blog-post-meta">{{diary.date}}</p>
 
-            <h3><strong>{{diary.description}}</strong></h3>
+            <h3><strong [innerText]="diary.description"></strong></h3>
             <hr>
             <br/>
             <a [routerLink]="'/diary/' + diary.id">Continue reading</a>
