@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-diary-image-create',
-  templateUrl: './diary-image-create.component.html',
-  styleUrls: ['./diary-image-create.component.scss']
+  selector: 'app-add-image-to-album',
+  templateUrl: './add-image-to-album.component.html',
+  styleUrls: ['./add-image-to-album.component.scss']
 })
-export class DiaryImageCreateComponent implements OnInit {
+export class AddImageToAlbumComponent implements OnInit {
+
   private fileList: any [] = [];
 
   constructor() { }
 
-  name = 'Angular 4';
   urls = [];
 
   ngOnInit(): void {
@@ -39,4 +39,5 @@ export class DiaryImageCreateComponent implements OnInit {
     console.log(this.fileList);
     console.log(this.urls);
   }
+
 }

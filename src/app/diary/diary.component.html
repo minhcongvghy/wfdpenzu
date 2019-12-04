@@ -8,6 +8,7 @@
       <div id="demo" class="left-navigation">
         <ul class="list position-fixed">
           <li  [routerLink]="'/library'"><h2>New Entry</h2></li>
+          <li  [routerLink]="'/library/album-picture-create'"><h2>New Album</h2></li>
           <li  [routerLink]="'/library/profile/'"><h2>My Profile</h2></li>
           <li [routerLink]="'/library/listUserDiary/'"><h2>My Entry</h2></li>
           <li *ngIf="info.authorities == 'ADMIN'" [routerLink]="'/library/manageTag/'"><h2>Manage Tag</h2></li>

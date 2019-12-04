@@ -31,7 +31,8 @@ import {IsAdmin} from './protect-router/is-admin';
 import { ManageDiaryComponent } from './admin/manage-diary/manage-diary.component';
 import { ManageUserComponent } from './admin/manage-user/manage-user.component';
 import { ShowDiaryByTagComponent } from './diary/diary-search-by-title-and-tag/show-diary-by-tag.component';
-import { DiaryImageCreateComponent } from './diary-image/diary-image-create/diary-image-create.component';
+import { DiaryImageCreateComponent } from './album/album-create/diary-image-create.component';
+import { AddImageToAlbumComponent } from './album/album-add-image/add-image-to-album.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { DiaryImageCreateComponent } from './diary-image/diary-image-create/diar
     ManageDiaryComponent,
     ManageUserComponent,
     ShowDiaryByTagComponent,
-    DiaryImageCreateComponent
+    DiaryImageCreateComponent,
+    AddImageToAlbumComponent
 
   ],
   imports: [

@@ -17,7 +17,8 @@ import {IsAdmin} from './protect-router/is-admin';
 import {ManageDiaryComponent} from './admin/manage-diary/manage-diary.component';
 import {ManageUserComponent} from './admin/manage-user/manage-user.component';
 import {ShowDiaryByTagComponent} from './diary/diary-search-by-title-and-tag/show-diary-by-tag.component';
-import {DiaryImageCreateComponent} from './diary-image/diary-image-create/diary-image-create.component';
+import {DiaryImageCreateComponent} from './album/album-create/diary-image-create.component';
+import {AddImageToAlbumComponent} from './album/album-add-image/add-image-to-album.component';
 
 
 
@@ -49,7 +50,17 @@ const routes: Routes = [
     component: DiaryComponent,
     canActivate: [CanActivateTeam],
     children: [
-      { path: '', component: CreateDiaryComponent},
+      { path: '',
+        component: CreateDiaryComponent
+      },
+      {
+        path: 'album-picture-create',
+        component: DiaryImageCreateComponent,
+      },
+      {
+        path: 'album-picture-add-image',
+        component: AddImageToAlbumComponent,
+      },
       { path: 'profile' ,
         component: ProfileUserComponent,
         canActivate: [CanActivateTeam],
@@ -82,10 +93,6 @@ const routes: Routes = [
   { path: 'register' ,
     component: RegisterComponent,
     canActivate: [NotActivateTeam],
-  },
-  {
-    path: 'diary-image-create',
-    component: DiaryImageCreateComponent,
   },
   { path: '**', redirectTo: '' },
 ];

@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit, Pipe} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Diary} from '../../services/diary';
 import {TokenStorageService} from '../../auth/token-storage.service';
@@ -37,7 +37,8 @@ export class DetailDiaryComponent implements OnInit  {
               private token: TokenStorageService,
               private diaryService: DiaryService,
               private sanitizer: DomSanitizer,
-              private commentService: CommentService) {
+              private commentService: CommentService,
+              private router: Router) {
     this.activatedRoute.params.subscribe(params => {
       this.diaryId = params.id;
     });
@@ -50,7 +51,16 @@ export class DetailDiaryComponent implements OnInit  {
     console.log(this.diaryId, this.token.getUserId());
     this.getDiaryById();
     this.getAllCommentThisDiary();
+    this.gotoTop();
+  }
 
+  goToTop() {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 
   @HostListener('window:scroll')

@@ -15,19 +15,32 @@
           From the Codegym-2019
         </h3>
         <div  *ngIf="diaryList">
-          <div class="blog-post" *ngFor="let diary of diaryList">
-            <h2 class="blog-post-title" [innerText]="diary.title"></h2>
-            By <strong class="text-warning">{{diary.user.name}}</strong>
-            <p class="blog-post-meta">{{diary.date}}</p>
+<!--          <div class="blog-post" *ngFor="let diary of diaryList">-->
+<!--            <h2 class="blog-post-title" [innerText]="diary.title"></h2>-->
+<!--            By <strong class="text-warning">{{diary.user.name}}</strong>-->
+<!--            <p class="blog-post-meta">{{diary.date}}</p>-->
 
-            <h3><strong [innerText]="diary.description"></strong></h3>
-            <hr>
-            <br/>
-            <a [routerLink]="'/diary/' + diary.id">Continue reading</a>
-            <br/>
-            <br/>
-            <hr>
-          </div><!-- /.blog-post -->
+<!--            <h3><strong [innerText]="diary.description"></strong></h3>-->
+<!--            <hr>-->
+<!--            <br/>-->
+<!--            <a [routerLink]="'/diary/' + diary.id">Continue reading</a>-->
+<!--            <br/>-->
+<!--            <br/>-->
+<!--            <hr>-->
+<!--          </div>&lt;!&ndash; /.blog-post &ndash;&gt;-->
+          <!-- Blog Post -->
+          <div class="card mb-4" *ngFor="let diary of diaryList">
+            <img class="card-img-top" [src]="diary.urlFile" style="width: 100%; height: 300px" alt="Card image cap">
+            <div class="card-body">
+              <h2 class="card-title">{{diary.title}}</h2>
+              <p class="card-text"><strong [innerText]="diary.description"></strong></p>
+              <a [routerLink]="'/diary/' + diary.id" class="btn btn-outline-primary" >Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+              {{diary.date}} by
+              <a class="text-danger">{{diary.user.name}}</a>
+            </div>
+          </div>
         </div><!-- /.main -->
       </div>
     </div>
