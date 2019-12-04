@@ -1,0 +1,6 @@
+<div *ngFor='let url of urls; index as i' >
+  <img  [src]="url" style="height: 300px ; width: 500px;"> <button (click)="removeImage(i)" class="btn">X</button>
+</div>
+
+
+<input type='file' (change)="onSelectFile($event)" multiple>

@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   SvImgUrl: 'https://obscure-gorge-43420.herokuapp.com/uploads/',
   SvDiaryUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/diary/',
-  SvUploadFileUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/file/',
+  SvUploadFileUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/',
   SvTagUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/tag/',
   SvUserUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/user/',
   SvCommentUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/comment/',

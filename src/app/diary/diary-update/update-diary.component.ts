@@ -70,6 +70,7 @@ export class UpdateDiaryComponent implements OnInit {
     reader.onload = ( event ) => {
       this.filePath = reader.result;
     };
+    console.log(this.filePath);
   }
 
   updateDiary(closeButton: HTMLInputElement) {

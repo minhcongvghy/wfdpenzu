@@ -17,6 +17,7 @@ import {IsAdmin} from './protect-router/is-admin';
 import {ManageDiaryComponent} from './admin/manage-diary/manage-diary.component';
 import {ManageUserComponent} from './admin/manage-user/manage-user.component';
 import {ShowDiaryByTagComponent} from './diary/diary-search-by-title-and-tag/show-diary-by-tag.component';
+import {DiaryImageCreateComponent} from './diary-image/diary-image-create/diary-image-create.component';
 
 
 
@@ -82,7 +83,11 @@ const routes: Routes = [
     component: RegisterComponent,
     canActivate: [NotActivateTeam],
   },
-  { path: '**', redirectTo: '' }
+  {
+    path: 'diary-image-create',
+    component: DiaryImageCreateComponent,
+  },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

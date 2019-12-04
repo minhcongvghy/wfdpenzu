@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   imgUrl: 'http://localhost:8080/uploads/',
   diaryUrl: 'http://localhost:8080/api/auth/diary/',
-  uploadFileUrl: 'http://localhost:8080/api/auth/file/',
+  uploadFileUrl: 'http://localhost:8080/api/auth/',
   tagUrl: 'http://localhost:8080/api/auth/tag/',
   userUrl: 'http://localhost:8080/api/auth/user/',
   commentUrl: 'http://localhost:8080/api/auth/comment/',
