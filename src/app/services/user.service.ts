@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Diary} from './diary';
 import {Observable} from 'rxjs';
-// import {environment} from '../../environments/environment';
-import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
+// import {environment} from '../../environments/environment.prod';
 import {User} from './user';
 import {UserForm} from '../auth/profile/user-form';
 import {SearchUserByName} from './search-user-by-name';
@@ -16,10 +16,10 @@ const httpOptions = {
 })
 export class UserService {
   // local
-  // private svUserUrl = environment.userUrl;
+  private svUserUrl = environment.userUrl;
 
   // server
-  private svUserUrl = environment.SvUserUrl;
+  // private svUserUrl = environment.SvUserUrl;
 
 
   constructor(private http: HttpClient) { }

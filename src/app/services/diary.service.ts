@@ -6,10 +6,10 @@ import {FileForm} from './file-form';
 import {SearchDiaryByTitleAndUserId} from './search-diary-by-title-and-user-id';
 import {Tag} from './tag';
 import {Pagination} from './pagination';
-import {environment} from '../../environments/environment.prod';
+// import {environment} from '../../environments/environment.prod';
 import {SearchDiaryByTitle} from './search-diary-by-title';
 import {SearchDiaryByTagAndTitle} from './search-diary-by-tag-and-title';
-// import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -24,12 +24,12 @@ export class DiaryService {
   }
 
   // local
-  // private svDiaryUrl = environment.diaryUrl;
-  // private svUploadFile = environment.uploadFileUrl;
+  private svDiaryUrl = environment.diaryUrl;
+  private svUploadFile = environment.uploadFileUrl;
 
   // server
-  private svDiaryUrl = environment.SvDiaryUrl;
-  private svUploadFile = environment.SvUploadFileUrl;
+  // private svDiaryUrl = environment.SvDiaryUrl;
+  // private svUploadFile = environment.SvUploadFileUrl;
 
   Pagination(page: number): Observable<Pagination> {
     return this.http.get<Pagination>(this.svDiaryUrl + 'pagination?page=' + page);

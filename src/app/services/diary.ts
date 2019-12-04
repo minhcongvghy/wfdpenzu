@@ -6,7 +6,7 @@ export interface Diary {
   date?: string;
   title: string;
   description: string;
-  file?: string;
+  urlFile?: string;
   content: string;
   tag?: Tag;
   user?: User;
