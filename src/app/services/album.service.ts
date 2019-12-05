@@ -40,7 +40,7 @@ export class AlbumService {
     return this.http.put<Album>(this.albumURL + album.id , album);
   }
 
-  deleteAlbum(id: string): Observable<void> {
+  deleteAlbumById(id: string): Observable<void> {
     return this.http.delete<void>(this.albumURL + id);
   }
 
@@ -63,4 +63,13 @@ export class AlbumService {
   getListImageByAlbumId(id: string): Observable<Image[]> {
     return this.http.get<Image[]>(this.imageURL + 'search-image-by-albumId/' + id);
   }
+
+  deleteImageById(id: string): Observable<void> {
+  return this.http.delete<void>(this.imageURL + id);
+  }
+
+  getAlbumsByUserId(userId: string): Observable<Album[]> {
+    return this.http.get<Album[]>(this.albumURL + 'search-by-userId/' + userId);
+  }
 }
+

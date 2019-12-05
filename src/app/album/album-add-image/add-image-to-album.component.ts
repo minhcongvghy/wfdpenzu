@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AlbumService} from '../../services/album.service';
 import {Album} from '../../model/album';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -18,6 +18,7 @@ export class AddImageToAlbumComponent implements OnInit {
   private albumId: string;
   private album: Album;
   private filePath: any;
+  imageId: string;
   tagId = '';
   fileUpload: File;
   tagList: Tag[] = [];
@@ -25,7 +26,8 @@ export class AddImageToAlbumComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private albumService: AlbumService,
-              private tagService: TagService) {
+              private tagService: TagService,
+              private router: Router) {
     this.activatedRoute.params.subscribe(params => {
       this.albumId = params.id;
     });
@@ -74,15 +76,16 @@ export class AddImageToAlbumComponent implements OnInit {
   }
 
   updateAlbum() {
-    if (this.album.description === '') {
+    if (this.album.description === '' || this.album.title === '') {
       alert('Fill Data Fields !');
     }
     if ( this.tagId === '') {
       this.tagId = this.album.tag.id;
     }
-    console.log(this.tagId, this.album.description , this.fileUpload);
+    // console.log(this.tagId, this.album.description , this.fileUpload);
     const formAlbum: Album = {
       id: this.album.id,
+      title: this.album.title,
       tag: {
         id: this.tagId
       },
@@ -128,27 +131,54 @@ export class AddImageToAlbumComponent implements OnInit {
     }
   }
 
-  removeImage(i: number) {
+  removePreviewImage(i: number) {
     this.urls.splice(i, 1);
     this.fileList.splice(i, 1);
     console.log(this.fileList);
     console.log(this.urls);
   }
 
-  uploadImageOfAlbum() {
-   this.updateAlbum();
-   const form = new FormData();
-   for (const file of this.fileList) {
-    form.append('files', file);
-    }
+  uploadImageOfAlbum(openModalRef: HTMLButtonElement) {
+    this.updateAlbum();
+    if ( this.fileList.length > 0) {
+      console.log(this.fileList);
+      const form = new FormData();
+      for (const file of this.fileList) {
+        form.append('files', file);
+      }
 
-   this.albumService.uploadAlbumImage(form , this.album.id).subscribe(
+      this.albumService.uploadAlbumImage(form, this.album.id).subscribe(
+        result => {
+          console.log(result);
+          this.urls = [];
+          this.fileList = [];
+          openModalRef.click();
+          this.getAllImageOfAlbum();
+        }, error => {
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  getImageId(id: string) {
+    this.imageId = id;
+  }
+
+  deleteImage(closeModalRef1: HTMLButtonElement) {
+    console.log(this.imageId);
+    this.albumService.deleteImageById(this.imageId).subscribe(
       result => {
-        console.log(result);
+        this.getAllImageOfAlbum();
+        closeModalRef1.click();
       }, error => {
         console.log(error);
       }
     );
   }
 
+  preview(closeModalRef: HTMLButtonElement) {
+    closeModalRef.click();
+    return this.router.navigateByUrl('/library/album-detail/' + this.album.id);
+  }
 }

@@ -33,6 +33,8 @@ import { ManageUserComponent } from './admin/manage-user/manage-user.component';
 import { ShowDiaryByTagComponent } from './diary/diary-search-by-title-and-tag/show-diary-by-tag.component';
 import { DiaryImageCreateComponent } from './album/album-create/diary-image-create.component';
 import { AddImageToAlbumComponent } from './album/album-add-image/add-image-to-album.component';
+import { AlbumDetailComponent } from './album/album-detail/album-detail.component';
+import { AlbumListOfUserComponent } from './album/album-list-of-user/album-list-of-user.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { AddImageToAlbumComponent } from './album/album-add-image/add-image-to-a
     ManageUserComponent,
     ShowDiaryByTagComponent,
     DiaryImageCreateComponent,
-    AddImageToAlbumComponent
+    AddImageToAlbumComponent,
+    AlbumDetailComponent,
+    AlbumListOfUserComponent
 
   ],
   imports: [

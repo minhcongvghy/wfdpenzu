@@ -19,6 +19,8 @@ import {ManageUserComponent} from './admin/manage-user/manage-user.component';
 import {ShowDiaryByTagComponent} from './diary/diary-search-by-title-and-tag/show-diary-by-tag.component';
 import {DiaryImageCreateComponent} from './album/album-create/diary-image-create.component';
 import {AddImageToAlbumComponent} from './album/album-add-image/add-image-to-album.component';
+import {AlbumDetailComponent} from './album/album-detail/album-detail.component';
+import {AlbumListOfUserComponent} from './album/album-list-of-user/album-list-of-user.component';
 
 
 
@@ -35,8 +37,11 @@ const routes: Routes = [
   {
     path: 'diary/:id' ,
     component: DetailDiaryComponent
-  }
-  ,
+  },
+  {
+    path: 'album-detail/:id',
+    component: AlbumDetailComponent,
+  },
   { path: 'login',
     component: LoginComponent,
     canActivate: [NotActivateTeam],
@@ -60,6 +65,10 @@ const routes: Routes = [
       {
         path: 'album-picture-add-image/:id',
         component: AddImageToAlbumComponent,
+      },
+      {
+        path: 'album-of-user',
+        component: AlbumListOfUserComponent,
       },
       { path: 'profile' ,
         component: ProfileUserComponent,

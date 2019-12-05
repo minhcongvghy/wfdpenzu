@@ -16,6 +16,7 @@ export class DiaryImageCreateComponent implements OnInit {
   private filePath: any;
   fileUpload: File;
   albumForm = new FormGroup({
+    title: new FormControl(''),
     tagId: new FormControl(''),
     description: new FormControl('')
   });
@@ -51,12 +52,13 @@ export class DiaryImageCreateComponent implements OnInit {
   }
 
   createAlbum(openModalRef: HTMLButtonElement) {
-    const {tagId , description} = this.albumForm.value;
+    const {title, tagId , description} = this.albumForm.value;
     if (description === '' || this.fileUpload == null || tagId === '') {
       return alert('Fill Data Fields !');
     }
 
     const album: Album = {
+      title,
       description,
       tag: {
         id: tagId

@@ -21,7 +21,6 @@ export class DetailDiaryComponent implements OnInit  {
   userId: string;
   diary: Diary;
   currentRate = 6;
-  ImgURL = environment.imgUrl;
   isShow: boolean;
   topPosToStartShowing = 200;
   formCommentCreate = new FormGroup( {

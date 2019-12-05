@@ -10,7 +10,6 @@ import {environment} from '../../../environments/environment';
 })
 export class FeaturedComponent implements OnInit {
 
-  ImgURL = environment.imgUrl;
   diaryList: Diary[];
   images: string[];
   constructor(private diaryService: DiaryService) {
