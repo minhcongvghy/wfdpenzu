@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DiaryService} from '../../services/diary.service';
-import {Diary} from '../../services/diary';
+import {Diary} from '../../model/diary';
 import {environment} from '../../../environments/environment';
 
 @Component({

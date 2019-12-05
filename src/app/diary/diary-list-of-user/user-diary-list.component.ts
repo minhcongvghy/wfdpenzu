@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {UserService} from '../../services/user.service';
-import {Diary} from '../../services/diary';
+import {Diary} from '../../model/diary';
 import {DiaryService} from '../../services/diary.service';
-import {SearchDiaryByTitleAndUserId} from '../../services/search-diary-by-title-and-user-id';
+import {SearchDiaryByTitleAndUserId} from '../../model/search-diary-by-title-and-user-id';
 
 @Component({
   selector: 'app-user-diary-list',

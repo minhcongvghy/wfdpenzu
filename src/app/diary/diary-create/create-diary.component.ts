@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {DiaryService} from '../../services/diary.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Tag} from '../../services/tag';
+import {Tag} from '../../model/tag';
 import {TagService} from '../../services/tag.service';
-import {Diary} from '../../services/diary';
+import {Diary} from '../../model/diary';
 import {ActivatedRoute, Router} from '@angular/router';
 import {error} from 'util';
 
@@ -66,7 +66,7 @@ export class CreateDiaryComponent implements OnInit {
   }
 
 
-  createDiary(closeButton: HTMLInputElement) {
+  createDiary(openButton: HTMLInputElement) {
     const {title, description, content, tagId} = this.formDiary.value;
 
     if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null) {
@@ -93,7 +93,7 @@ export class CreateDiaryComponent implements OnInit {
           this.diaryService.uploadFile(form, result.id).subscribe(
             next => {
               console.log('upload file ok');
-              closeButton.click();
+              openButton.click();
               this.previewId = result.id;
               this.formDiary.reset();
               this.filePath = undefined;
@@ -107,8 +107,8 @@ export class CreateDiaryComponent implements OnInit {
     );
   }
 
-  preview(previewId: string, closeButton: HTMLInputElement) {
+  preview(closeButton: HTMLInputElement) {
     closeButton.click();
-    return this.router.navigateByUrl('/diary/' + previewId);
+    return this.router.navigateByUrl('/diary/' + this.previewId);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../services/user';
+import {User} from '../../model/user';
 import {UserService} from '../../services/user.service';
-import {SearchUserByName} from '../../services/search-user-by-name';
+import {SearchUserByName} from '../../model/search-user-by-name';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {ActivatedRoute, Router} from '@angular/router';
 

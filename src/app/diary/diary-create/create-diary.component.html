@@ -44,12 +44,12 @@
   <br/>
   <br/>
   <label for="basic-url">
-    <button type="button" class="btn btn-outline-success btn-lg" (click)="createDiary(closeModalRef)">Save Now</button>
+    <button type="button" class="btn btn-outline-success btn-lg" (click)="createDiary(openModalRef)">Save Now</button>
   </label>
 </form>
 
 <!-- Button trigger modal -->
-<button #closeModalRef hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button #openModalRef hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Launch demo modal
 </button>
 
@@ -67,7 +67,7 @@
       </div>
       <div class="modal-footer">
         <button #closeModalRef1 type="button" class="btn btn-info" data-dismiss="modal">Write Another Diary</button>
-        <button  type="button" class="btn btn-primary" (click)="preview(previewId, closeModalRef1)">Preview Diary</button>
+        <button  type="button" class="btn btn-primary" (click)="preview(closeModalRef1)">Preview Diary</button>
       </div>
     </div>
   </div>

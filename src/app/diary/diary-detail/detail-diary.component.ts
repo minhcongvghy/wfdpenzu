@@ -1,13 +1,13 @@
 import {Component, HostListener, OnInit, Pipe} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
-import {Diary} from '../../services/diary';
+import {Diary} from '../../model/diary';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {UserService} from '../../services/user.service';
 import {DiaryService} from '../../services/diary.service';
 import {environment} from '../../../environments/environment';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Comment} from '../../services/comment';
+import {Comment} from '../../model/comment';
 import {CommentService} from '../../services/comment.service';
 
 @Component({

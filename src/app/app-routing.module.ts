@@ -58,7 +58,7 @@ const routes: Routes = [
         component: DiaryImageCreateComponent,
       },
       {
-        path: 'album-picture-add-image',
+        path: 'album-picture-add-image/:id',
         component: AddImageToAlbumComponent,
       },
       { path: 'profile' ,

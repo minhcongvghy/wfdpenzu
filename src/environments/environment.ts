@@ -6,10 +6,12 @@ export const environment = {
   production: false,
   imgUrl: 'http://localhost:8080/uploads/',
   diaryUrl: 'http://localhost:8080/api/auth/diary/',
-  uploadFileUrl: 'http://localhost:8080/api/auth/',
+  diaryUploadFileUrl: 'http://localhost:8080/api/auth/diary-file/',
   tagUrl: 'http://localhost:8080/api/auth/tag/',
   userUrl: 'http://localhost:8080/api/auth/user/',
   commentUrl: 'http://localhost:8080/api/auth/comment/',
+  albumUrl: 'http://localhost:8080/api/auth/album/',
+  albumUploadFileUrl: 'http://localhost:8080/api/auth/album-file/',
 
   loginUrl: 'http://localhost:8080/api/auth/signin',
   signupUrl: 'http://localhost:8080/api/auth/signup',

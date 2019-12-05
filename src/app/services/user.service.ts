@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Diary} from './diary';
+import {Diary} from '../model/diary';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 // import {environment} from '../../environments/environment.prod';
-import {User} from './user';
+import {User} from '../model/user';
 import {UserForm} from '../auth/profile/user-form';
-import {SearchUserByName} from './search-user-by-name';
+import {SearchUserByName} from '../model/search-user-by-name';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

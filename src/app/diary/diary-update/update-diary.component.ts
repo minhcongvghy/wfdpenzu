@@ -3,9 +3,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {DiaryService} from '../../services/diary.service';
-import {Diary} from '../../services/diary';
+import {Diary} from '../../model/diary';
 import {TagService} from '../../services/tag.service';
-import {Tag} from '../../services/tag';
+import {Tag} from '../../model/tag';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Diary} from '../../services/diary';
+import {Diary} from '../../model/diary';
 import {DiaryService} from '../../services/diary.service';
-import {Pagination} from '../../services/pagination';
+import {Pagination} from '../../model/pagination';
 
 @Component({
   selector: 'app-blog-main',
