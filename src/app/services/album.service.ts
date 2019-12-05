@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Album} from '../model/album';
 import {FileForm} from '../model/file-form';
 import {MultiFileForm} from '../model/multi-file-form';
+import {Image} from '../model/image';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -18,6 +19,7 @@ export class AlbumService {
   albumURL = environment.albumUrl;
   uploadAvatar = environment.albumUploadAvatarUrl;
   uploadImage = environment.albumUploadImageUrl;
+  imageURL = environment.imageUrl;
 
   constructor(private http: HttpClient) {
   }
@@ -56,5 +58,9 @@ export class AlbumService {
     headers.append('Accept', 'application/json');
 
     return this.http.post<MultiFileForm>(this.uploadImage + albumId , file , {headers});
+  }
+
+  getListImageByAlbumId(id: string): Observable<Image[]> {
+    return this.http.get<Image[]>(this.imageURL + 'search-image-by-albumId/' + id);
   }
 }

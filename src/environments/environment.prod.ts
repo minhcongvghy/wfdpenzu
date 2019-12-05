@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-  SvImgUrl: 'https://obscure-gorge-43420.herokuapp.com/uploads/',
   SvDiaryUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/diary/',
   SvDiaryUploadFileUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/diary-file/',
   SvTagUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/tag/',
@@ -9,6 +8,7 @@ export const environment = {
   SvAlbumUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/album/',
   SvAlbumUploadAvatarUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/album-avatar/',
   SvAlbumUploadImageUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/album-add-image/',
+  SvImageUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/image/',
 
   SvLoginUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/signin',
   SvSignupUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/signup',

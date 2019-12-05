@@ -28,7 +28,17 @@
 <div class="form-group">
   <h3 class="text-secondary"><strong><label>Image</label></strong></h3>
 </div>
-
+<br/>
+  <div *ngIf="imageList">
+    <div *ngFor='let image of imageList; index as i' >
+      <img  [src]="image.url" style="height: 300px ; width: 90%;">&nbsp;
+      <button (click)="removeImage(i)" class="btn btn-outline-dark text-danger">
+        Delete
+      </button>
+      <br/>
+      <hr>
+    </div>
+  </div>
 <div *ngFor='let url of urls; index as i' >
   <img  [src]="url" style="height: 300px ; width: 95%;">&nbsp;
   <button (click)="removeImage(i)" class="btn btn-outline-dark text-danger">

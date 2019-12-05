@@ -5,6 +5,7 @@ import {Album} from '../../model/album';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Tag} from '../../model/tag';
 import {TagService} from '../../services/tag.service';
+import {Image} from '../../model/image';
 
 @Component({
   selector: 'app-add-image-to-album',
@@ -20,6 +21,7 @@ export class AddImageToAlbumComponent implements OnInit {
   tagId = '';
   fileUpload: File;
   tagList: Tag[] = [];
+  imageList: Image[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
               private albumService: AlbumService,
@@ -33,6 +35,17 @@ export class AddImageToAlbumComponent implements OnInit {
     console.log(this.albumId);
     this.getAlbumById();
     this.getListAllTag();
+    this.getAllImageOfAlbum();
+  }
+
+  getAllImageOfAlbum() {
+    this.albumService.getListImageByAlbumId(this.albumId).subscribe(
+      result => {
+        this.imageList = result;
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   getAlbumById() {
