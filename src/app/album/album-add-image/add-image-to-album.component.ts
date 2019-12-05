@@ -13,15 +13,12 @@ import {TagService} from '../../services/tag.service';
 })
 export class AddImageToAlbumComponent implements OnInit {
   urls = [];
-  private fileList: any [] = [];
+  private fileList = [];
   private albumId: string;
   private album: Album;
   private filePath: any;
+  tagId = '';
   fileUpload: File;
-  albumForm = new FormGroup({
-    tagId: new FormControl(''),
-    description: new FormControl('')
-  });
   tagList: Tag[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -63,6 +60,43 @@ export class AddImageToAlbumComponent implements OnInit {
     };
   }
 
+  updateAlbum() {
+    if (this.album.description === '') {
+      alert('Fill Data Fields !');
+    }
+    if ( this.tagId === '') {
+      this.tagId = this.album.tag.id;
+    }
+    console.log(this.tagId, this.album.description , this.fileUpload);
+    const formAlbum: Album = {
+      id: this.album.id,
+      tag: {
+        id: this.tagId
+      },
+      description: this.album.description
+    };
+
+    this.albumService.updateAlbum(formAlbum).subscribe(
+      result => {
+        if (this.fileUpload === null || this.fileUpload === undefined ) {
+          console.log('update album no update avatar ok');
+        } else {
+          const form = new FormData();
+          form.append('file', this.fileUpload);
+          this.albumService.uploadAlbumAvatar(form, result.id).subscribe(
+            next => {
+              console.log('upload file ok');
+            }, error1 => {
+              console.log('loi upload file');
+            }
+          );
+        }
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       const filesAmount = event.target.files.length;
@@ -86,6 +120,22 @@ export class AddImageToAlbumComponent implements OnInit {
     this.fileList.splice(i, 1);
     console.log(this.fileList);
     console.log(this.urls);
+  }
+
+  uploadImageOfAlbum() {
+   this.updateAlbum();
+   const form = new FormData();
+   for (const file of this.fileList) {
+    form.append('files', file);
+    }
+
+   this.albumService.uploadAlbumImage(form , this.album.id).subscribe(
+      result => {
+        console.log(result);
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
 }

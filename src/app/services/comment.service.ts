@@ -14,7 +14,7 @@ export class CommentService {
    // URL = environment.commentUrl;
 
    // Server
-  URL = environment.SvCommentUrl
+  URL = environment.SvCommentUrl;
   constructor(private http: HttpClient) { }
 
   getAllCommentByDiary(id: string): Observable<Comment[]> {

@@ -69,7 +69,7 @@ export class CreateDiaryComponent implements OnInit {
   createDiary(openButton: HTMLInputElement) {
     const {title, description, content, tagId} = this.formDiary.value;
 
-    if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null) {
+    if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null || this.fileUpload === undefined) {
       return alert('Fill Data Fields !');
     }
 
