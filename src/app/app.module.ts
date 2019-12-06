@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { HeaderComponent } from './home/header/header.component';
-import { FeaturedComponent } from './home/featured/featured.component';
-import { BlogMainComponent } from './home/main/blog-main.component';
-import { SideBarComponent } from './home/side-bar/side-bar.component';
-import { FooterComponent } from './home/footer/footer.component';
+import { HeaderComponent } from './diary-home/header/header.component';
+import { FeaturedComponent } from './diary-home/featured/featured.component';
+import { BlogMainComponent } from './diary-home/main/blog-main.component';
+import { SideBarComponent } from './diary-home/side-bar/side-bar.component';
+import { FooterComponent } from './diary-home/footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './diary-home/home.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ProfileUserComponent } from './auth/profile/profile-user.component';
 import {CanActivateTeam} from './protect-router/can-activate-team';
@@ -35,6 +35,9 @@ import { DiaryImageCreateComponent } from './album/album-create/diary-image-crea
 import { AddImageToAlbumComponent } from './album/album-add-image/add-image-to-album.component';
 import { AlbumDetailComponent } from './album/album-detail/album-detail.component';
 import { AlbumListOfUserComponent } from './album/album-list-of-user/album-list-of-user.component';
+import { AlbumHomeComponent } from './album-home/album-home.component';
+import { HeaderAlbumComponent } from './album-home/album-header/header-album.component';
+import { AlbumMainComponent } from './album-home/album-main/album-main.component';
 
 
 @NgModule({
@@ -62,7 +65,10 @@ import { AlbumListOfUserComponent } from './album/album-list-of-user/album-list-
     DiaryImageCreateComponent,
     AddImageToAlbumComponent,
     AlbumDetailComponent,
-    AlbumListOfUserComponent
+    AlbumListOfUserComponent,
+    AlbumHomeComponent,
+    HeaderAlbumComponent,
+    AlbumMainComponent
 
   ],
   imports: [

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './auth/login/login.component';
-import {HomeComponent} from './home/home.component';
+import {HomeComponent} from './diary-home/home.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {ProfileUserComponent} from './auth/profile/profile-user.component';
 import {CanActivateTeam} from './protect-router/can-activate-team';
@@ -9,7 +9,7 @@ import {NotActivateTeam} from './protect-router/not-activate-team';
 import {CreateDiaryComponent} from './diary/diary-create/create-diary.component';
 import {DiaryComponent} from './diary/diary.component';
 import {UserDiaryListComponent} from './diary/diary-list-of-user/user-diary-list.component';
-import {BlogMainComponent} from './home/main/blog-main.component';
+import {BlogMainComponent} from './diary-home/main/blog-main.component';
 import {DetailDiaryComponent} from './diary/diary-detail/detail-diary.component';
 import {UpdateDiaryComponent} from './diary/diary-update/update-diary.component';
 import {TagComponent} from './admin/manage-tag/tag.component';
@@ -21,6 +21,7 @@ import {DiaryImageCreateComponent} from './album/album-create/diary-image-create
 import {AddImageToAlbumComponent} from './album/album-add-image/add-image-to-album.component';
 import {AlbumDetailComponent} from './album/album-detail/album-detail.component';
 import {AlbumListOfUserComponent} from './album/album-list-of-user/album-list-of-user.component';
+import {AlbumHomeComponent} from './album-home/album-home.component';
 
 
 
@@ -33,6 +34,10 @@ const routes: Routes = [
     children: [
       { path: '', component: BlogMainComponent },
     ]
+  },
+  {
+    path: 'album' ,
+    component: AlbumHomeComponent
   },
   {
     path: 'diary/:id' ,
