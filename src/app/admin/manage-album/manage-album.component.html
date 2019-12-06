@@ -14,7 +14,7 @@
           <h2 class="pt-3 pb-4 text-center font-bold font-up text-info">Total {{albumList.length}} Album Is Present!</h2>
         </ng-template>
         <div class="input-group md-form form-sm form-2 pl-0">
-          <input [(ngModel)]="tagName" (keydown)="searchByTagName()" class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search by title..." aria-label="Search">
+          <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search by title..." aria-label="Search" [(ngModel)]="title" (keydown)="searchByTitle()">
           <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1">
             <a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
         </div>
@@ -49,34 +49,6 @@
       <!--Table body-->
     </table>
     <!--Table-->
-
-    <!--modal create manage-tag-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLabel">New Tag</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form [formGroup]="tagForm">
-            <div class="modal-body">
-              <h4 class="danger-text"><label class="text-info">Name Tag</label></h4>
-              <input class="input-group" type="text" name="name" formControlName="name" >
-            </div>
-            <div class="modal-footer">
-              <button  #closeModalRef type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-success" (click)="createTag(closeModalRef)">Create</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <!--modal delete manage-album-->
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -95,5 +67,7 @@
         <button type="button" class="btn btn-outline-warning" (click)="deleteAlbum(closeModalRef2)">Delete</button>
       </div>
     </div>
+  </div>
+</div>
   </div>
 </div>

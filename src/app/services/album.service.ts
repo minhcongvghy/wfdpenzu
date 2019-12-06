@@ -6,6 +6,7 @@ import {Album} from '../model/album';
 import {FileForm} from '../model/file-form';
 import {MultiFileForm} from '../model/multi-file-form';
 import {Image} from '../model/image';
+import {FindAlbumsByTitle} from '../model/find-albums-by-title';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -70,6 +71,10 @@ export class AlbumService {
 
   getAlbumsByUserId(userId: string): Observable<Album[]> {
     return this.http.get<Album[]>(this.albumURL + 'search-by-userId/' + userId);
+  }
+
+  findAlbumsByTitle(title: FindAlbumsByTitle): Observable<Album[]> {
+    return this.http.post<Album[]>(this.albumURL + 'search-album-by-title', title);
   }
 }
 

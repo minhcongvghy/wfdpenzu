@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AlbumService} from '../../services/album.service';
 import {Album} from '../../model/album';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {FindAlbumsByTitle} from '../../model/find-albums-by-title';
 
 @Component({
   selector: 'app-album-list-of-user',
@@ -12,6 +13,7 @@ export class AlbumListOfUserComponent implements OnInit {
 
   albumId: string;
   albumList: Album[] = [];
+  private title = '';
   constructor(private albumService: AlbumService,
               private token: TokenStorageService) { }
 
@@ -38,6 +40,19 @@ export class AlbumListOfUserComponent implements OnInit {
       result => {
         this.getListAbumByUserId();
         closeModalRef.click();
+      }
+    );
+  }
+
+  private searchByTitle() {
+    const titleForm: FindAlbumsByTitle = {
+      title: this.title
+    };
+    this.albumService.findAlbumsByTitle(titleForm).subscribe(
+      result => {
+        this.albumList = result;
+      }, error => {
+        console.log(error);
       }
     );
   }

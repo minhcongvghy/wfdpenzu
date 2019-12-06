@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AlbumService} from '../../services/album.service';
 import {Album} from '../../model/album';
+import {FindAlbumsByTitle} from '../../model/find-albums-by-title';
 
 @Component({
   selector: 'app-manage-album',
@@ -11,6 +12,7 @@ export class ManageAlbumComponent implements OnInit {
 
   private albumList: Album[] = [];
   private albumId: string;
+  title = '';
 
   constructor(private albumService: AlbumService) { }
 
@@ -39,6 +41,19 @@ export class ManageAlbumComponent implements OnInit {
         this.getAllAlbum();
         closeModalRef2.click();
       }, error =>  {
+        console.log(error);
+      }
+    );
+  }
+
+  searchByTitle() {
+    const titleForm: FindAlbumsByTitle = {
+      title: this.title
+    };
+    this.albumService.findAlbumsByTitle(titleForm).subscribe(
+      result => {
+        this.albumList = result;
+      }, error => {
         console.log(error);
       }
     );

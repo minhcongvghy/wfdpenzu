@@ -153,13 +153,16 @@ export class AddImageToAlbumComponent implements OnInit {
 
       this.albumService.uploadAlbumImage(form, this.album.id).subscribe(
         result => {
+          this.processValue = 100;
           console.log(result);
           this.urls = [];
           this.fileList = [];
-          this.processValue = 0;
-          closeProcess.click();
-          this.getAllImageOfAlbum();
-          this.updateAlbum(openModalRef);
+          setTimeout(() => {
+            this.processValue = 0;
+            closeProcess.click();
+            this.getAllImageOfAlbum();
+            this.updateAlbum(openModalRef);
+          }, 1000);
         }, error => {
           console.log(error);
         }
@@ -192,9 +195,9 @@ export class AddImageToAlbumComponent implements OnInit {
 
   processRun() {
    const count = setInterval(() => {
-      this.processValue += 20;
+      this.processValue += 3;
     }, 1000 );
 
-   setTimeout(() => { clearInterval(count) ; this.processValue += 19; }, 4000);
+   setTimeout(() => { clearInterval(count) ; this.processValue = 99; }, 20000);
   }
 }
