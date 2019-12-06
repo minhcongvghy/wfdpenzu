@@ -1,3 +1,8 @@
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center alert alert-dark">
+  <h4 class="display-4 darken-grey-text">New Album</h4>
+</div>
+<br/>
 <form [formGroup]="albumForm" >
 <div class = "form-group">
     <h3 class="text-secondary"><strong><label>Avatar</label></strong></h3>
@@ -24,7 +29,7 @@
     <textarea formControlName="description"  class = "form-control" rows = "5" placeholder = "..."></textarea>
   </div>
   <br>
-  <button class="btn btn-outline-primary btn-lg" (click)="createAlbum(openModalRef)">Create Album</button>
+  <button class="btn btn-outline-primary btn-lg" (click)="createAlbum(openModalRef,openProcessBar,closeProcess)">Create Album</button>
 </form>
 
 
@@ -53,3 +58,28 @@
       </div>
     </div>
   </div>
+
+<!-- Button trigger modal waiting for upload -->
+<button #openProcessBar type="button" hidden class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div data-keyboard="false" data-backdrop="static" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-success" id="exampleModalLongTitle">Processing!</h4>
+      </div>
+      <div class="modal-body">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" [style.width.%]="processValue" [attr.aria-valuenow]="processValue"  aria-valuemin="0" aria-valuemax="100">{{processValue}}%</div>
+        </div>
+        <div class="modal-footer" >
+          <button  #closeProcess type="button" hidden class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" hidden class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

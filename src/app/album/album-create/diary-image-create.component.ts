@@ -22,6 +22,7 @@ export class DiaryImageCreateComponent implements OnInit {
   });
   tagList: Tag[] = [];
   private redirectID: string;
+  private processValue = 0;
 
   constructor(private albumService: AlbumService,
               private route: ActivatedRoute,
@@ -51,12 +52,13 @@ export class DiaryImageCreateComponent implements OnInit {
     };
   }
 
-  createAlbum(openModalRef: HTMLButtonElement) {
+  createAlbum(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
     const {title, tagId , description} = this.albumForm.value;
     if (description === '' || this.fileUpload == null || tagId === '') {
       return alert('Fill Data Fields !');
     }
-
+    openProcessBar.click();
+    this.processRun();
     const album: Album = {
       title,
       description,
@@ -75,6 +77,7 @@ export class DiaryImageCreateComponent implements OnInit {
         this.albumService.uploadAlbumAvatar(form, result.id).subscribe(
           next => {
             console.log('upload file ok');
+            closeProcess.click();
             openModalRef.click();
             this.redirectID = result.id;
             this.albumForm.reset();
@@ -90,5 +93,13 @@ export class DiaryImageCreateComponent implements OnInit {
   preview( closeModalRef1: HTMLButtonElement) {
     closeModalRef1.click();
     return this.router.navigateByUrl('/library/album-picture-add-image/' + this.redirectID);
+  }
+
+  processRun() {
+    const count = setInterval(() => {
+      this.processValue += 40;
+    }, 1000 );
+
+    setTimeout(() => { clearInterval(count) ; this.processValue += 19; }, 2000);
   }
 }
