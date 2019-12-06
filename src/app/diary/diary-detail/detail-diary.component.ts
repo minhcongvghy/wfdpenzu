@@ -53,15 +53,6 @@ export class DetailDiaryComponent implements OnInit  {
     this.gotoTop();
   }
 
-  goToTop() {
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      window.scrollTo(0, 0);
-    });
-  }
-
   @HostListener('window:scroll')
   checkScroll() {
 
@@ -101,7 +92,7 @@ export class DetailDiaryComponent implements OnInit  {
   }
 
   getAllCommentThisDiary() {
-    this.commentService.getAllCommentByDiary(this.diaryId).subscribe(
+    this.commentService.getAllCommentByDiaryId(this.diaryId).subscribe(
       result => {
         this.listComment = result;
       }, error => {

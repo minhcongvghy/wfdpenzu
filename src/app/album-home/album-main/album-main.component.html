@@ -1,4 +1,5 @@
-<section class="jumbotron text-center" style="padding-top: 10px ; padding-bottom: 15px">
+
+<section class="jumbotron text-center" style="padding-top: 5rem ; padding-bottom: 15px">
   <div class="container-fluid">
     <div class="text-white " *ngIf="albumList">
       <ngb-carousel interval="3000">
@@ -17,9 +18,8 @@
     </div>
   </div>
 </section>
-
 <div class="album py-5 bg-light">
-  <div class="container">
+  <div class="container" >
 
     <div class="row" *ngIf="albumList">
       <div class="col-md-4" *ngFor="let album of albumList">
@@ -161,3 +161,4 @@
     </div>
   </div>
 </div>
+

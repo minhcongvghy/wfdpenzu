@@ -156,14 +156,17 @@ export class AddImageToAlbumComponent implements OnInit {
           console.log(result);
           this.urls = [];
           this.fileList = [];
+          this.processValue = 0;
           closeProcess.click();
           this.getAllImageOfAlbum();
+          this.updateAlbum(openModalRef);
         }, error => {
           console.log(error);
         }
       );
+    } else {
+      this.updateAlbum(openModalRef);
     }
-    this.updateAlbum(openModalRef);
   }
 
   getImageId(id: string) {
@@ -184,7 +187,7 @@ export class AddImageToAlbumComponent implements OnInit {
 
   preview(closeModalRef: HTMLButtonElement) {
     closeModalRef.click();
-    return this.router.navigateByUrl('/library/album-detail/' + this.album.id);
+    return this.router.navigateByUrl('/album-detail/' + this.album.id);
   }
 
   processRun() {

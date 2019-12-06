@@ -36,8 +36,8 @@ import { AddImageToAlbumComponent } from './album/album-add-image/add-image-to-a
 import { AlbumDetailComponent } from './album/album-detail/album-detail.component';
 import { AlbumListOfUserComponent } from './album/album-list-of-user/album-list-of-user.component';
 import { AlbumHomeComponent } from './album-home/album-home.component';
-import { HeaderAlbumComponent } from './album-home/album-header/header-album.component';
 import { AlbumMainComponent } from './album-home/album-main/album-main.component';
+import { ManageAlbumComponent } from './admin/manage-album/manage-album.component';
 
 
 @NgModule({
@@ -67,8 +67,8 @@ import { AlbumMainComponent } from './album-home/album-main/album-main.component
     AlbumDetailComponent,
     AlbumListOfUserComponent,
     AlbumHomeComponent,
-    HeaderAlbumComponent,
-    AlbumMainComponent
+    AlbumMainComponent,
+    ManageAlbumComponent
 
   ],
   imports: [

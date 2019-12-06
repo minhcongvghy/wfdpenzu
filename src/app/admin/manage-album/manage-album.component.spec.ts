@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderAlbumComponent } from './header-album.component';
+import { ManageAlbumComponent } from './manage-album.component';
 
-describe('HeaderAlbumComponent', () => {
-  let component: HeaderAlbumComponent;
-  let fixture: ComponentFixture<HeaderAlbumComponent>;
+describe('ManageAlbumComponent', () => {
+  let component: ManageAlbumComponent;
+  let fixture: ComponentFixture<ManageAlbumComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderAlbumComponent ]
+      declarations: [ ManageAlbumComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderAlbumComponent);
+    fixture = TestBed.createComponent(ManageAlbumComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

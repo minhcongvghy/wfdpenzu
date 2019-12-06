@@ -22,6 +22,7 @@ import {AddImageToAlbumComponent} from './album/album-add-image/add-image-to-alb
 import {AlbumDetailComponent} from './album/album-detail/album-detail.component';
 import {AlbumListOfUserComponent} from './album/album-list-of-user/album-list-of-user.component';
 import {AlbumHomeComponent} from './album-home/album-home.component';
+import {ManageAlbumComponent} from './admin/manage-album/manage-album.component';
 
 
 
@@ -100,6 +101,11 @@ const routes: Routes = [
       {
         path: 'manageUser' ,
         component: ManageUserComponent ,
+        canActivate: [IsAdmin]
+      },
+      {
+        path: 'manageAlbum' ,
+        component: ManageAlbumComponent ,
         canActivate: [IsAdmin]
       }
     ]

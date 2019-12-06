@@ -35,6 +35,8 @@ export class ShowDiaryByTagComponent implements OnInit {
     } else {
     this.getListDiaryByTagId(this.id);
     }
+
+    this.gotoTop();
   }
 
   getListDiaryByTagId(id: string) {

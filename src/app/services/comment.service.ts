@@ -3,22 +3,28 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Comment} from '../model/comment';
-import {environment} from '../../environments/environment.prod';
-// import {environment} from '../../environments/environment';
+// import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
    // local
-   // URL = environment.commentUrl;
+   URL = environment.commentUrl;
 
    // Server
-  URL = environment.SvCommentUrl;
+  // URL = environment.SvCommentUrl;
+
+
   constructor(private http: HttpClient) { }
 
-  getAllCommentByDiary(id: string): Observable<Comment[]> {
+  getAllCommentByDiaryId(id: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.URL + 'diary/' + id);
+  }
+
+  getAllCommentByAlbumId(id: string): Observable<Comment[]> {
+    return this.http.get<Comment[]>(this.URL + 'album/' + id);
   }
 
   createComment(comment: Comment): Observable<Comment> {
