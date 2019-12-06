@@ -22,6 +22,7 @@ export class UpdateDiaryComponent implements OnInit {
   tagId = '';
   private fileUpload: File;
   filePath: any;
+  private processValue = 0;
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,
@@ -73,10 +74,15 @@ export class UpdateDiaryComponent implements OnInit {
     console.log(this.filePath);
   }
 
-  updateDiary(closeButton: HTMLInputElement) {
+    updateDiary(openModal: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
 
     if (this.diary.title === '' || this.diary.description === '' || this.diary.content === '') {
       return alert('Fill Data Fields !');
+    }
+
+    if (this.fileUpload !== null && this.fileUpload !== undefined ) {
+      this.processRun();
+      openProcessBar.click();
     }
 
     if (this.tagId === '') {
@@ -100,15 +106,16 @@ export class UpdateDiaryComponent implements OnInit {
       result => {
         if (this.fileUpload === null || this.fileUpload === undefined ) {
           console.log('create diary ok');
-          closeButton.click();
+          openModal.click();
           this.previewId = result.id;
         } else {
           const form = new FormData();
           form.append('file', this.fileUpload);
           this.diaryService.uploadFile(form, result.id).subscribe(
             next => {
+              closeProcess.click();
               console.log('upload file ok');
-              closeButton.click();
+              openModal.click();
               this.previewId = result.id;
             }, error1 => {
               console.log('loi upload file');
@@ -124,5 +131,13 @@ export class UpdateDiaryComponent implements OnInit {
   preview(previewId: any, closeModalRef1: HTMLButtonElement) {
     closeModalRef1.click();
     return this.router.navigateByUrl('/diary/' + previewId);
+  }
+
+  processRun() {
+    const count = setInterval(() => {
+      this.processValue += 40;
+    }, 1000 );
+
+    setTimeout(() => { clearInterval(count) ; this.processValue += 19; }, 2000);
   }
 }

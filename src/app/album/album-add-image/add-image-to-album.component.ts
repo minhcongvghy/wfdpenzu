@@ -23,6 +23,7 @@ export class AddImageToAlbumComponent implements OnInit {
   fileUpload: File;
   tagList: Tag[] = [];
   imageList: Image[] = [];
+  processValue = 0;
 
   constructor(private activatedRoute: ActivatedRoute,
               private albumService: AlbumService,
@@ -75,7 +76,7 @@ export class AddImageToAlbumComponent implements OnInit {
     };
   }
 
-  updateAlbum() {
+  updateAlbum(openModalRef: HTMLButtonElement) {
     if (this.album.description === '' || this.album.title === '') {
       alert('Fill Data Fields !');
     }
@@ -96,11 +97,13 @@ export class AddImageToAlbumComponent implements OnInit {
       result => {
         if (this.fileUpload === null || this.fileUpload === undefined ) {
           console.log('update album no update avatar ok');
+          openModalRef.click();
         } else {
           const form = new FormData();
           form.append('file', this.fileUpload);
           this.albumService.uploadAlbumAvatar(form, result.id).subscribe(
             next => {
+              openModalRef.click();
               console.log('upload file ok');
             }, error1 => {
               console.log('loi upload file');
@@ -138,9 +141,10 @@ export class AddImageToAlbumComponent implements OnInit {
     console.log(this.urls);
   }
 
-  uploadImageOfAlbum(openModalRef: HTMLButtonElement) {
-    this.updateAlbum();
+  uploadImageOfAlbum(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
     if ( this.fileList.length > 0) {
+      openProcessBar.click();
+      this.processRun();
       console.log(this.fileList);
       const form = new FormData();
       for (const file of this.fileList) {
@@ -152,13 +156,14 @@ export class AddImageToAlbumComponent implements OnInit {
           console.log(result);
           this.urls = [];
           this.fileList = [];
-          openModalRef.click();
+          closeProcess.click();
           this.getAllImageOfAlbum();
         }, error => {
           console.log(error);
         }
       );
     }
+    this.updateAlbum(openModalRef);
   }
 
   getImageId(id: string) {
@@ -180,5 +185,13 @@ export class AddImageToAlbumComponent implements OnInit {
   preview(closeModalRef: HTMLButtonElement) {
     closeModalRef.click();
     return this.router.navigateByUrl('/library/album-detail/' + this.album.id);
+  }
+
+  processRun() {
+   const count = setInterval(() => {
+      this.processValue += 20;
+    }, 1000 );
+
+   setTimeout(() => { clearInterval(count) ; this.processValue += 19; }, 4000);
   }
 }

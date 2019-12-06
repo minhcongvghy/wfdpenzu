@@ -28,6 +28,7 @@ export class CreateDiaryComponent implements OnInit {
   });
   private returnUrl: string;
   private filePath: any;
+  private processValue = 0;
 
   constructor(private token: TokenStorageService,
               private diaryService: DiaryService,
@@ -66,12 +67,15 @@ export class CreateDiaryComponent implements OnInit {
   }
 
 
-  createDiary(openButton: HTMLInputElement) {
+  createDiary(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
     const {title, description, content, tagId} = this.formDiary.value;
 
     if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null || this.fileUpload === undefined) {
       return alert('Fill Data Fields !');
     }
+
+    this.processRun();
+    openProcessBar.click();
 
     const diary: Diary = {
       title,
@@ -93,7 +97,8 @@ export class CreateDiaryComponent implements OnInit {
           this.diaryService.uploadFile(form, result.id).subscribe(
             next => {
               console.log('upload file ok');
-              openButton.click();
+              closeProcess.click();
+              openModalRef.click();
               this.previewId = result.id;
               this.formDiary.reset();
               this.filePath = undefined;
@@ -110,5 +115,13 @@ export class CreateDiaryComponent implements OnInit {
   preview(closeButton: HTMLInputElement) {
     closeButton.click();
     return this.router.navigateByUrl('/diary/' + this.previewId);
+  }
+
+  processRun() {
+    const count = setInterval(() => {
+      this.processValue += 40;
+    }, 1000 );
+
+    setTimeout(() => { clearInterval(count) ; this.processValue += 19; }, 2000);
   }
 }
