@@ -9,7 +9,7 @@ import {AlbumService} from '../../services/album.service';
 })
 export class AlbumMainComponent implements OnInit {
   albumList: Album[] = [];
-  constructor(private albumService: AlbumService,) { }
+  constructor(private albumService: AlbumService, ) { }
 
   ngOnInit() {
     this.getAllAlbum();
@@ -22,5 +22,14 @@ export class AlbumMainComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  goToMidle() {
+    window.scroll({
+      top: 750,
+      left: 0,
+      behavior: 'smooth'
+    });
+    console.log('1');
   }
 }
