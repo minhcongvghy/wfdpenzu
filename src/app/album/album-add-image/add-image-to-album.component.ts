@@ -13,6 +13,15 @@ import {Image} from '../../model/image';
   styleUrls: ['./add-image-to-album.component.scss']
 })
 export class AddImageToAlbumComponent implements OnInit {
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private albumService: AlbumService,
+              private tagService: TagService,
+              private router: Router) {
+    this.activatedRoute.params.subscribe(params => {
+      this.albumId = params.id;
+    });
+  }
   urls = [];
   private fileList = [];
   private albumId: string;
@@ -24,15 +33,6 @@ export class AddImageToAlbumComponent implements OnInit {
   tagList: Tag[] = [];
   imageList: Image[] = [];
   processValue = 0;
-
-  constructor(private activatedRoute: ActivatedRoute,
-              private albumService: AlbumService,
-              private tagService: TagService,
-              private router: Router) {
-    this.activatedRoute.params.subscribe(params => {
-      this.albumId = params.id;
-    });
-  }
 
   ngOnInit() {
     console.log(this.albumId);
@@ -143,16 +143,19 @@ export class AddImageToAlbumComponent implements OnInit {
 
   uploadImageOfAlbum(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
     if ( this.fileList.length > 0) {
-      openProcessBar.click();
-      this.processRun();
-      console.log(this.fileList);
-      const form = new FormData();
-      for (const file of this.fileList) {
+       const count = setInterval(() => {
+        this.processValue += 9;
+      }, 1000);
+       openProcessBar.click();
+       console.log(this.fileList);
+       const form = new FormData();
+       for (const file of this.fileList) {
         form.append('files', file);
       }
 
-      this.albumService.uploadAlbumImage(form, this.album.id).subscribe(
+       this.albumService.uploadAlbumImage(form, this.album.id).subscribe(
         result => {
+          clearInterval(count);
           this.processValue = 100;
           console.log(result);
           this.urls = [];
@@ -193,11 +196,5 @@ export class AddImageToAlbumComponent implements OnInit {
     return this.router.navigateByUrl('/album-detail/' + this.album.id);
   }
 
-  processRun() {
-   const count = setInterval(() => {
-      this.processValue += 3;
-    }, 1000 );
 
-   setTimeout(() => { clearInterval(count) ; this.processValue = 99; }, 20000);
-  }
 }

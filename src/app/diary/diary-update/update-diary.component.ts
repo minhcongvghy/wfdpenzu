@@ -23,6 +23,7 @@ export class UpdateDiaryComponent implements OnInit {
   private fileUpload: File;
   filePath: any;
   private processValue = 0;
+  private counting: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,
@@ -81,7 +82,13 @@ export class UpdateDiaryComponent implements OnInit {
     }
 
     if (this.fileUpload !== null && this.fileUpload !== undefined ) {
-      this.processRun();
+      this.counting = setInterval(() => {
+        this.processValue += 30;
+        if (this.processValue === 90) {
+          this.processValue += 9;
+          clearInterval(this.counting);
+        }
+      }, 1000);
       openProcessBar.click();
     }
 
@@ -113,10 +120,16 @@ export class UpdateDiaryComponent implements OnInit {
           form.append('file', this.fileUpload);
           this.diaryService.uploadFile(form, result.id).subscribe(
             next => {
-              closeProcess.click();
-              console.log('upload file ok');
-              openModal.click();
-              this.previewId = result.id;
+              clearInterval(this.counting);
+              this.processValue = 100;
+
+              setTimeout(() => {
+                closeProcess.click();
+                console.log('upload file ok');
+                openModal.click();
+                this.previewId = result.id;
+              }, 1000);
+
             }, error1 => {
               console.log('loi upload file');
             }
@@ -133,11 +146,4 @@ export class UpdateDiaryComponent implements OnInit {
     return this.router.navigateByUrl('/diary/' + previewId);
   }
 
-  processRun() {
-    const count = setInterval(() => {
-      this.processValue += 40;
-    }, 1000 );
-
-    setTimeout(() => { clearInterval(count) ; this.processValue += 19; }, 2000);
-  }
 }

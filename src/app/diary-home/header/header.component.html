@@ -107,16 +107,15 @@
     </div>
   </div>
   <div *ngIf="info.token; else logIn">
-    <div class="btn-group">
+    <div class="btn-group" style="padding-right: 30px">
       <button type="button" class="btn btn-outline-secondary text-light border-1" [routerLink]="'/library/profile/'">{{info.name}}</button>
       <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split border-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="sr-only">Toggle</span>
       </button>
-      <div class="dropdown-menu" style="background: darkgrey">
-        <a class="dropdown-item" [routerLink]="'/library/'">New Entry</a>
-        <a class="dropdown-item" href="#">Settings</a>
+      <div class="dropdown-menu dropdown-menu-right" style="background: darkgrey">
+        <a class="dropdown-item text-center" [routerLink]="'/library/'">New</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item " (click)="logout()" >Logout</a>
+        <a class="dropdown-item text-center" (click)="logout()" >Logout</a>
       </div>
     </div>
   </div>

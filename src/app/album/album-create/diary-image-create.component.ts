@@ -57,8 +57,14 @@ export class DiaryImageCreateComponent implements OnInit {
     if (description === '' || this.fileUpload == null || tagId === '') {
       return alert('Fill Data Fields !');
     }
+    const count = setInterval(() => {
+      this.processValue += 30;
+      if (this.processValue === 90) {
+        this.processValue += 9;
+        clearInterval(count);
+      }
+    }, 1000);
     openProcessBar.click();
-    this.processRun();
     const album: Album = {
       title,
       description,
@@ -76,12 +82,17 @@ export class DiaryImageCreateComponent implements OnInit {
         form.append('file', this.fileUpload);
         this.albumService.uploadAlbumAvatar(form, result.id).subscribe(
           next => {
-            console.log('upload file ok');
-            closeProcess.click();
-            openModalRef.click();
-            this.redirectID = result.id;
-            this.albumForm.reset();
-            this.filePath = undefined;
+            clearInterval(count);
+            this.processValue = 100;
+            setTimeout(() => {
+              console.log('upload file ok');
+              closeProcess.click();
+              openModalRef.click();
+              this.processValue = 0;
+              this.redirectID = result.id;
+              this.albumForm.reset();
+              this.filePath = undefined;
+            }, 1000);
           }, error1 => {
             console.log('loi upload file');
           }
@@ -93,13 +104,5 @@ export class DiaryImageCreateComponent implements OnInit {
   preview( closeModalRef1: HTMLButtonElement) {
     closeModalRef1.click();
     return this.router.navigateByUrl('/library/album-picture-add-image/' + this.redirectID);
-  }
-
-  processRun() {
-    const count = setInterval(() => {
-      this.processValue += 40;
-    }, 1000 );
-
-    setTimeout(() => { clearInterval(count) ; this.processValue += 19; }, 2000);
   }
 }
