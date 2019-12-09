@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TagService} from '../../services/tag.service';
-import {Tag} from '../../services/tag';
+import {Tag} from '../../model/tag';
 
 @Component({
   selector: 'app-side-bar',

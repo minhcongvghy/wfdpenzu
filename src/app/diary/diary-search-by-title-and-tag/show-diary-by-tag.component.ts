@@ -1,8 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {TagService} from '../../services/tag.service';
-import {Tag} from '../../services/tag';
-import {Diary} from '../../services/diary';
-import {SearchDiaryByTagAndTitle} from '../../services/search-diary-by-tag-and-title';
+import {Tag} from '../../model/tag';
+import {Diary} from '../../model/diary';
+import {SearchDiaryByTagAndTitle} from '../../model/search-diary-by-tag-and-title';
 import {DiaryService} from '../../services/diary.service';
 import {ActivatedRoute} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -35,6 +35,8 @@ export class ShowDiaryByTagComponent implements OnInit {
     } else {
     this.getListDiaryByTagId(this.id);
     }
+
+    this.gotoTop();
   }
 
   getListDiaryByTagId(id: string) {

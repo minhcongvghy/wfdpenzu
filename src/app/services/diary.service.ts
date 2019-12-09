@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Diary} from './diary';
+import {Diary} from '../model/diary';
 import {Observable} from 'rxjs';
-import {FileForm} from './file-form';
-import {SearchDiaryByTitleAndUserId} from './search-diary-by-title-and-user-id';
-import {Tag} from './tag';
-import {Pagination} from './pagination';
+import {FileForm} from '../model/file-form';
+import {SearchDiaryByTitleAndUserId} from '../model/search-diary-by-title-and-user-id';
+import {Tag} from '../model/tag';
+import {Pagination} from '../model/pagination';
 // import {environment} from '../../environments/environment.prod';
-import {SearchDiaryByTitle} from './search-diary-by-title';
-import {SearchDiaryByTagAndTitle} from './search-diary-by-tag-and-title';
+import {SearchDiaryByTitle} from '../model/search-diary-by-title';
+import {SearchDiaryByTagAndTitle} from '../model/search-diary-by-tag-and-title';
+
 import {environment} from '../../environments/environment';
 
 const httpOptions = {
@@ -25,14 +26,20 @@ export class DiaryService {
 
   // local
   private svDiaryUrl = environment.diaryUrl;
-  private svUploadFile = environment.uploadFileUrl;
+
+  private svUploadFile = environment.diaryUploadFileUrl;
+
 
   // server
   // private svDiaryUrl = environment.SvDiaryUrl;
   // private svUploadFile = environment.SvUploadFileUrl;
 
-  Pagination(page: number): Observable<Pagination> {
-    return this.http.get<Pagination>(this.svDiaryUrl + 'pagination?page=' + page);
+  getListDiaryAndPaginationASC(page: number): Observable<Pagination> {
+    return this.http.get<Pagination>(this.svDiaryUrl + 'pagination/ASC?page=' + page);
+  }
+
+  getListDiaryAndPaginationDESC(page: number): Observable<Pagination> {
+    return this.http.get<Pagination>(this.svDiaryUrl + 'pagination/DESC?page=' + page);
   }
 
   getListDiary(): Observable<Diary[]> {

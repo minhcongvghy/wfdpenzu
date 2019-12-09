@@ -6,7 +6,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {SignUpInfo} from '../../auth/sign-up-info';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TagService} from '../../services/tag.service';
-import {Tag} from '../../services/tag';
+import {Tag} from '../../model/tag';
 
 @Component({
   selector: 'app-header',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Diary} from '../../services/diary';
+import {Diary} from '../../model/diary';
 import {DiaryService} from '../../services/diary.service';
-import {SearchDiaryByTitle} from '../../services/search-diary-by-title';
+import {SearchDiaryByTitle} from '../../model/search-diary-by-title';
 
 @Component({
   selector: 'app-manage-diary',

@@ -2,7 +2,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Comment} from './comment';
+import {Comment} from '../model/comment';
 // import {environment} from '../../environments/environment.prod';
 import {environment} from '../../environments/environment';
 
@@ -15,10 +15,15 @@ export class CommentService {
 
    // Server
   // URL = environment.SvCommentUrl;
+
   constructor(private http: HttpClient) { }
 
-  getAllCommentByDiary(id: string): Observable<Comment[]> {
+  getAllCommentByDiaryId(id: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.URL + 'diary/' + id);
+  }
+
+  getAllCommentByAlbumId(id: string): Observable<Comment[]> {
+    return this.http.get<Comment[]>(this.URL + 'album/' + id);
   }
 
   createComment(comment: Comment): Observable<Comment> {

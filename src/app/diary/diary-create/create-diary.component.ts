@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {DiaryService} from '../../services/diary.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Tag} from '../../services/tag';
+import {Tag} from '../../model/tag';
 import {TagService} from '../../services/tag.service';
-import {Diary} from '../../services/diary';
+import {Diary} from '../../model/diary';
 import {ActivatedRoute, Router} from '@angular/router';
 import {error} from 'util';
 
@@ -28,6 +28,7 @@ export class CreateDiaryComponent implements OnInit {
   });
   private returnUrl: string;
   private filePath: any;
+  private processValue = 0;
 
   constructor(private token: TokenStorageService,
               private diaryService: DiaryService,
@@ -66,12 +67,21 @@ export class CreateDiaryComponent implements OnInit {
   }
 
 
-  createDiary(closeButton: HTMLInputElement) {
+  createDiary(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
     const {title, description, content, tagId} = this.formDiary.value;
 
-    if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null) {
+    if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null || this.fileUpload === undefined) {
       return alert('Fill Data Fields !');
     }
+
+    const count = setInterval(() => {
+      this.processValue += 30;
+      if (this.processValue === 90) {
+        this.processValue += 9;
+        clearInterval(count);
+      }
+    }, 1000);
+    openProcessBar.click();
 
     const diary: Diary = {
       title,
@@ -92,11 +102,18 @@ export class CreateDiaryComponent implements OnInit {
           form.append('file', this.fileUpload);
           this.diaryService.uploadFile(form, result.id).subscribe(
             next => {
-              console.log('upload file ok');
-              closeButton.click();
-              this.previewId = result.id;
-              this.formDiary.reset();
-              this.filePath = undefined;
+              clearInterval(count);
+              this.processValue = 100;
+
+              setTimeout(() => {
+                console.log('upload file ok');
+                closeProcess.click();
+                openModalRef.click();
+                this.processValue = 0;
+                this.previewId = result.id;
+                this.formDiary.reset();
+                this.filePath = undefined;
+              }, 1000);
             }, error1 => {
               console.log('loi upload file');
             }
@@ -107,8 +124,9 @@ export class CreateDiaryComponent implements OnInit {
     );
   }
 
-  preview(previewId: string, closeButton: HTMLInputElement) {
+  preview(closeButton: HTMLInputElement) {
     closeButton.click();
-    return this.router.navigateByUrl('/diary/' + previewId);
+    return this.router.navigateByUrl('/diary/' + this.previewId);
   }
+
 }

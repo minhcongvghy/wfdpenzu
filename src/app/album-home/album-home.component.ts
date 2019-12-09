@@ -1,16 +1,18 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-album-home',
+  templateUrl: './album-home.component.html',
+  styleUrls: ['./album-home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class AlbumHomeComponent implements OnInit {
+
   isShow: boolean;
   topPosToStartShowing = 200;
   constructor() { }
 
   ngOnInit() {
+    this.gotoTop();
   }
 
   @HostListener('window:scroll')

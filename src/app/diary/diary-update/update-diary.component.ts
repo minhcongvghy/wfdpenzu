@@ -3,9 +3,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {DiaryService} from '../../services/diary.service';
-import {Diary} from '../../services/diary';
+import {Diary} from '../../model/diary';
 import {TagService} from '../../services/tag.service';
-import {Tag} from '../../services/tag';
+import {Tag} from '../../model/tag';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
@@ -22,6 +22,8 @@ export class UpdateDiaryComponent implements OnInit {
   tagId = '';
   private fileUpload: File;
   filePath: any;
+  private processValue = 0;
+  private counting: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,
@@ -70,12 +72,24 @@ export class UpdateDiaryComponent implements OnInit {
     reader.onload = ( event ) => {
       this.filePath = reader.result;
     };
+    console.log(this.filePath);
   }
 
-  updateDiary(closeButton: HTMLInputElement) {
+    updateDiary(openModal: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
 
     if (this.diary.title === '' || this.diary.description === '' || this.diary.content === '') {
       return alert('Fill Data Fields !');
+    }
+
+    if (this.fileUpload !== null && this.fileUpload !== undefined ) {
+      this.counting = setInterval(() => {
+        this.processValue += 30;
+        if (this.processValue === 90) {
+          this.processValue += 9;
+          clearInterval(this.counting);
+        }
+      }, 1000);
+      openProcessBar.click();
     }
 
     if (this.tagId === '') {
@@ -99,16 +113,23 @@ export class UpdateDiaryComponent implements OnInit {
       result => {
         if (this.fileUpload === null || this.fileUpload === undefined ) {
           console.log('create diary ok');
-          closeButton.click();
+          openModal.click();
           this.previewId = result.id;
         } else {
           const form = new FormData();
           form.append('file', this.fileUpload);
           this.diaryService.uploadFile(form, result.id).subscribe(
             next => {
-              console.log('upload file ok');
-              closeButton.click();
-              this.previewId = result.id;
+              clearInterval(this.counting);
+              this.processValue = 100;
+
+              setTimeout(() => {
+                closeProcess.click();
+                console.log('upload file ok');
+                openModal.click();
+                this.previewId = result.id;
+              }, 1000);
+
             }, error1 => {
               console.log('loi upload file');
             }
@@ -124,4 +145,5 @@ export class UpdateDiaryComponent implements OnInit {
     closeModalRef1.click();
     return this.router.navigateByUrl('/diary/' + previewId);
   }
+
 }

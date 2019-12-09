@@ -1,13 +1,13 @@
 import {Component, HostListener, OnInit, Pipe} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
-import {Diary} from '../../services/diary';
+import {Diary} from '../../model/diary';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {UserService} from '../../services/user.service';
 import {DiaryService} from '../../services/diary.service';
 import {environment} from '../../../environments/environment';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Comment} from '../../services/comment';
+import {Comment} from '../../model/comment';
 import {CommentService} from '../../services/comment.service';
 
 @Component({
@@ -21,7 +21,6 @@ export class DetailDiaryComponent implements OnInit  {
   userId: string;
   diary: Diary;
   currentRate = 6;
-  ImgURL = environment.imgUrl;
   isShow: boolean;
   topPosToStartShowing = 200;
   formCommentCreate = new FormGroup( {
@@ -37,7 +36,8 @@ export class DetailDiaryComponent implements OnInit  {
               private token: TokenStorageService,
               private diaryService: DiaryService,
               private sanitizer: DomSanitizer,
-              private commentService: CommentService) {
+              private commentService: CommentService,
+              private router: Router) {
     this.activatedRoute.params.subscribe(params => {
       this.diaryId = params.id;
     });
@@ -50,7 +50,7 @@ export class DetailDiaryComponent implements OnInit  {
     console.log(this.diaryId, this.token.getUserId());
     this.getDiaryById();
     this.getAllCommentThisDiary();
-
+    this.gotoTop();
   }
 
   @HostListener('window:scroll')
@@ -92,7 +92,7 @@ export class DetailDiaryComponent implements OnInit  {
   }
 
   getAllCommentThisDiary() {
-    this.commentService.getAllCommentByDiary(this.diaryId).subscribe(
+    this.commentService.getAllCommentByDiaryId(this.diaryId).subscribe(
       result => {
         this.listComment = result;
       }, error => {
