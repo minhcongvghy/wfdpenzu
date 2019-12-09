@@ -30,8 +30,10 @@ export class HeaderComponent implements OnInit {
       token: this.token.getToken(),
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities(),
-      userId: this.token.getUserId()
+      userId: this.token.getUserId(),
+      avatar: this.token.getAvatar()
     };
+    console.log(this.info);
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
   }
 

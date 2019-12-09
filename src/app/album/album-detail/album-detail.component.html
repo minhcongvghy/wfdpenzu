@@ -91,7 +91,12 @@
       <hr>
       <!-- Single Comment -->
       <div class="media mb-4" *ngFor="let comment of listComment , index as i" >
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div *ngIf="comment.user.avatar;else other9">
+          <img class="d-flex mr-3 rounded-circle" src="{{comment.user.avatar}}" style="width: 50px;height: 50px" alt="">
+        </div>
+        <ng-template #other9>
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        </ng-template>
         <div class="media-body">
           <div *ngIf="comment.edit == 'true' ; else other4">
             <label class="text-success">@{{comment.user.name}}<h6 class="text-secondary">{{comment.date}} (edited)</h6></label>

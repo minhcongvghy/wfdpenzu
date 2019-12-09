@@ -75,9 +75,8 @@ export class CreateDiaryComponent implements OnInit {
     }
 
     const count = setInterval(() => {
-      this.processValue += 30;
-      if (this.processValue === 90) {
-        this.processValue += 9;
+      this.processValue += 11;
+      if (this.processValue === 99) {
         clearInterval(count);
       }
     }, 1000);
@@ -113,7 +112,7 @@ export class CreateDiaryComponent implements OnInit {
                 this.previewId = result.id;
                 this.formDiary.reset();
                 this.filePath = undefined;
-              }, 1000);
+              }, 3000);
             }, error1 => {
               console.log('loi upload file');
             }

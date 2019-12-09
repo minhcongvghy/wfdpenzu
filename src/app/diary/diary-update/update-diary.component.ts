@@ -83,9 +83,8 @@ export class UpdateDiaryComponent implements OnInit {
 
     if (this.fileUpload !== null && this.fileUpload !== undefined ) {
       this.counting = setInterval(() => {
-        this.processValue += 30;
-        if (this.processValue === 90) {
-          this.processValue += 9;
+        this.processValue += 11;
+        if (this.processValue === 99) {
           clearInterval(this.counting);
         }
       }, 1000);
@@ -128,7 +127,7 @@ export class UpdateDiaryComponent implements OnInit {
                 console.log('upload file ok');
                 openModal.click();
                 this.previewId = result.id;
-              }, 1000);
+              }, 3000);
 
             }, error1 => {
               console.log('loi upload file');
