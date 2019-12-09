@@ -1,9 +1,9 @@
 
 <section class="jumbotron text-center" style="padding-top: 5rem ; padding-bottom: 15px">
   <div class="container-fluid">
-    <div class="text-white " *ngIf="albumList">
+    <div class="text-white " *ngIf="slideAlbum">
       <ngb-carousel interval="3000">
-        <ng-template ngbSlide *ngFor="let album of albumList.slice(0,5)">
+        <ng-template ngbSlide *ngFor="let album of slideAlbum.slice(0,5)">
           <div class="picsum-img-wrapper">
             <a [routerLink]="'/album-detail/' + album.id">
               <img [src]="album.avatar" width="100%" height="650" alt="Random first slide">
@@ -20,29 +20,28 @@
 </section>
 
 <!--search bar-->
+
 <div class="container-fluid bg-light ">
   <div class="row align-items-center justify-content-center">
-    <div class="col-md-2 pt-3">
+    <div class="col-md-2 pt-3" *ngIf="tagList">
       <div class="form-group ">
-        <select id="inputState " class="form-control">
-          <option selected hidden>Tag</option>
-          <option>BMW</option>
-          <option>Audi</option>
-          <option>Maruti</option>
-          <option>Tesla</option>
+        <select [(ngModel)]="tagId" id="inputState22" (change)="getListAlbumByTagIdAndTitle()" class="form-control">
+          <option selected disabled hidden value="null">Tag</option>
+          <option *ngFor="let tag of tagList" value="{{tag.id}}">{{tag.name}}</option>
         </select>
       </div>
     </div>
     <div class="col-md-3 pt-3">
       <div class="form-group">
-       <input class="form-control" type="text" placeholder="Search by title...">
+       <input [(ngModel)]="title" (keydown)="getListAlbumByTagIdAndTitle()" class="form-control" type="text" placeholder="Search by title...">
       </div>
     </div>
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block">Search</button>
+      <button type="button" class="btn btn-primary btn-block" (click)="getListAlbumByTagIdAndTitle()">Search</button>
     </div>
   </div>
 </div>
+
 
 <!--search bar-->
 <div class="album py-5 bg-light">
@@ -68,12 +67,15 @@
         <div class="card mb-4 box-shadow">
           <img class="card-img-top" src="{{album.avatar}}" style="width: 100% ;height: 225px" alt="Card image cap" [routerLink]="'/album-detail/' + album.id" >
           <div class="card-body">
-            <p class="card-text">{{album.title}}</p>
+            <h5 class="card-text"><strong>{{album.title}}</strong></h5>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" [routerLink]="'/album-detail/' + album.id"  class="btn btn-sm btn-outline-success">View</button>
+                <button type="button" [routerLink]="'/album-detail/' + album.id"  class="btn btn-sm btn-outline-success">View &rarr;</button>
               </div>
               <small class="text-muted">{{album.date}}</small>
+            </div>
+            <div class="text-right">
+            <small class="text-right text-primary">{{album.tag.name}}</small>
             </div>
           </div>
         </div>

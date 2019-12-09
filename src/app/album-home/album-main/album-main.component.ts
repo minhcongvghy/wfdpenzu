@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Album} from '../../model/album';
 import {AlbumService} from '../../services/album.service';
+import {TagService} from '../../services/tag.service';
+import {Tag} from '../../model/tag';
+import {FormControl, FormGroup} from '@angular/forms';
+import {SearchAlbumByTagIdAndTitle} from '../../model/search-album-by-tag-id-and-title';
 
 const STATUS_KEY = 'StatusAlbum';
 const TEXT_KEY = 'KeyText';
@@ -11,10 +15,15 @@ const TEXT_KEY = 'KeyText';
 })
 export class AlbumMainComponent implements OnInit {
   albumList: Album[] = [];
+  tagList: Tag[] = [];
   private isNew: 'true';
   private sort: string;
   private textStatus = '';
-  constructor(private albumService: AlbumService, ) {
+  private tagId = null;
+  private title = null;
+  private slideAlbum: Album[] = [];
+  constructor(private albumService: AlbumService,
+              private tagService: TagService) {
     this.sort = window.sessionStorage.getItem(STATUS_KEY);
     if (window.sessionStorage.getItem(TEXT_KEY) != null) {
       this.textStatus = window.sessionStorage.getItem(TEXT_KEY);
@@ -23,6 +32,28 @@ export class AlbumMainComponent implements OnInit {
 
   ngOnInit() {
     this.getAllAlbum();
+    this.getListAllTag();
+    this.getListAllAlbumForSlide();
+  }
+
+  getListAllAlbumForSlide() {
+    this.albumService.getListALlAlbum().subscribe(
+      result => {
+        this.slideAlbum = result;
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+
+  getListAllTag() {
+    this.tagService.getTagList().subscribe(
+      result => {
+        this.tagList = result;
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   private sortAlbumByDate() {
@@ -77,5 +108,21 @@ export class AlbumMainComponent implements OnInit {
       behavior: 'smooth'
     });
     console.log('1');
+  }
+
+  getListAlbumByTagIdAndTitle() {
+    const searchForm: SearchAlbumByTagIdAndTitle = {
+      tagId: this.tagId,
+      title: this.title
+    };
+    console.log(searchForm);
+
+    this.albumService.searchAlbumByTagIdAndTitle(searchForm).subscribe(
+      result => {
+        this.albumList = result;
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 }
