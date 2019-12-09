@@ -26,7 +26,7 @@ export class AlbumMainComponent implements OnInit {
 
   goToMidle() {
     window.scroll({
-      top: 750,
+      top: 700,
       left: 0,
       behavior: 'smooth'
     });

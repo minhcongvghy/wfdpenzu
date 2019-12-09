@@ -31,8 +31,12 @@ export class DiaryService {
   // private svDiaryUrl = environment.SvDiaryUrl;
   // private svUploadFile = environment.SvUploadFileUrl;
 
-  Pagination(page: number): Observable<Pagination> {
-    return this.http.get<Pagination>(this.svDiaryUrl + 'pagination?page=' + page);
+  getListDiaryAndPaginationASC(page: number): Observable<Pagination> {
+    return this.http.get<Pagination>(this.svDiaryUrl + 'pagination/ASC?page=' + page);
+  }
+
+  getListDiaryAndPaginationDESC(page: number): Observable<Pagination> {
+    return this.http.get<Pagination>(this.svDiaryUrl + 'pagination/DESC?page=' + page);
   }
 
   getListDiary(): Observable<Diary[]> {
