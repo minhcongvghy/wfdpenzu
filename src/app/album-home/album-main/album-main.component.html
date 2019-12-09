@@ -33,15 +33,6 @@
         </select>
       </div>
     </div>
-    <div class="col-md-2 pt-3">
-      <div class="form-group">
-        <select id="inputState" class="form-control">
-          <option selected hidden>Time</option>
-          <option>Newest</option>
-          <option>Oldest</option>
-        </select>
-      </div>
-    </div>
     <div class="col-md-3 pt-3">
       <div class="form-group">
        <input class="form-control" type="text" placeholder="Search by title...">
@@ -56,16 +47,31 @@
 <!--search bar-->
 <div class="album py-5 bg-light">
   <div class="container" >
-
+    <div class="row">
+      <div class="col-md-9 pt-3"></div>
+      <div class="col-md-1 pt-3 text-right">
+        Sort:
+      </div>
+      <div class="col-md-2 pt-3 text-right">
+        <div class="text-danger text-right" style="padding-right: 12px"> {{textStatus}}</div>
+        <div class="form-group">
+          <select (change)="sortAlbumByDate()"  id="inputState" class="form-control-file" [(ngModel)]="isNew" >
+            <option value="true" selected disabled hidden>Time</option>
+            <option value="true" >Newest</option>
+            <option value="false" >Oldest</option>
+          </select>
+        </div>
+      </div>
+    </div>
     <div class="row" *ngIf="albumList">
       <div class="col-md-4" *ngFor="let album of albumList | paginate: { itemsPerPage: 9, currentPage: p }">
         <div class="card mb-4 box-shadow">
-          <img class="card-img-top" src="{{album.avatar}}" style="width: 100% ;height: 225px" alt="Card image cap">
+          <img class="card-img-top" src="{{album.avatar}}" style="width: 100% ;height: 225px" alt="Card image cap" [routerLink]="'/album-detail/' + album.id" >
           <div class="card-body">
             <p class="card-text">{{album.title}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" [routerLink]="'/album-detail/' + album.id"  class="btn btn-sm btn-outline-secondary">View</button>
+                <button type="button" [routerLink]="'/album-detail/' + album.id"  class="btn btn-sm btn-outline-success">View</button>
               </div>
               <small class="text-muted">{{album.date}}</small>
             </div>

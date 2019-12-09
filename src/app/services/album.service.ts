@@ -7,6 +7,7 @@ import {FileForm} from '../model/file-form';
 import {MultiFileForm} from '../model/multi-file-form';
 import {Image} from '../model/image';
 import {FindAlbumsByTitle} from '../model/find-albums-by-title';
+import {Pagination} from '../model/pagination';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -75,6 +76,14 @@ export class AlbumService {
 
   findAlbumsByTitle(title: FindAlbumsByTitle): Observable<Album[]> {
     return this.http.post<Album[]>(this.albumURL + 'search-album-by-title', title);
+  }
+
+  getListAlbumAndSortingByDateASC(): Observable<Pagination> {
+    return this.http.get<Pagination>(this.albumURL + 'pagination/ASC');
+  }
+
+  getListAlbumAndSortingByDateDESC(): Observable<Pagination> {
+    return this.http.get<Pagination>(this.albumURL + 'pagination/DESC');
   }
 }
 

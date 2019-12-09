@@ -30,7 +30,7 @@ export class BlogMainComponent implements OnInit {
     this.Pagination(this.page);
   }
 
-  sortDiaryByDate() {
+  private sortDiaryByDate() {
     console.log(this.isNew);
     if (this.isNew === undefined || this.isNew == null ) {
       return;

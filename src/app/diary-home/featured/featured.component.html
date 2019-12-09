@@ -1,6 +1,6 @@
 <div class="text-white " *ngIf="diaryList">
   <ngb-carousel interval="3000">
-    <ng-template ngbSlide *ngFor="let diary of diaryList">
+    <ng-template ngbSlide *ngFor="let diary of diaryList.slice(0,5)">
       <div class="picsum-img-wrapper">
         <a [routerLink]="'/diary/' + diary.id">
         <img [src]="diary.urlFile" width="100%" height="650" alt="Random first slide">
