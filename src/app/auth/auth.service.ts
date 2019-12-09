@@ -6,8 +6,8 @@ import {JwtResponse} from './jwt-response';
 import {SignUpInfo} from './sign-up-info';
 import {UserForm} from './profile/user-form';
 import {PassForm} from './profile/pass-form';
-import {environment} from '../../environments/environment';
-// import {environment} from '../../environments/environment.prod';
+// import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment.prod';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,16 +18,16 @@ const httpOptions = {
 })
 export class AuthService {
   // local
-  private svLoginUrl = environment.loginUrl;
-  private svSignUpUrl = environment.signupUrl;
-  private svUpdateProfileUrl = environment.updateProfileUrl;
-  private svUpdatePasswordUrl = environment.updatePasswordUrl;
+  // private svLoginUrl = environment.loginUrl;
+  // private svSignUpUrl = environment.signupUrl;
+  // private svUpdateProfileUrl = environment.updateProfileUrl;
+  // private svUpdatePasswordUrl = environment.updatePasswordUrl;
 
   // server
-  // private svLoginUrl = environment.SvLoginUrl;
-  // private svSignUpUrl = environment.SvSignupUrl;
-  // private svUpdateProfileUrl = environment.SvUpdateProfileUrl;
-  // private svUpdatePasswordUrl = environment.SvUpdatePasswordUrl;
+  private svLoginUrl = environment.SvLoginUrl;
+  private svSignUpUrl = environment.SvSignupUrl;
+  private svUpdateProfileUrl = environment.SvUpdateProfileUrl;
+  private svUpdatePasswordUrl = environment.SvUpdatePasswordUrl;
 
   constructor(private http: HttpClient) { }
 

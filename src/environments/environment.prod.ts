@@ -9,6 +9,7 @@ export const environment = {
   SvAlbumUploadAvatarUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/album-avatar/',
   SvAlbumUploadImageUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/album-add-image/',
   SvImageUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/image/',
+  SvUserAvatarUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/user-avatar/',
 
   SvLoginUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/signin',
   SvSignupUrl: 'https://obscure-gorge-43420.herokuapp.com/api/auth/signup',

@@ -144,7 +144,10 @@ export class AddImageToAlbumComponent implements OnInit {
   uploadImageOfAlbum(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
     if ( this.fileList.length > 0) {
        const count = setInterval(() => {
-        this.processValue += 9;
+        this.processValue += 3;
+        if (this.processValue === 99) {
+          clearInterval(count);
+        }
       }, 1000);
        openProcessBar.click();
        console.log(this.fileList);
@@ -165,7 +168,7 @@ export class AddImageToAlbumComponent implements OnInit {
             closeProcess.click();
             this.getAllImageOfAlbum();
             this.updateAlbum(openModalRef);
-          }, 1000);
+          }, 3000);
         }, error => {
           console.log(error);
         }

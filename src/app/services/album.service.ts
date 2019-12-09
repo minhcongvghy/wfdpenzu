@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {Album} from '../model/album';
 import {FileForm} from '../model/file-form';
@@ -9,6 +8,9 @@ import {Image} from '../model/image';
 import {FindAlbumsByTitle} from '../model/find-albums-by-title';
 import {Pagination} from '../model/pagination';
 import {SearchAlbumByTagIdAndTitle} from '../model/search-album-by-tag-id-and-title';
+import {environment} from '../../environments/environment.prod';
+// import {environment} from '../../environments/environment';
+
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -19,10 +21,17 @@ const httpOptions = {
 })
 export class AlbumService {
 
-  albumURL = environment.albumUrl;
-  uploadAvatar = environment.albumUploadAvatarUrl;
-  uploadImage = environment.albumUploadImageUrl;
-  imageURL = environment.imageUrl;
+  // local
+  // albumURL = environment.albumUrl;
+  // uploadAvatar = environment.albumUploadAvatarUrl;
+  // uploadImage = environment.albumUploadImageUrl;
+  // imageURL = environment.imageUrl;
+
+  // server
+  albumURL = environment.SvAlbumUrl;
+  uploadAvatar = environment.SvAlbumUploadAvatarUrl;
+  uploadImage = environment.SvAlbumUploadImageUrl;
+  imageURL = environment.SvImageUrl;
 
   constructor(private http: HttpClient) {
   }

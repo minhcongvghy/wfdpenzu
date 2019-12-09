@@ -58,9 +58,8 @@ export class DiaryImageCreateComponent implements OnInit {
       return alert('Fill Data Fields !');
     }
     const count = setInterval(() => {
-      this.processValue += 30;
-      if (this.processValue === 90) {
-        this.processValue += 9;
+      this.processValue += 11;
+      if (this.processValue === 99) {
         clearInterval(count);
       }
     }, 1000);
@@ -92,7 +91,7 @@ export class DiaryImageCreateComponent implements OnInit {
               this.redirectID = result.id;
               this.albumForm.reset();
               this.filePath = undefined;
-            }, 1000);
+            }, 3000);
           }, error1 => {
             console.log('loi upload file');
           }
