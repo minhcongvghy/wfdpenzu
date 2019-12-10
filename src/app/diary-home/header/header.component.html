@@ -106,7 +106,7 @@
       </ul>
     </div>
   </div>
-  <img *ngIf="this.user.avatar" class="d-flex mr-3 rounded-circle" style="width: 50px ; height: 50px"
+  <img *ngIf="this.user" class="d-flex mr-3 rounded-circle" style="width: 50px ; height: 50px"
        src="{{this.user.avatar}}" alt="">
   <div *ngIf="this.info.token; else logIn">
     <div class="btn-group" style="padding-right: 30px">
