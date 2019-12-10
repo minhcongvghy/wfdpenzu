@@ -7,6 +7,8 @@ import {SignUpInfo} from '../../auth/sign-up-info';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TagService} from '../../services/tag.service';
 import {Tag} from '../../model/tag';
+import {UserService} from '../../services/user.service';
+import {User} from '../../model/user';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +17,7 @@ import {Tag} from '../../model/tag';
 })
 export class HeaderComponent implements OnInit {
 
-
+  user: User;
   loginInfo: AuthLoginInfo;
   returnUrl: string;
   tagList: Tag[];
@@ -23,6 +25,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService, private token: TokenStorageService,
               private route: ActivatedRoute,
               private router: Router,
+              private userService: UserService,
               ) { }
 
   ngOnInit() {
@@ -35,12 +38,25 @@ export class HeaderComponent implements OnInit {
       avatar: this.token.getAvatar()
     };
     console.log(this.info);
+    if (this.info.userId) {
+      this.gerUserByUserID();
+    }
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
   }
 
   logout() {
     this.token.signOut();
     this.router.navigateByUrl(this.returnUrl);
+  }
+
+  gerUserByUserID() {
+    this.userService.getUserById(this.info.userId).subscribe(
+      result => {
+        this.user = result;
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   reloadPage() {

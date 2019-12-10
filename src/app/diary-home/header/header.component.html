@@ -106,8 +106,8 @@
       </ul>
     </div>
   </div>
-  <img *ngIf="this.info.avatar" class="d-flex mr-3 rounded-circle" style="width: 50px ; height: 50px"
-       src="{{this.info.avatar}}" alt="">
+  <img *ngIf="this.user.avatar" class="d-flex mr-3 rounded-circle" style="width: 50px ; height: 50px"
+       src="{{this.user.avatar}}" alt="">
   <div *ngIf="this.info.token; else logIn">
     <div class="btn-group" style="padding-right: 30px">
       <button type="button" class="btn btn-outline-secondary text-light border-1" [routerLink]="'/library/profile/'">{{info.name}}</button>
