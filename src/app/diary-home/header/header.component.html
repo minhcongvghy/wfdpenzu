@@ -108,7 +108,7 @@
   </div>
   <img *ngIf="this.token.getAvatar()" class="d-flex mr-3 rounded-circle" style="width: 50px ; height: 50px"
        src="{{this.token.getAvatar()}}" alt="">
-  <div *ngIf="info.token; else logIn">
+  <div *ngIf="this.token; else logIn">
     <div class="btn-group" style="padding-right: 30px">
       <button type="button" class="btn btn-outline-secondary text-light border-1" [routerLink]="'/library/profile/'">{{info.name}}</button>
       <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split border-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
