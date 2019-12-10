@@ -22,6 +22,7 @@ export class AlbumMainComponent implements OnInit {
   tagId = null;
   title = null;
   slideAlbum: Album[] = [];
+  p: any;
   constructor(private albumService: AlbumService,
               private tagService: TagService) {
     this.sort = window.sessionStorage.getItem(STATUS_KEY);

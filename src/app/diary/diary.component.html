@@ -12,10 +12,10 @@
           <li  [routerLink]="'/library/profile/'"><h2>My Profile</h2></li>
           <li [routerLink]="'/library/listUserDiary/'"><h2>My Entry</h2></li>
           <li [routerLink]="'/library/album-of-user/'"><h2>My Album</h2></li>
-          <li *ngIf="info.authorities == 'ADMIN'" [routerLink]="'/library/manageTag/'"><h2>Manage Tag</h2></li>
-          <li *ngIf="info.authorities == 'ADMIN'" [routerLink]="'/library/manageDiary/'"><h2>Manage Diary</h2></li>
-          <li *ngIf="info.authorities == 'ADMIN'" [routerLink]="'/library/manageAlbum/'"><h2>Manage Album</h2></li>
-          <li *ngIf="info.authorities == 'ADMIN'" [routerLink]="'/library/manageUser/'"><h2>Manage User</h2></li>
+          <li *ngIf="info.authorities[0] === 'ADMIN'" [routerLink]="'/library/manageTag/'"><h2>Manage Tag</h2></li>
+          <li *ngIf="info.authorities[0] === 'ADMIN'" [routerLink]="'/library/manageDiary/'"><h2>Manage Diary</h2></li>
+          <li *ngIf="info.authorities[0] === 'ADMIN'" [routerLink]="'/library/manageAlbum/'"><h2>Manage Album</h2></li>
+          <li *ngIf="info.authorities[0] === 'ADMIN'" [routerLink]="'/library/manageUser/'"><h2>Manage User</h2></li>
         </ul>
       </div>
     </div>
