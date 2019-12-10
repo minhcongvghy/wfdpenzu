@@ -35,7 +35,7 @@
     <div  *ngIf="diaryList">
       <!-- Blog Post -->
       <div class="card mb-4" *ngFor="let diary of diaryList">
-        <img class="card-img-top" [src]="diary.urlFile" style="width: 100%; height: 300px" alt="Card image cap">
+        <img class="card-img-top" [src]="diary.urlFile" style="width: 100%; height: 500px" alt="Card image cap">
         <div class="card-body">
           <h2 class="card-title">{{diary.title}}</h2>
           <p class="card-text"><strong [innerText]="diary.description"></strong></p>
