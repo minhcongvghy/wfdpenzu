@@ -13,7 +13,7 @@ import {TokenStorageService} from '../../auth/token-storage.service';
   styleUrls: ['./diary-image-create.component.scss']
 })
 export class DiaryImageCreateComponent implements OnInit {
-  private filePath: any;
+  filePath: any;
   fileUpload: File;
   albumForm = new FormGroup({
     title: new FormControl(''),
@@ -21,8 +21,8 @@ export class DiaryImageCreateComponent implements OnInit {
     description: new FormControl('')
   });
   tagList: Tag[] = [];
-  private redirectID: string;
-  private processValue = 0;
+  redirectID: string;
+  processValue = 0;
 
   constructor(private albumService: AlbumService,
               private route: ActivatedRoute,

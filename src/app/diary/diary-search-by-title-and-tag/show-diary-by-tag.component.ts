@@ -17,7 +17,7 @@ export class ShowDiaryByTagComponent implements OnInit {
   ListDiary: Diary[] = [];
   tagId = null;
   title = null;
-  private id: string;
+  id: string;
   isShow: boolean;
   topPosToStartShowing = 200;
   constructor(private tagService: TagService,

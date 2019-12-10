@@ -17,7 +17,7 @@ import {CommentService} from '../../services/comment.service';
 })
 
 export class DetailDiaryComponent implements OnInit  {
-  private diaryId: string;
+  diaryId: string;
   userId: string;
   diary: Diary;
   currentRate = 6;
@@ -27,9 +27,9 @@ export class DetailDiaryComponent implements OnInit  {
     contentInput: new FormControl('')
   });
   contentUpdate = new FormControl();
-  private listComment: Comment[] = [];
-  private idComment: string;
-  private tokenJWT: string;
+  listComment: Comment[] = [];
+  idComment: string;
+  tokenJWT: string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,

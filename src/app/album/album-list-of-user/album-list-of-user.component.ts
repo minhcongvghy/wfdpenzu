@@ -13,7 +13,7 @@ export class AlbumListOfUserComponent implements OnInit {
 
   albumId: string;
   albumList: Album[] = [];
-  private title = '';
+  title = '';
   constructor(private albumService: AlbumService,
               private token: TokenStorageService) { }
 
@@ -44,7 +44,7 @@ export class AlbumListOfUserComponent implements OnInit {
     );
   }
 
-  private searchByTitle() {
+  searchByTitle() {
     const titleForm: FindAlbumsByTitle = {
       title: this.title
     };

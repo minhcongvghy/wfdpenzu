@@ -8,8 +8,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
   styleUrls: ['./diary.component.scss']
 })
 export class DiaryComponent implements OnInit {
-  private info: any;
-
+  info: { name: string; userId: string; authorities: string[]; token: string; username: string };
    constructor(private token: TokenStorageService) {}
 
 

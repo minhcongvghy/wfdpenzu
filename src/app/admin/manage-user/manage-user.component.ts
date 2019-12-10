@@ -13,8 +13,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ManageUserComponent implements OnInit {
   userList: User[] = [];
-  private returnUrl: any;
-  private tokenUserId: string;
+  returnUrl: any;
+  tokenUserId: string;
   constructor(private userService: UserService,
               private token: TokenStorageService,
               private route: ActivatedRoute,

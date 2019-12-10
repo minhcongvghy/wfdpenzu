@@ -16,9 +16,9 @@ import {Tag} from '../../model/tag';
 export class HeaderComponent implements OnInit {
 
 
-  private loginInfo: AuthLoginInfo;
-  private returnUrl: string;
-  private tagList: Tag[];
+  loginInfo: AuthLoginInfo;
+  returnUrl: string;
+  tagList: Tag[];
   info: { name: string; avatar: string; userId: string; authorities: string[]; token: string; username: string };
   constructor(private authService: AuthService, private token: TokenStorageService,
               private route: ActivatedRoute,

@@ -23,10 +23,10 @@ export class AddImageToAlbumComponent implements OnInit {
     });
   }
   urls = [];
-  private fileList = [];
-  private albumId: string;
-  private album: Album;
-  private filePath: any;
+  fileList = [];
+  albumId: string;
+  album: Album;
+  filePath: any;
   imageId: string;
   tagId = '';
   fileUpload: File;

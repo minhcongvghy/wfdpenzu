@@ -26,9 +26,9 @@ export class CreateDiaryComponent implements OnInit {
     tagId: new FormControl(''),
     file: new FormControl(''),
   });
-  private returnUrl: string;
-  private filePath: any;
-  private processValue = 0;
+  returnUrl: string;
+  filePath: any;
+  processValue = 0;
 
   constructor(private token: TokenStorageService,
               private diaryService: DiaryService,

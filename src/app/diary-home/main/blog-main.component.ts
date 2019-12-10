@@ -15,7 +15,7 @@ export class BlogMainComponent implements OnInit {
   page = 0;
   loadText = 'Load More';
   isNew: 'true';
-  private sort: string;
+  sort: string;
   textStatus = '';
 
   constructor(private diaryService: DiaryService) {
@@ -30,7 +30,7 @@ export class BlogMainComponent implements OnInit {
     this.Pagination(this.page);
   }
 
-  private sortDiaryByDate() {
+  sortDiaryByDate() {
     console.log(this.isNew);
     if (this.isNew === undefined || this.isNew == null ) {
       return;

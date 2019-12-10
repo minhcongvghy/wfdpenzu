@@ -14,16 +14,16 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./update-diary.component.scss']
 })
 export class UpdateDiaryComponent implements OnInit {
-  private idParam: any;
+  idParam: any;
   diary: Diary;
-  private tagList: Tag[];
-  private info: any;
-  private previewId: string;
+  tagList: Tag[];
+  info: any;
+  previewId: string;
   tagId = '';
-  private fileUpload: File;
+  fileUpload: File;
   filePath: any;
-  private processValue = 0;
-  private counting: any;
+  processValue = 0;
+  counting: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,

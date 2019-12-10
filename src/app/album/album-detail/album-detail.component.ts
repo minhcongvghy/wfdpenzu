@@ -15,20 +15,20 @@ import {CommentService} from '../../services/comment.service';
   styleUrls: ['./album-detail.component.scss']
 })
 export class AlbumDetailComponent implements OnInit {
-  private albumId: string;
+  albumId: string;
   isShow: boolean;
   topPosToStartShowing = 200;
-  private album: Album;
+  album: Album;
   listImage: Image[] = [];
   currentRate = 6;
   formCommentCreate = new FormGroup( {
     contentInput: new FormControl('')
   });
-  contentUpdate = new FormControl();
-  private listComment: Comment[] = [];
-  private userId: string;
-  private tokenJWT: string;
-  private idComment: string;
+   contentUpdate = new FormControl();
+   listComment: Comment[] = [];
+   userId: string;
+   tokenJWT: string;
+   idComment: string;
 
   constructor(private router: Router,
               private albumService: AlbumService,

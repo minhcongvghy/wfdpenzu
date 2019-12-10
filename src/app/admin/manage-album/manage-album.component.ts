@@ -10,8 +10,8 @@ import {FindAlbumsByTitle} from '../../model/find-albums-by-title';
 })
 export class ManageAlbumComponent implements OnInit {
 
-  private albumList: Album[] = [];
-  private albumId: string;
+  albumList: Album[] = [];
+  albumId: string;
   title = '';
 
   constructor(private albumService: AlbumService) { }

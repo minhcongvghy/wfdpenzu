@@ -16,12 +16,12 @@ const TEXT_KEY = 'KeyText';
 export class AlbumMainComponent implements OnInit {
   albumList: Album[] = [];
   tagList: Tag[] = [];
-  private isNew: 'true';
-  private sort: string;
-  private textStatus = '';
-  private tagId = null;
-  private title = null;
-  private slideAlbum: Album[] = [];
+  isNew: 'true';
+  sort: string;
+  textStatus = '';
+  tagId = null;
+  title = null;
+  slideAlbum: Album[] = [];
   constructor(private albumService: AlbumService,
               private tagService: TagService) {
     this.sort = window.sessionStorage.getItem(STATUS_KEY);
@@ -56,7 +56,7 @@ export class AlbumMainComponent implements OnInit {
     );
   }
 
-  private sortAlbumByDate() {
+  sortAlbumByDate() {
     if (this.isNew === undefined || this.isNew == null ) {
       return;
     }

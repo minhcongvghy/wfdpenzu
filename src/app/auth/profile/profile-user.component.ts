@@ -16,8 +16,8 @@ import {User} from '../../model/user';
 export class ProfileUserComponent implements OnInit {
   info: any;
   user: User;
-  private filePath: any;
-  private fileUpload: File;
+  filePath: any;
+  fileUpload: File;
   inputName = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)])
   });
@@ -32,7 +32,7 @@ export class ProfileUserComponent implements OnInit {
     newPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(100)])
   });
-  private processValue = 0;
+  processValue = 0;
   constructor(private token: TokenStorageService, private authService: AuthService,
               private route: ActivatedRoute,
               private router: Router,
