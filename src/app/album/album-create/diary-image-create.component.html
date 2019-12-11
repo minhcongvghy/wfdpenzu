@@ -9,7 +9,7 @@
     <div *ngIf="!filePath; else img">
     </div>
     <ng-template #img>
-      <img src="{{filePath}}" width="100%" height="400px">
+      <img src="{{filePath}}" width="100%" height="700px">
     </ng-template>
     <input type = "file" class = "form-control"  (change)="handleFileChooser($event.target.files)">
   </div>
