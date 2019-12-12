@@ -77,7 +77,7 @@ export class BlogMainComponent implements OnInit {
   loadMore() {
     console.log(this.page);
     if (this.sort == null || this.sort === 'true') {
-      this.diaryService.getListDiaryAndPaginationASC(this.page).subscribe(
+      this.diaryService.getListDiaryAndPaginationASC(this.page).subscribe (
         result => {
           console.log(result);
           if (result == null) {
@@ -105,8 +105,8 @@ export class BlogMainComponent implements OnInit {
             console.log(result.content);
           }
         }, error => {
-          console.log('loi');
-        }
+          console.log('loi pagination');
+         }
       );
     }
   }
