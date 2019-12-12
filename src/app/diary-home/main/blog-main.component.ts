@@ -3,8 +3,8 @@ import {Diary} from '../../model/diary';
 import {DiaryService} from '../../services/diary.service';
 import {Pagination} from '../../model/pagination';
 
-const STATUS_KEY = 'Status';
-const TEXT_KEY = 'text';
+const STATUS_KEY_DIARY = 'Status';
+const TEXT_KEY_DIARY = 'text';
 @Component({
   selector: 'app-blog-main',
   templateUrl: './blog-main.component.html',
@@ -19,9 +19,9 @@ export class BlogMainComponent implements OnInit {
   textStatus = '';
 
   constructor(private diaryService: DiaryService) {
-    this.sort = window.sessionStorage.getItem(STATUS_KEY);
-    if (window.sessionStorage.getItem(TEXT_KEY) != null) {
-      this.textStatus = window.sessionStorage.getItem(TEXT_KEY);
+    this.sort = window.sessionStorage.getItem(STATUS_KEY_DIARY);
+    if (window.sessionStorage.getItem(TEXT_KEY_DIARY) != null) {
+      this.textStatus = window.sessionStorage.getItem(TEXT_KEY_DIARY);
     }
     console.log(this.sort);
   }
@@ -32,18 +32,18 @@ export class BlogMainComponent implements OnInit {
 
   sortDiaryByDate() {
     console.log(this.isNew);
-    if (this.isNew === undefined || this.isNew == null ) {
-      return;
+    if (this.isNew === undefined || this.isNew === null ) {
+          return;
     }
     if (this.isNew === 'true') {
-      window.sessionStorage.removeItem(TEXT_KEY);
-      window.sessionStorage.setItem(TEXT_KEY, 'Newest');
+      window.sessionStorage.removeItem(TEXT_KEY_DIARY);
+      window.sessionStorage.setItem(TEXT_KEY_DIARY, 'Newest');
     } else if ( this.isNew === 'false' ) {
-      window.sessionStorage.removeItem(TEXT_KEY);
-      window.sessionStorage.setItem(TEXT_KEY, 'Oldest');
+      window.sessionStorage.removeItem(TEXT_KEY_DIARY);
+      window.sessionStorage.setItem(TEXT_KEY_DIARY, 'Oldest');
     }
-    window.sessionStorage.removeItem(STATUS_KEY);
-    window.sessionStorage.setItem(STATUS_KEY, this.isNew);
+    window.sessionStorage.removeItem(STATUS_KEY_DIARY);
+    window.sessionStorage.setItem(STATUS_KEY_DIARY, this.isNew);
     window.location.reload();
   }
 
@@ -60,7 +60,7 @@ export class BlogMainComponent implements OnInit {
         }
       }
     );
-    } else {
+    } else if (this.sort === 'true') {
       this.diaryService.getListDiaryAndPaginationASC(page).subscribe(
         result => {
           if (result === null) {
