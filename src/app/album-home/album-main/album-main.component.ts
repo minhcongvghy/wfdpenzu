@@ -58,13 +58,13 @@ export class AlbumMainComponent implements OnInit {
   }
 
   sortAlbumByDate() {
-    if (this.isNew === undefined || this.isNew == null ) {
+    if (this.isNew === undefined || this.isNew === null ) {
       return;
     }
-    if (this.isNew == 'true') {
+    if (this.isNew === 'true') {
       window.sessionStorage.removeItem(TEXT_KEY);
       window.sessionStorage.setItem(TEXT_KEY, 'Newest');
-    } else if ( this.isNew == 'false' ) {
+    } else if ( this.isNew === 'false' ) {
       window.sessionStorage.removeItem(TEXT_KEY);
       window.sessionStorage.setItem(TEXT_KEY, 'Oldest');
     }
