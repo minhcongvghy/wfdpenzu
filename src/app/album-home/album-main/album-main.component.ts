@@ -16,8 +16,8 @@ const TEXT_KEY = 'KeyText';
 export class AlbumMainComponent implements OnInit {
   albumList: Album[] = [];
   tagList: Tag[] = [];
-  isNew = 'true';
-  sort = 'true';
+  isNew: 'true';
+  sort: string;
   textStatus = '';
   tagId = null;
   title = null;
@@ -58,7 +58,7 @@ export class AlbumMainComponent implements OnInit {
   }
 
   sortAlbumByDate() {
-    if (this.isNew === undefined || this.isNew === null ) {
+    if (this.isNew === undefined || this.isNew == null ) {
       return;
     }
     if (this.isNew === 'true') {
@@ -75,7 +75,7 @@ export class AlbumMainComponent implements OnInit {
 
 
   getAllAlbum() {
-    if (this.sort === 'true') {
+    if (this.sort == null || this.sort === 'true') {
       this.albumService.getListAlbumAndSortingByDateDESC().subscribe(
         result => {
           if (result === null) {
@@ -87,7 +87,7 @@ export class AlbumMainComponent implements OnInit {
           console.log(error);
         }
       );
-    } else if (this.sort === 'false')  {
+    } else  {
       this.albumService.getListAlbumAndSortingByDateASC().subscribe(
         result => {
           if (result === null) {
