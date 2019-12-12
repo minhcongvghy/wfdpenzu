@@ -14,8 +14,8 @@ export class BlogMainComponent implements OnInit {
   diaryList: Diary[] = [];
   page = 0;
   loadText = 'Load More';
-  isNew: 'true';
-  sort: string;
+  isNew = 'true';
+  sort = 'true';
   textStatus = '';
 
   constructor(private diaryService: DiaryService) {

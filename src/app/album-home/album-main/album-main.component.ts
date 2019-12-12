@@ -16,8 +16,8 @@ const TEXT_KEY = 'KeyText';
 export class AlbumMainComponent implements OnInit {
   albumList: Album[] = [];
   tagList: Tag[] = [];
-  isNew: 'true';
-  sort: string;
+  isNew = 'true';
+  sort = 'true';
   textStatus = '';
   tagId = null;
   title = null;
