@@ -61,10 +61,10 @@ export class AlbumMainComponent implements OnInit {
     if (this.isNew === undefined || this.isNew == null ) {
       return;
     }
-    if (this.isNew === 'true') {
+    if (this.isNew == 'true') {
       window.sessionStorage.removeItem(TEXT_KEY);
       window.sessionStorage.setItem(TEXT_KEY, 'Newest');
-    } else if ( this.isNew === 'false' ) {
+    } else if ( this.isNew == 'false' ) {
       window.sessionStorage.removeItem(TEXT_KEY);
       window.sessionStorage.setItem(TEXT_KEY, 'Oldest');
     }
@@ -75,7 +75,7 @@ export class AlbumMainComponent implements OnInit {
 
 
   getAllAlbum() {
-    if (this.sort == null || this.sort === 'true') {
+    if (this.sort === 'true') {
       this.albumService.getListAlbumAndSortingByDateDESC().subscribe(
         result => {
           if (result === null) {
@@ -87,7 +87,7 @@ export class AlbumMainComponent implements OnInit {
           console.log(error);
         }
       );
-    } else  {
+    } else if (this.sort === 'false')  {
       this.albumService.getListAlbumAndSortingByDateASC().subscribe(
         result => {
           if (result === null) {
