@@ -8,8 +8,8 @@ import {Image} from '../model/image';
 import {FindAlbumsByTitle} from '../model/find-albums-by-title';
 import {Pagination} from '../model/pagination';
 import {SearchAlbumByTagIdAndTitle} from '../model/search-album-by-tag-id-and-title';
-import {environment} from '../../environments/environment.prod';
-// import {environment} from '../../environments/environment';
+// import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
 
 
 const httpOptions = {
@@ -22,16 +22,16 @@ const httpOptions = {
 export class AlbumService {
 
   // local
-  // albumURL = environment.albumUrl;
-  // uploadAvatar = environment.albumUploadAvatarUrl;
-  // uploadImage = environment.albumUploadImageUrl;
-  // imageURL = environment.imageUrl;
+  albumURL = environment.albumUrl;
+  uploadAvatar = environment.albumUploadAvatarUrl;
+  uploadImage = environment.albumUploadImageUrl;
+  imageURL = environment.imageUrl;
 
   // server
-  albumURL = environment.SvAlbumUrl;
-  uploadAvatar = environment.SvAlbumUploadAvatarUrl;
-  uploadImage = environment.SvAlbumUploadImageUrl;
-  imageURL = environment.SvImageUrl;
+  // albumURL = environment.SvAlbumUrl;
+  // uploadAvatar = environment.SvAlbumUploadAvatarUrl;
+  // uploadImage = environment.SvAlbumUploadImageUrl;
+  // imageURL = environment.SvImageUrl;
 
   constructor(private http: HttpClient) {
   }

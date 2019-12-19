@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Tag} from '../model/tag';
 import {Observable} from 'rxjs';
-import {environment} from '../../environments/environment.prod';
-// import {environment} from '../../environments/environment';
+// import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,10 +14,10 @@ const httpOptions = {
 })
 export class TagService {
   // local
-  // private svTagUrl = environment.tagUrl;
+  private svTagUrl = environment.tagUrl;
 
   // server
-  private svTagUrl = environment.SvTagUrl;
+  // private svTagUrl = environment.SvTagUrl;
 
   constructor(private http: HttpClient) { }
 

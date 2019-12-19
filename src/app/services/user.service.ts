@@ -3,8 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Diary} from '../model/diary';
 import {Observable} from 'rxjs';
 
-// import {environment} from '../../environments/environment';
-import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
+// import {environment} from '../../environments/environment.prod';
 import {User} from '../model/user';
 
 import {UserForm} from '../auth/profile/user-form';
@@ -19,11 +19,12 @@ const httpOptions = {
 })
 export class UserService {
   // local
-  // private svUserUrl = environment.userUrl;
+  private svUserUrl = environment.userUrl;
+  private svUserAvatarUrl = environment.UserAvatarUrl;
 
   // server
-  private svUserUrl = environment.SvUserUrl;
-  private svUserAvatarUrl = environment.SvUserAvatarUrl;
+  // private svUserUrl = environment.SvUserUrl;
+  // private svUserAvatarUrl = environment.SvUserAvatarUrl;
 
 
   constructor(private http: HttpClient) { }

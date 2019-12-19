@@ -9,8 +9,8 @@ import {Pagination} from '../model/pagination';
 
 import {SearchDiaryByTitle} from '../model/search-diary-by-title';
 import {SearchDiaryByTagAndTitle} from '../model/search-diary-by-tag-and-title';
-// import {environment} from '../../environments/environment';
-import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
+// import {environment} from '../../environments/environment.prod';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -25,14 +25,14 @@ export class DiaryService {
   }
 
   // local
-  // private svDiaryUrl = environment.diaryUrl;
-  // private svUploadFile = environment.diaryUploadFileUrl;
+  private svDiaryUrl = environment.diaryUrl;
+  private svUploadFile = environment.diaryUploadFileUrl;
 
 
 
   // server
-  private svDiaryUrl = environment.SvDiaryUrl;
-  private svUploadFile = environment.SvDiaryUploadFileUrl;
+  // private svDiaryUrl = environment.SvDiaryUrl;
+  // private svUploadFile = environment.SvDiaryUploadFileUrl;
 
   getListDiaryAndPaginationASC(page: number): Observable<Pagination> {
     return this.http.get<Pagination>(this.svDiaryUrl + 'pagination/ASC?page=' + page);
